@@ -53,7 +53,24 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+	// define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+
+switch ($_SERVER["HTTP_HOST"]) {
+	case "localhost":
+		$env = "production";
+		break;
+
+	case "sia.aimpglobal.com":
+		$env = "testing";
+		break;
+
+	default:
+		$env = "development";
+		break;
+}
+ // define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+ // define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'production');
+ define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : $env);
 
 /*
  *---------------------------------------------------------------
