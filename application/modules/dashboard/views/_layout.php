@@ -285,63 +285,45 @@
           </li>
           <!-- /transaksi -->
 
-          <!-- proses -->
-          <li class="nav-header">PROSES</li>
-          <li class="nav-item">
-            <a href="<?php echo site_url('d01_kls/index2'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'd01_kls' ? 'active' : ''; ?>">
-              <i class="fas fa-table nav-icon"></i>
-              <p>Siswa Baru</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?php echo site_url('d01_kls/index2'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'd01_kls' ? 'active' : ''; ?>">
-              <i class="fas fa-table nav-icon"></i>
-              <p>Naik Kelas</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?php echo site_url('d01_kls/index2'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'd01_kls' ? 'active' : ''; ?>">
-              <i class="fas fa-table nav-icon"></i>
-              <p>Siswa Lulus</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?php echo site_url('d01_kls/index2'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'd01_kls' ? 'active' : ''; ?>">
-              <i class="fas fa-table nav-icon"></i>
-              <p>Mutasi Siswa</p>
-            </a>
-          </li>
-          <!-- <li class="nav-item">
-            <a href="<?php //echo site_url('d02_ssw'); ?>" class="nav-link <?php //echo $this->uri->segment(1) == 'd02_ssw' ? 'active' : ''; ?>">
-              <i class="fas fa-users nav-icon"></i>
-              <p>Siswa</p>
-            </a>
-          </li> -->
+          <!-- laporan -->
+          <li class="nav-item has-treeview">
 
-          <!-- <li class="nav-header">DEMO</li> -->
-          <!-- grocerycrud -->
-          <!-- <li class="nav-item">
-            <a href="<?php echo site_url('examples'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'examples' ? 'active' : ''; ?>">
-              <i class="fas fa-user nav-icon"></i>
-              <p>GroceryCRUD</p>
+            <!-- header: transaksi -->
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-database"></i>
+              <p>LAPORAN<i class="right fas fa-angle-left"></i></p>
             </a>
-          </li> -->
-          <!-- welcome -->
-          <!-- <li class="nav-item">
-            <a href="<?php echo site_url('welcome'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'welcome' ? 'active' : ''; ?>">
-              <i class="fas fa-user nav-icon"></i>
-              <p>Welcome</p>
-            </a>
-          </li> -->
 
-          <!-- setting -->
-          <!-- <li class="nav-header">SETTING</li> -->
-          <!-- <li class="nav-item">
-            <a href="<?php //echo site_url('users'); ?>" class="nav-link <?php //echo $this->uri->segment(1) == 'users' ? 'active' : ''; ?>">
-              <i class="fas fa-user nav-icon"></i>
-              <p>Users</p>
-            </a>
-          </li> -->
+            <ul class="nav nav-treeview">
+
+              <!-- aktiva tetap -->
+              <li class="nav-item">
+                <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
+                  <i class="far fa-calendar-alt nav-icon"></i>
+                  <p>Buku Besar</p>
+                </a>
+              </li>
+
+              <!-- Penjualan -->
+              <li class="nav-item">
+                <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
+                  <i class="far fa-calendar-alt nav-icon"></i>
+                  <p>Neraca</p>
+                </a>
+              </li>
+
+              <!-- harga pokok -->
+              <li class="nav-item">
+                <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
+                  <i class="far fa-calendar-alt nav-icon"></i>
+                  <p>Laba / Rugi</p>
+                </a>
+              </li>
+
+            </ul>
+
+          </li>
+          <!-- /laporan -->
 
           <!-- divider -->
           <li class="nav-header"></li>
