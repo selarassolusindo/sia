@@ -326,19 +326,19 @@
           <!-- /laporan -->
 
           <!-- divider -->
-          <li class="nav-header"></li>
+          <!-- <li class="nav-header"></li> -->
 
           <!-- Login or logout -->
           <li class="nav-item">
             <?php if ($this->session->userdata('user_id') != "") { ?>
               <a href="<?php echo site_url('auth/logout'); ?>" class="nav-link">
                 <i class="fas fa-sign-out-alt nav-icon"></i>
-                <p>Logout</p>
+                <p>LOGOUT</p>
               </a>
             <?php } else { ?>
               <a href="<?php echo site_url('auth/login'); ?>" class="nav-link">
                 <i class="fas fa-sign-in-alt nav-icon"></i>
-                <p>Login</p>
+                <p>LOGIN</p>
               </a>
             <?php }?>
           </li>
