@@ -787,7 +787,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="https://one-tech-computer.business.site/" target="_blank">OneTech System Solution</a>.</strong>
+    <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="#" target="_blank">PT. PIW - PT. SSW</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b><?php echo SITE_NAME; ?> </b> <?php echo SITE_VERSION; ?>
