@@ -204,7 +204,7 @@
           <li class="nav-item has-treeview">
 
             <a href="#" class="nav-link">
-              <i class="fas fa-archive nav-icon"></i>
+              <i class="fas fa-server nav-icon"></i>
               <p>SETUP<i class="right fas fa-angle-left"></i></p>
             </a>
 
@@ -212,7 +212,7 @@
 
               <li class="nav-item">
                 <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
-                  <i class="fas fa-list-ol nav-icon"></i>
+                  <i class="far fa-object-ungroup nav-icon"></i>
                   <p>Klasifikasi Akun</p>
                 </a>
               </li>
