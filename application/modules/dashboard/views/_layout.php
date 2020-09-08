@@ -299,7 +299,7 @@
               <!-- aktiva tetap -->
               <li class="nav-item">
                 <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
-                  <i class="far fa-calendar-alt nav-icon"></i>
+                  <i class="fab fa-accusoft nav-icon"></i>
                   <p>Buku Besar</p>
                 </a>
               </li>
@@ -307,7 +307,7 @@
               <!-- Penjualan -->
               <li class="nav-item">
                 <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
-                  <i class="far fa-calendar-alt nav-icon"></i>
+                  <i class="fas fa-balance-scale nav-icon"></i>
                   <p>Neraca</p>
                 </a>
               </li>
@@ -315,7 +315,7 @@
               <!-- harga pokok -->
               <li class="nav-item">
                 <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
-                  <i class="far fa-calendar-alt nav-icon"></i>
+                  <i class="fas fa-file-invoice-dollar nav-icon"></i>
                   <p>Laba / Rugi</p>
                 </a>
               </li>
@@ -418,7 +418,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="#" target="_blank">PT. PIW - PT. SSW</a>.</strong>
+    <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="#">PT. PIW - PT. SSW</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
       <b><?php echo SITE_NAME; ?> </b> <?php echo SITE_VERSION; ?>
