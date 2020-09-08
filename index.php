@@ -60,7 +60,7 @@ switch ($_SERVER["HTTP_HOST"]) {
 		$env = "production";
 		break;
 
-	case "sia.aimpglobal.com":
+	case "sia.selusin.online":
 		$env = "testing";
 		break;
 
