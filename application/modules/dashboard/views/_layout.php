@@ -267,7 +267,7 @@
               <!-- kas / bank -->
               <li class="nav-item">
                 <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
-                  <i class="far fa-calendar-alt nav-icon"></i>
+                  <i class="fas fa-money-check-alt nav-icon"></i>
                   <p>Kas / Bank</p>
                 </a>
               </li>
