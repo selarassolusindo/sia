@@ -210,6 +210,7 @@
 
                 <ul class="nav nav-treeview">
 
+                  <!-- perusahaan -->
                   <li class="nav-item">
                     <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
                       <i class="fas fa-door-open nav-icon"></i>
@@ -217,6 +218,7 @@
                     </a>
                   </li>
 
+                  <!-- klasifikasi akun -->
                   <li class="nav-item">
                     <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
                       <i class="far fa-clone nav-icon"></i>
@@ -309,13 +311,13 @@
                     </a>
                   </li>
 
-                  <!-- ? -->
-                  <!-- <li class="nav-item">
+                  <!-- input data tamu -->
+                  <li class="nav-item">
                     <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
-                      <i class="fas fa-upload nav-icon"></i>
-                      <p>Restore</p>
+                      <i class="fas fa-users nav-icon"></i>
+                      <p>Input Data Tamu</p>
                     </a>
-                  </li> -->
+                  </li>
 
                 </ul>
 
@@ -332,7 +334,7 @@
 
                 <ul class="nav nav-treeview">
 
-                  <!-- aktiva tetap -->
+                  <!-- buku besar -->
                   <li class="nav-item">
                     <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
                       <i class="fab fa-accusoft nav-icon"></i>
@@ -340,7 +342,7 @@
                     </a>
                   </li>
 
-                  <!-- Penjualan -->
+                  <!-- neraca -->
                   <li class="nav-item">
                     <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
                       <i class="fas fa-balance-scale nav-icon"></i>
@@ -348,7 +350,7 @@
                     </a>
                   </li>
 
-                  <!-- harga pokok -->
+                  <!-- laba / rugi -->
                   <li class="nav-item">
                     <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
                       <i class="fas fa-file-invoice-dollar nav-icon"></i>
@@ -391,8 +393,6 @@
 
               </li>
               <!-- /utility -->
-
-
 
               <!-- divider -->
               <!-- <li class="nav-header"></li> -->
