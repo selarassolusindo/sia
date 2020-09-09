@@ -3,9 +3,10 @@
 
 <div id="infoMessage"><?php echo $message;?></div>
 
-<table cellpadding=0 cellspacing=10>
+<!-- <table cellpadding=0 cellspacing=10> -->
+<table class="table table-bordered" style="margin-bottom: 10px">
 	<tr>
-		<th>username</th>
+		<th>Username</th>
 		<th><?php echo lang('index_fname_th');?></th>
 		<th><?php echo lang('index_lname_th');?></th>
 		<th><?php echo lang('index_email_th');?></th>
