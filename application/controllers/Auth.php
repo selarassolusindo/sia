@@ -626,7 +626,8 @@ class Auth extends CI_Controller
 		$this->form_validation->set_rules('company', $this->lang->line('edit_user_validation_company_label'), 'trim');
 		if ($identity_column !== 'email')
 		{
-			$this->form_validation->set_rules('identity', $this->lang->line('edit_user_validation_identity_label'), 'trim|required|is_unique[' . $tables['users'] . '.' . $identity_column . ']');
+			// $this->form_validation->set_rules('identity', $this->lang->line('edit_user_validation_identity_label'), 'trim|required|is_unique[' . $tables['users'] . '.' . $identity_column . ']');
+			$this->form_validation->set_rules('identity', $this->lang->line('edit_user_validation_identity_label'), 'trim|required');
 		}
 
 		if (isset($_POST) && !empty($_POST))
@@ -644,31 +645,21 @@ class Auth extends CI_Controller
 				$this->form_validation->set_rules('password_confirm', $this->lang->line('edit_user_validation_password_confirm_label'), 'required');
 			}
 
-			// echo $this->db->last_query(); exit;
-
 			if ($this->form_validation->run() === TRUE)
 			{
-				// $email = strtolower($this->input->post('email'));
 				$identity = ($identity_column === 'email') ? '' : $this->input->post('identity');
 
+				$data = [
+					'first_name' => $this->input->post('first_name'),
+					'last_name' => $this->input->post('last_name'),
+					'company' => $this->input->post('company'),
+					'phone' => $this->input->post('phone'),
+				];
 
 				if ($identity_column === 'email') {
-					$data = [
-						'first_name' => $this->input->post('first_name'),
-						'last_name' => $this->input->post('last_name'),
-						'company' => $this->input->post('company'),
-						'phone' => $this->input->post('phone'),
-						// $identity_column => $identity,
-					];
 				}
 				else {
-					$data = [
-						'first_name' => $this->input->post('first_name'),
-						'last_name' => $this->input->post('last_name'),
-						'company' => $this->input->post('company'),
-						'phone' => $this->input->post('phone'),
-						$identity_column => $identity,
-					];
+					$data[$identity_column] = $identity;
 				}
 
 				// update the password if it was posted
@@ -692,7 +683,7 @@ class Auth extends CI_Controller
 						}
 
 					}
-				} echo pre($data); exit;
+				}
 
 				// check to see if we are updating the user
 				if ($this->ion_auth->update($user->id, $data))
