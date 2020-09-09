@@ -60,3 +60,4 @@ $route['create-group']      = 'auth/create_group';
 $route['edit-group/(:num)'] = 'auth/edit_group/$1';
 $route['deactivate/(:num)'] = 'auth/deactivate/$1';
 $route['activate/(:num)']   = 'auth/activate/$1';
+$route['edit-user/(:num)']   = 'auth/edit_user/$1';

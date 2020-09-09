@@ -56,7 +56,7 @@ class Auth extends CI_Controller
 			}
 
 			// $this->_render_page('auth' . DIRECTORY_SEPARATOR . 'index', $this->data);
-			$this->data['_view']    = 'auth/index';
+			$this->data['_view']    = 'auth' . DIRECTORY_SEPARATOR . 'index';
 			$this->data['_caption'] = lang('index_heading');
 			$this->load->view('dashboard/_layout', $this->data);
 		}
@@ -609,6 +609,8 @@ class Auth extends CI_Controller
 			redirect('auth', 'refresh');
 		}
 
+		$tables = $this->config->item('tables', 'ion_auth');
+		$identity_column = $this->config->item('identity', 'ion_auth');
 		$user = $this->ion_auth->user($id)->row();
 		$groups = $this->ion_auth->groups()->result_array();
 		$currentGroups = $this->ion_auth->get_users_groups($id)->result_array();
@@ -622,6 +624,10 @@ class Auth extends CI_Controller
 		$this->form_validation->set_rules('last_name', $this->lang->line('edit_user_validation_lname_label'), 'trim|required');
 		$this->form_validation->set_rules('phone', $this->lang->line('edit_user_validation_phone_label'), 'trim');
 		$this->form_validation->set_rules('company', $this->lang->line('edit_user_validation_company_label'), 'trim');
+		if ($identity_column !== 'email')
+		{
+			$this->form_validation->set_rules('identity', $this->lang->line('edit_user_validation_identity_label'), 'trim|required|is_unique[' . $tables['users'] . '.' . $identity_column . ']');
+		}
 
 		if (isset($_POST) && !empty($_POST))
 		{
@@ -638,14 +644,32 @@ class Auth extends CI_Controller
 				$this->form_validation->set_rules('password_confirm', $this->lang->line('edit_user_validation_password_confirm_label'), 'required');
 			}
 
+			// echo $this->db->last_query(); exit;
+
 			if ($this->form_validation->run() === TRUE)
 			{
-				$data = [
-					'first_name' => $this->input->post('first_name'),
-					'last_name' => $this->input->post('last_name'),
-					'company' => $this->input->post('company'),
-					'phone' => $this->input->post('phone'),
-				];
+				// $email = strtolower($this->input->post('email'));
+				$identity = ($identity_column === 'email') ? '' : $this->input->post('identity');
+
+
+				if ($identity_column === 'email') {
+					$data = [
+						'first_name' => $this->input->post('first_name'),
+						'last_name' => $this->input->post('last_name'),
+						'company' => $this->input->post('company'),
+						'phone' => $this->input->post('phone'),
+						// $identity_column => $identity,
+					];
+				}
+				else {
+					$data = [
+						'first_name' => $this->input->post('first_name'),
+						'last_name' => $this->input->post('last_name'),
+						'company' => $this->input->post('company'),
+						'phone' => $this->input->post('phone'),
+						$identity_column => $identity,
+					];
+				}
 
 				// update the password if it was posted
 				if ($this->input->post('password'))
@@ -668,7 +692,7 @@ class Auth extends CI_Controller
 						}
 
 					}
-				}
+				} echo pre($data); exit;
 
 				// check to see if we are updating the user
 				if ($this->ion_auth->update($user->id, $data))
@@ -725,17 +749,28 @@ class Auth extends CI_Controller
 			'value' => $this->form_validation->set_value('phone', $user->phone),
 		];
 		$this->data['password'] = [
-			'name' => 'password',
-			'id'   => 'password',
-			'type' => 'password'
+			'name'  => 'password',
+			'id'    => 'password',
+			'type'  => 'password',
+			'value' => $this->form_validation->set_value('password'),
 		];
 		$this->data['password_confirm'] = [
-			'name' => 'password_confirm',
-			'id'   => 'password_confirm',
-			'type' => 'password'
+			'name'  => 'password_confirm',
+			'id'    => 'password_confirm',
+			'type'  => 'password',
+			'value' => $this->form_validation->set_value('password_confirm'),
+		];
+		$this->data['identity'] = [
+			'name'  => 'identity',
+			'id'    => 'identity',
+			'type'  => 'text',
+			'value' => $this->form_validation->set_value('identity', $user->$identity_column),
 		];
 
-		$this->_render_page('auth/edit_user', $this->data);
+		// $this->_render_page('auth/edit_user', $this->data);
+		$this->data['_view']    = 'auth/edit_user';
+		$this->data['_caption'] = lang('edit_user_heading');
+		$this->load->view('dashboard/_layout', $this->data);
 	}
 
 	/**
