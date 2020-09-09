@@ -124,17 +124,15 @@
     </style>
 
     <?php
-    if (isset($css_files))
-    {
-    foreach($css_files as $file):
-    ?>
-      <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
-    <?php
-    endforeach;
-    }
-    ?>
+    if (isset($css_files)) {
+      foreach($css_files as $file): ?>
+        <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
+      <?php
+      endforeach;
+    } ?>
 
   </head>
+
   <body class="hold-transition sidebar-mini layout-fixed text-sm">
     <div class="wrapper">
 
@@ -218,13 +216,23 @@
                     </a>
                   </li>
 
+                  <!-- user management -->
+                  <li class="nav-item">
+                    <a href="<?php echo site_url('company'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'company' ? 'active' : ''; ?>">
+                      <i class="fas fa-user-friends nav-icon"></i>
+                      <p>User Management</p>
+                    </a>
+                  </li>
+
                   <!-- klasifikasi akun -->
+                  <?php if ($this->ion_auth->logged_in()) { ?>
                   <li class="nav-item">
                     <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
                       <i class="far fa-clone nav-icon"></i>
                       <p>Klasifikasi Akun</p>
                     </a>
                   </li>
+                  <?php } ?>
 
                 </ul>
 
