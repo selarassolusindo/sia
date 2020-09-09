@@ -57,7 +57,7 @@ class Auth extends CI_Controller
 
 			// $this->_render_page('auth' . DIRECTORY_SEPARATOR . 'index', $this->data);
 			$this->data['_view']    = 'auth/index';
-			$this->data['_caption'] = 'User List';
+			$this->data['_caption'] = lang('index_heading');
 			$this->load->view('dashboard/_layout', $this->data);
 		}
 	}
@@ -443,7 +443,10 @@ class Auth extends CI_Controller
 			$this->data['user'] = $this->ion_auth->user($id)->row();
 			$this->data['identity'] = $this->config->item('identity', 'ion_auth');
 
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'deactivate_user', $this->data);
+			// $this->_render_page('auth' . DIRECTORY_SEPARATOR . 'deactivate_user', $this->data);
+			$this->data['_view']    = 'auth' . DIRECTORY_SEPARATOR . 'deactivate_user';
+			$this->data['_caption'] = lang('deactivate_heading');
+			$this->load->view('dashboard/_layout', $this->data);
 		}
 		else
 		{
@@ -576,7 +579,10 @@ class Auth extends CI_Controller
 				'value' => $this->form_validation->set_value('password_confirm'),
 			];
 
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'create_user', $this->data);
+			// $this->_render_page('auth' . DIRECTORY_SEPARATOR . 'create_user', $this->data);
+			$this->data['_view']    = 'auth' . DIRECTORY_SEPARATOR . 'create_user';
+			$this->data['_caption'] = lang('create_user_heading');
+			$this->load->view('dashboard/_layout', $this->data);
 		}
 	}
 	/**
@@ -780,7 +786,10 @@ class Auth extends CI_Controller
 			'value' => $this->form_validation->set_value('description'),
 		];
 
-		$this->_render_page('auth/create_group', $this->data);
+		// $this->_render_page('auth/create_group', $this->data);
+		$this->data['_view']    = 'auth/create_group';
+		$this->data['_caption'] = lang('create_group_heading');
+		$this->load->view('dashboard/_layout', $this->data);
 
 	}
 
@@ -852,7 +861,10 @@ class Auth extends CI_Controller
 			'value' => $this->form_validation->set_value('group_description', $group->description),
 		];
 
-		$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'edit_group', $this->data);
+		// $this->_render_page('auth' . DIRECTORY_SEPARATOR . 'edit_group', $this->data);
+		$this->data['_view']    = 'auth' . DIRECTORY_SEPARATOR . 'edit_group';
+		$this->data['_caption'] = lang('edit_group_heading');
+		$this->load->view('dashboard/_layout', $this->data);
 	}
 
 	/**

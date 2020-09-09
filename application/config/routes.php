@@ -55,3 +55,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['company'] = 't01_company';
 $route['user-management'] = 'auth';
+$route['create-user'] = 'auth/create_user';
+$route['create-group'] = 'auth/create_group';
+$route['edit-group/(:num)'] = 'auth/edit_group/$1';
+$route['deactivate/(:num)'] = 'auth/deactivate/$1';
