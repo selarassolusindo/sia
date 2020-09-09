@@ -16,7 +16,7 @@ class T01_company extends CI_Controller
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
-        
+
         if ($q <> '') {
             $config['base_url'] = base_url() . 't01_company/index.html?q=' . urlencode($q);
             $config['first_url'] = base_url() . 't01_company/index.html?q=' . urlencode($q);
@@ -39,20 +39,23 @@ class T01_company extends CI_Controller
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
-        );
-        $this->load->view('t01_company/t01_company_list', $data);
+          );
+        // $this->load->view('t01_company/t01_company_list', $data);
+        $data['_view']    = 't01_company_list';
+        $data['_caption'] = 'Company';
+        $this->load->view('dashboard/_layout', $data);
     }
 
-    public function read($id) 
+    public function read($id)
     {
         $row = $this->T01_company_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'idcompany' => $row->idcompany,
-		'Nama' => $row->Nama,
-		'Alamat' => $row->Alamat,
-		'Kota' => $row->Kota,
-	    );
+            		'idcompany' => $row->idcompany,
+            		'Nama' => $row->Nama,
+            		'Alamat' => $row->Alamat,
+            		'Kota' => $row->Kota,
+              );
             $this->load->view('t01_company/t01_company_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -60,20 +63,23 @@ class T01_company extends CI_Controller
         }
     }
 
-    public function create() 
+    public function create()
     {
         $data = array(
             'button' => 'Create',
             'action' => site_url('t01_company/create_action'),
-	    'idcompany' => set_value('idcompany'),
-	    'Nama' => set_value('Nama'),
-	    'Alamat' => set_value('Alamat'),
-	    'Kota' => set_value('Kota'),
-	);
-        $this->load->view('t01_company/t01_company_form', $data);
+      	    'idcompany' => set_value('idcompany'),
+      	    'Nama' => set_value('Nama'),
+      	    'Alamat' => set_value('Alamat'),
+      	    'Kota' => set_value('Kota'),
+          );
+        // $this->load->view('t01_company/t01_company_form', $data);
+        $data['_view']    = 't01_company_form';
+        $data['_caption'] = 'Company';
+        $this->load->view('dashboard/_layout', $data);
     }
-    
-    public function create_action() 
+
+    public function create_action()
     {
         $this->_rules();
 
@@ -91,8 +97,8 @@ class T01_company extends CI_Controller
             redirect(site_url('t01_company'));
         }
     }
-    
-    public function update($id) 
+
+    public function update($id)
     {
         $row = $this->T01_company_model->get_by_id($id);
 
@@ -111,8 +117,8 @@ class T01_company extends CI_Controller
             redirect(site_url('t01_company'));
         }
     }
-    
-    public function update_action() 
+
+    public function update_action()
     {
         $this->_rules();
 
@@ -130,8 +136,8 @@ class T01_company extends CI_Controller
             redirect(site_url('t01_company'));
         }
     }
-    
-    public function delete($id) 
+
+    public function delete($id)
     {
         $row = $this->T01_company_model->get_by_id($id);
 
@@ -145,7 +151,7 @@ class T01_company extends CI_Controller
         }
     }
 
-    public function _rules() 
+    public function _rules()
     {
 	$this->form_validation->set_rules('Nama', 'nama', 'trim|required');
 	$this->form_validation->set_rules('Alamat', 'alamat', 'trim|required');
@@ -207,7 +213,7 @@ class T01_company extends CI_Controller
             't01_company_data' => $this->T01_company_model->get_all(),
             'start' => 0
         );
-        
+
         $this->load->view('t01_company/t01_company_doc',$data);
     }
 
