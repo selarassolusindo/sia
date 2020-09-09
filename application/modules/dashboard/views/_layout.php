@@ -212,7 +212,7 @@
 
                   <!-- perusahaan -->
                   <li class="nav-item">
-                    <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
+                    <a href="<?php echo site_url('company'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'company' ? 'active' : ''; ?>">
                       <i class="fas fa-door-open nav-icon"></i>
                       <p>Perusahaan</p>
                     </a>
