@@ -5,6 +5,7 @@
 
 <table cellpadding=0 cellspacing=10>
 	<tr>
+		<th>username</th>
 		<th><?php echo lang('index_fname_th');?></th>
 		<th><?php echo lang('index_lname_th');?></th>
 		<th><?php echo lang('index_email_th');?></th>
@@ -14,6 +15,7 @@
 	</tr>
 	<?php foreach ($users as $user):?>
 		<tr>
+				<td><?php echo htmlspecialchars($user->username,ENT_QUOTES,'UTF-8');?></td>
             <td><?php echo htmlspecialchars($user->first_name,ENT_QUOTES,'UTF-8');?></td>
             <td><?php echo htmlspecialchars($user->last_name,ENT_QUOTES,'UTF-8');?></td>
             <td><?php echo htmlspecialchars($user->email,ENT_QUOTES,'UTF-8');?></td>

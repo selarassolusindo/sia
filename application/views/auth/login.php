@@ -40,7 +40,7 @@
         <?php echo form_open("auth/login");?>
 
           <div class="input-group mb-3">
-            <input type="email" class="form-control" placeholder="Email" name='identity' id='identity'>
+            <input type="text" class="form-control" placeholder="Username" name='identity' id='identity'>
             <!-- <p> -->
             <?php //echo lang('login_identity_label', 'identity');?>
             <?php //echo form_input($identity);?>
@@ -83,9 +83,9 @@
               </div>
           </div> -->
 
-          <!-- sekolah -->
+          <!-- company -->
           <?php //echo pre($s01_thaj); ?>
-          <div class="input-group mb-3">
+          <!-- <div class="input-group mb-3">
               <select class="form-control" name="idcompany">
                 <option>Company</option>
                 <?php foreach ($t01_company as $r) {
@@ -99,7 +99,7 @@
                   <span class="fas fa-building"></span>
                 </div>
               </div>
-          </div>
+          </div> -->
 
           <div class="row">
             <div class="col-3">

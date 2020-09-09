@@ -218,7 +218,7 @@
 
                   <!-- user management -->
                   <li class="nav-item">
-                    <a href="<?php echo site_url('company'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'company' ? 'active' : ''; ?>">
+                    <a href="<?php echo site_url('user-management'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'user-management' ? 'active' : ''; ?>">
                       <i class="fas fa-user-friends nav-icon"></i>
                       <p>User Management</p>
                     </a>
@@ -504,8 +504,8 @@
       </div>
       <!-- /.content-wrapper -->
       <footer class="main-footer">
-        <strong>Copyright &copy; <?php echo date('Y'); ?> <a href="#">PT. PIW - PT. SSW</a>.</strong>
-        All rights reserved.
+        <strong>&copy; <?php echo date('Y'); ?> <a href="#">PT. PIW - PT. SSW</a></strong>. All rights reserved. Created by <a href="http://selusin.online" target="_blank" title="SELARAS SOLUSINDO">SELUSIN</a>.
+
         <div class="float-right d-none d-sm-inline-block">
           <b><?php echo SITE_NAME; ?> </b> <?php echo SITE_VERSION; ?>
         </div>
