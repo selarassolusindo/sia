@@ -69,6 +69,10 @@ class Auth extends CI_Controller
 		// validate form input
 		$this->form_validation->set_rules('identity', str_replace(':', '', $this->lang->line('login_identity_label')), 'required');
 		$this->form_validation->set_rules('password', str_replace(':', '', $this->lang->line('login_password_label')), 'required');
+		// check combo sekolah
+		$this->form_validation->set_rules('idcompany', 'Company',
+			array("required", array("f_check_company", function($company) {return $company != "Company";})),
+			array("f_check_company" => "Company harus terisi !"));
 
 		if ($this->form_validation->run() === TRUE)
 		{

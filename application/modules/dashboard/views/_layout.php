@@ -230,6 +230,11 @@
 
               </li>
 
+              <?php
+              if ($this->ion_auth->logged_in())
+              {
+              ?>
+
               <!-- transaksi -->
               <li class="nav-item has-treeview">
 
@@ -393,6 +398,10 @@
 
               </li>
               <!-- /utility -->
+
+              <?php
+              }
+              ?>
 
               <!-- divider -->
               <!-- <li class="nav-header"></li> -->
