@@ -168,6 +168,7 @@
         <!-- Brand Logo -->
         <a href="<?php echo site_url(); ?>" class="brand-link">
           <img src="<?php echo base_url(); ?>assets/adminlte/dist/img/logo.jpeg" alt="G-Land" class="brand-image " style="opacity: .8">
+          <!-- img-circle elevation-3 -->
           <span class="brand-text "><?php echo "<b>" . SITE_NAME . "</b>" . ' ' . SITE_VERSION; ?></span>
         </a>
 
