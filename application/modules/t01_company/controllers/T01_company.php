@@ -1,11 +1,12 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 class T01_company extends CI_Controller
 {
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
         $this->load->model('T01_company_model');
@@ -14,7 +15,7 @@ class T01_company extends CI_Controller
 
     public function index()
     {
-        $q = urldecode($this->input->get('q', TRUE));
+        $q = urldecode($this->input->get('q', true));
         $start = intval($this->input->get('start'));
 
         if ($q <> '') {
@@ -26,7 +27,7 @@ class T01_company extends CI_Controller
         }
 
         $config['per_page'] = 10;
-        $config['page_query_string'] = TRUE;
+        $config['page_query_string'] = true;
         $config['total_rows'] = $this->T01_company_model->total_rows($q);
         $t01_company = $this->T01_company_model->get_limit_data($config['per_page'], $start, $q);
 
@@ -51,10 +52,10 @@ class T01_company extends CI_Controller
         $row = $this->T01_company_model->get_by_id($id);
         if ($row) {
             $data = array(
-            		'idcompany' => $row->idcompany,
-            		'Nama' => $row->Nama,
-            		'Alamat' => $row->Alamat,
-            		'Kota' => $row->Kota,
+                    'idcompany' => $row->idcompany,
+                    'Nama' => $row->Nama,
+                    'Alamat' => $row->Alamat,
+                    'Kota' => $row->Kota,
               );
             $this->load->view('t01_company/t01_company_read', $data);
         } else {
@@ -68,10 +69,10 @@ class T01_company extends CI_Controller
         $data = array(
             'button' => 'Create',
             'action' => site_url('t01_company/create_action'),
-      	    'idcompany' => set_value('idcompany'),
-      	    'Nama' => set_value('Nama'),
-      	    'Alamat' => set_value('Alamat'),
-      	    'Kota' => set_value('Kota'),
+              'idcompany' => set_value('idcompany'),
+              'Nama' => set_value('Nama'),
+              'Alamat' => set_value('Alamat'),
+              'Kota' => set_value('Kota'),
           );
         // $this->load->view('t01_company/t01_company_form', $data);
         $data['_view']    = 't01_company_form';
@@ -83,14 +84,14 @@ class T01_company extends CI_Controller
     {
         $this->_rules();
 
-        if ($this->form_validation->run() == FALSE) {
+        if ($this->form_validation->run() == false) {
             $this->create();
         } else {
             $data = array(
-		'Nama' => $this->input->post('Nama',TRUE),
-		'Alamat' => $this->input->post('Alamat',TRUE),
-		'Kota' => $this->input->post('Kota',TRUE),
-	    );
+        'Nama' => $this->input->post('Nama', true),
+        'Alamat' => $this->input->post('Alamat', true),
+        'Kota' => $this->input->post('Kota', true),
+        );
 
             $this->T01_company_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -106,11 +107,11 @@ class T01_company extends CI_Controller
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('t01_company/update_action'),
-		'idcompany' => set_value('idcompany', $row->idcompany),
-		'Nama' => set_value('Nama', $row->Nama),
-		'Alamat' => set_value('Alamat', $row->Alamat),
-		'Kota' => set_value('Kota', $row->Kota),
-	    );
+        'idcompany' => set_value('idcompany', $row->idcompany),
+        'Nama' => set_value('Nama', $row->Nama),
+        'Alamat' => set_value('Alamat', $row->Alamat),
+        'Kota' => set_value('Kota', $row->Kota),
+        );
             $this->load->view('t01_company/t01_company_form', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -122,16 +123,16 @@ class T01_company extends CI_Controller
     {
         $this->_rules();
 
-        if ($this->form_validation->run() == FALSE) {
-            $this->update($this->input->post('idcompany', TRUE));
+        if ($this->form_validation->run() == false) {
+            $this->update($this->input->post('idcompany', true));
         } else {
             $data = array(
-		'Nama' => $this->input->post('Nama',TRUE),
-		'Alamat' => $this->input->post('Alamat',TRUE),
-		'Kota' => $this->input->post('Kota',TRUE),
-	    );
+        'Nama' => $this->input->post('Nama', true),
+        'Alamat' => $this->input->post('Alamat', true),
+        'Kota' => $this->input->post('Kota', true),
+        );
 
-            $this->T01_company_model->update($this->input->post('idcompany', TRUE), $data);
+            $this->T01_company_model->update($this->input->post('idcompany', true), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
             redirect(site_url('t01_company'));
         }
@@ -153,12 +154,12 @@ class T01_company extends CI_Controller
 
     public function _rules()
     {
-	$this->form_validation->set_rules('Nama', 'nama', 'trim|required');
-	$this->form_validation->set_rules('Alamat', 'alamat', 'trim|required');
-	$this->form_validation->set_rules('Kota', 'kota', 'trim|required');
+        $this->form_validation->set_rules('Nama', 'nama', 'trim|required');
+        $this->form_validation->set_rules('Alamat', 'alamat', 'trim|required');
+        $this->form_validation->set_rules('Kota', 'kota', 'trim|required');
 
-	$this->form_validation->set_rules('idcompany', 'idcompany', 'trim');
-	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+        $this->form_validation->set_rules('idcompany', 'idcompany', 'trim');
+        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
     public function excel()
@@ -183,20 +184,20 @@ class T01_company extends CI_Controller
 
         $kolomhead = 0;
         xlsWriteLabel($tablehead, $kolomhead++, "No");
-	xlsWriteLabel($tablehead, $kolomhead++, "Nama");
-	xlsWriteLabel($tablehead, $kolomhead++, "Alamat");
-	xlsWriteLabel($tablehead, $kolomhead++, "Kota");
+        xlsWriteLabel($tablehead, $kolomhead++, "Nama");
+        xlsWriteLabel($tablehead, $kolomhead++, "Alamat");
+        xlsWriteLabel($tablehead, $kolomhead++, "Kota");
 
-	foreach ($this->T01_company_model->get_all() as $data) {
+        foreach ($this->T01_company_model->get_all() as $data) {
             $kolombody = 0;
 
             //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
             xlsWriteNumber($tablebody, $kolombody++, $nourut);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->Nama);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->Alamat);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->Kota);
+            xlsWriteLabel($tablebody, $kolombody++, $data->Nama);
+            xlsWriteLabel($tablebody, $kolombody++, $data->Alamat);
+            xlsWriteLabel($tablebody, $kolombody++, $data->Kota);
 
-	    $tablebody++;
+            $tablebody++;
             $nourut++;
         }
 
@@ -214,9 +215,8 @@ class T01_company extends CI_Controller
             'start' => 0
         );
 
-        $this->load->view('t01_company/t01_company_doc',$data);
+        $this->load->view('t01_company/t01_company_doc', $data);
     }
-
 }
 
 /* End of file T01_company.php */

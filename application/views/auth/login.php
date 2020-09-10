@@ -66,15 +66,15 @@
           </div>
 
           <!-- tahun ajaran -->
-          <?php //echo pre($s01_thaj); ?>
+          <?php //echo pre($s01_thaj);?>
           <!-- <div class="input-group mb-3">
               <select class="form-control" name="idthaj">
                 <option>Tahun Ajaran</option>
                 <?php foreach ($s01_thaj as $r) {
-                  ?>
+    ?>
                   <option value="<?php echo $r->idthaj; ?>"><?php echo $r->TahunAjaran; ?></option>
                   <?php
-                } ?>
+} ?>
               </select>
               <div class="input-group-append">
                 <div class="input-group-text">
@@ -84,15 +84,15 @@
           </div> -->
 
           <!-- company -->
-          <?php //echo pre($s01_thaj); ?>
+          <?php //echo pre($s01_thaj);?>
           <!-- <div class="input-group mb-3">
               <select class="form-control" name="idcompany">
                 <option>Company</option>
                 <?php foreach ($t01_company as $r) {
-                  ?>
+        ?>
                   <option value="<?php echo $r->idcompany; ?>"><?php echo $r->Nama; ?></option>
                   <?php
-                } ?>
+    } ?>
               </select>
               <div class="input-group-append">
                 <div class="input-group-text">

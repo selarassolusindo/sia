@@ -25,8 +25,7 @@
 		<th>Kota</th>
 		
             </tr><?php
-            foreach ($t01_company_data as $t01_company)
-            {
+            foreach ($t01_company_data as $t01_company) {
                 ?>
                 <tr>
 		      <td><?php echo ++$start ?></td>

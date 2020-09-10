@@ -1,75 +1,76 @@
 <?php
 
-if (!defined('BASEPATH'))
+if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
 
 class T01_company_model extends CI_Model
 {
-
     public $table = 't01_company';
     public $id = 'idcompany';
     public $order = 'DESC';
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
     }
 
     // get all
-    function get_all()
+    public function get_all()
     {
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
 
     // get data by id
-    function get_by_id($id)
+    public function get_by_id($id)
     {
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
     
     // get total rows
-    function total_rows($q = NULL) {
+    public function total_rows($q = null)
+    {
         $this->db->like('idcompany', $q);
-	$this->db->or_like('Nama', $q);
-	$this->db->or_like('Alamat', $q);
-	$this->db->or_like('Kota', $q);
-	$this->db->from($this->table);
+        $this->db->or_like('Nama', $q);
+        $this->db->or_like('Alamat', $q);
+        $this->db->or_like('Kota', $q);
+        $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
-    function get_limit_data($limit, $start = 0, $q = NULL) {
+    public function get_limit_data($limit, $start = 0, $q = null)
+    {
         $this->db->order_by($this->id, $this->order);
         $this->db->like('idcompany', $q);
-	$this->db->or_like('Nama', $q);
-	$this->db->or_like('Alamat', $q);
-	$this->db->or_like('Kota', $q);
-	$this->db->limit($limit, $start);
+        $this->db->or_like('Nama', $q);
+        $this->db->or_like('Alamat', $q);
+        $this->db->or_like('Kota', $q);
+        $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 
     // insert data
-    function insert($data)
+    public function insert($data)
     {
         $this->db->insert($this->table, $data);
     }
 
     // update data
-    function update($id, $data)
+    public function update($id, $data)
     {
         $this->db->where($this->id, $id);
         $this->db->update($this->table, $data);
     }
 
     // delete data
-    function delete($id)
+    public function delete($id)
     {
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
     }
-
 }
 
 /* End of file T01_company_model.php */

@@ -127,7 +127,7 @@
 
     <?php
     if (isset($css_files)) {
-      foreach($css_files as $file): ?>
+        foreach ($css_files as $file): ?>
         <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
       <?php
       endforeach;
@@ -177,7 +177,7 @@
           <!-- Sidebar user panel (optional) -->
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-              <!-- <img src="<?php //echo base_url(); ?>assets/adminlte/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
+              <!-- <img src="<?php //echo base_url();?>assets/adminlte/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
             </div>
             <div class="info">
               <a href="#" class="d-block"><?php echo $this->session->userdata('username'); ?></a>
@@ -193,7 +193,7 @@
 
               <!-- dashboard -->
               <li class="nav-item">
-                <a href="<?php echo site_url(); ?>" class="nav-link <?php echo ($this->uri->segment(1) == '' ? 'active' : ($this->uri->segment(1) == 'dashboard' ? 'active' : '')); ?>"> <!-- active -->
+                <a href="<?php echo site_url(); ?>" class="nav-link <?php echo($this->uri->segment(1) == '' ? 'active' : ($this->uri->segment(1) == 'dashboard' ? 'active' : '')); ?>"> <!-- active -->
                   <i class="nav-icon fas fa-tachometer-alt"></i>
                   <p>
                     DASHBOARD
@@ -202,7 +202,7 @@
               </li>
               <!-- /dashboard -->
 
-              <?php if($this->ion_auth->logged_in()) { ?>
+              <?php if ($this->ion_auth->logged_in()) { ?>
 
                 <!-- setup -->
                 <li class="nav-item has-treeview">
@@ -214,7 +214,7 @@
 
                   <ul class="nav nav-treeview">
 
-                    <?php if($this->ion_auth->in_group('admin') or ($this->ion_auth->in_group('admin') and $this->ion_auth->in_group('piw')) or ($this->ion_auth->in_group('admin') and $this->ion_auth->in_group('ssw'))) { ?>
+                    <?php if ($this->ion_auth->in_group('admin') or ($this->ion_auth->in_group('admin') and $this->ion_auth->in_group('piw')) or ($this->ion_auth->in_group('admin') and $this->ion_auth->in_group('ssw'))) { ?>
 
                       <!-- perusahaan -->
                       <li class="nav-item">
@@ -234,7 +234,7 @@
 
                     <?php } ?>
 
-                    <?php if($this->ion_auth->in_group(array('piw', 'ssw'))) { ?>
+                    <?php if ($this->ion_auth->in_group(array('piw', 'ssw'))) { ?>
                       <!-- klasifikasi akun -->
                       <li class="nav-item">
                         <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
@@ -249,7 +249,7 @@
                 </li>
                 <!-- /setup -->
 
-                <?php if($this->ion_auth->in_group(array('piw', 'ssw'))) { ?>
+                <?php if ($this->ion_auth->in_group(array('piw', 'ssw'))) { ?>
 
                   <!-- transaksi -->
                   <li class="nav-item has-treeview">
@@ -478,7 +478,7 @@
                     ?>
                     <?php if ($index <= 2): ?>
                     <li class="breadcrumb-item <?php echo $is_active ? 'active': '' ?>">
-                      <?php if($is_active): ?>
+                      <?php if ($is_active): ?>
                         <?php echo ucfirst($segment) ?>
                       <?php else: ?>
                         <a href="<?php echo site_url($url) ?>"><?php echo ucfirst($segment) ?></a>
@@ -499,13 +499,11 @@
 
             <?php
             if (!isset($output)) {
-              if (isset($_view) && $_view) {
-                $this->load->view($_view);
-              }
-            }
-            else {
-              echo isset($_examples) ? $_examples : '';
-            ?>
+                if (isset($_view) && $_view) {
+                    $this->load->view($_view);
+                }
+            } else {
+                echo isset($_examples) ? $_examples : ''; ?>
               <div style='height: 20px;'></div>
               <div style="padding: 10px">
                 <?php echo $output; ?>
@@ -579,9 +577,8 @@
     </script>
 
     <?php
-    if (isset($js_files))
-    {
-      foreach($js_files as $file):
+    if (isset($js_files)) {
+        foreach ($js_files as $file):
     ?>
         <script src="<?php echo $file; ?>"></script>
     <?php
