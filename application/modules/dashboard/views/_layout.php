@@ -27,6 +27,8 @@
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 
+    <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/adminlte/dist/img/favicon.ico" />
+
     <style>
       .pagination {
         display: inline-block;
@@ -165,7 +167,7 @@
       <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="<?php echo site_url(); ?>" class="brand-link">
-          <img src="<?php echo base_url(); ?>assets/adminlte/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+          <img src="<?php echo base_url(); ?>assets/adminlte/dist/img/logo.jpeg" alt="G-Land" class="brand-image " style="opacity: .8">
           <span class="brand-text "><?php echo "<b>" . SITE_NAME . "</b>" . ' ' . SITE_VERSION; ?></span>
         </a>
 
