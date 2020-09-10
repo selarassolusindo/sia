@@ -78,6 +78,12 @@ class Auth extends CI_Controller
             if ($this->ion_auth->login($this->input->post('identity'), $this->input->post('password'), $remember)) {
                 //if the login is successful
                 //redirect them back to the home page
+
+                // simpan session username
+                $this->load->model('Users/Users_model');
+                $users = $this->Users_model->get_by_id($this->session->userdata('user_id'));
+                $this->session->set_userdata('fullName', $users->first_name);
+
                 $this->session->set_flashdata('message', $this->ion_auth->messages());
                 redirect('/', 'refresh');
             } else {
