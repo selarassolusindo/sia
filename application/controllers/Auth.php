@@ -188,7 +188,10 @@ class Auth extends CI_Controller
 			];
 
 			// render
-			$this->_render_page('auth' . DIRECTORY_SEPARATOR . 'change_password', $this->data);
+			// $this->_render_page('auth' . DIRECTORY_SEPARATOR . 'change_password', $this->data);
+			$this->data['_view']    = 'auth' . DIRECTORY_SEPARATOR . 'change_password';
+			$this->data['_caption'] = lang('change_password_heading');
+			$this->load->view('dashboard/_layout', $this->data);
 		}
 		else
 		{
@@ -488,16 +491,16 @@ class Auth extends CI_Controller
 		$this->data['identity_column'] = $identity_column;
 
 		// validate form input
-		// $this->form_validation->set_rules('first_name', $this->lang->line('create_user_validation_fname_label'), 'trim|required');
+		$this->form_validation->set_rules('first_name', $this->lang->line('create_user_validation_fname_label'), 'trim|required');
 		// $this->form_validation->set_rules('last_name', $this->lang->line('create_user_validation_lname_label'), 'trim|required');
 		if ($identity_column !== 'email')
 		{
 			$this->form_validation->set_rules('identity', $this->lang->line('create_user_validation_identity_label'), 'trim|required|is_unique[' . $tables['users'] . '.' . $identity_column . ']');
-			$this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'trim|required|valid_email');
+			// $this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'trim|required|valid_email');
 		}
 		else
 		{
-			$this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'trim|required|valid_email|is_unique[' . $tables['users'] . '.email]');
+			// $this->form_validation->set_rules('email', $this->lang->line('create_user_validation_email_label'), 'trim|required|valid_email|is_unique[' . $tables['users'] . '.email]');
 		}
 		// $this->form_validation->set_rules('phone', $this->lang->line('create_user_validation_phone_label'), 'trim');
 		// $this->form_validation->set_rules('company', $this->lang->line('create_user_validation_company_label'), 'trim');
@@ -512,7 +515,7 @@ class Auth extends CI_Controller
 			$password = $this->input->post('password');
 
 			$additional_data = [
-				// 'first_name' => $this->input->post('first_name'),
+				'first_name' => $this->input->post('first_name'),
 				// 'last_name' => $this->input->post('last_name'),
 				// 'company' => $this->input->post('company'),
 				// 'phone' => $this->input->post('phone'),
@@ -531,12 +534,12 @@ class Auth extends CI_Controller
 			// set the flash data error message if there is one
 			$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
-			// $this->data['first_name'] = [
-			// 	'name' => 'first_name',
-			// 	'id' => 'first_name',
-			// 	'type' => 'text',
-			// 	'value' => $this->form_validation->set_value('first_name'),
-			// ];
+			$this->data['first_name'] = [
+				'name' => 'first_name',
+				'id' => 'first_name',
+				'type' => 'text',
+				'value' => $this->form_validation->set_value('first_name'),
+			];
 			// $this->data['last_name'] = [
 			// 	'name' => 'last_name',
 			// 	'id' => 'last_name',
@@ -622,9 +625,9 @@ class Auth extends CI_Controller
 
 		// validate form input
 		$this->form_validation->set_rules('first_name', $this->lang->line('edit_user_validation_fname_label'), 'trim|required');
-		$this->form_validation->set_rules('last_name', $this->lang->line('edit_user_validation_lname_label'), 'trim|required');
-		$this->form_validation->set_rules('phone', $this->lang->line('edit_user_validation_phone_label'), 'trim');
-		$this->form_validation->set_rules('company', $this->lang->line('edit_user_validation_company_label'), 'trim');
+		// $this->form_validation->set_rules('last_name', $this->lang->line('edit_user_validation_lname_label'), 'trim|required');
+		// $this->form_validation->set_rules('phone', $this->lang->line('edit_user_validation_phone_label'), 'trim');
+		// $this->form_validation->set_rules('company', $this->lang->line('edit_user_validation_company_label'), 'trim');
 		if ($identity_column !== 'email')
 		{
 			// $this->form_validation->set_rules('identity', $this->lang->line('edit_user_validation_identity_label'), 'trim|required|is_unique[' . $tables['users'] . '.' . $identity_column . ']');
@@ -652,9 +655,9 @@ class Auth extends CI_Controller
 
 				$data = [
 					'first_name' => $this->input->post('first_name'),
-					'last_name' => $this->input->post('last_name'),
-					'company' => $this->input->post('company'),
-					'phone' => $this->input->post('phone'),
+					// 'last_name' => $this->input->post('last_name'),
+					// 'company' => $this->input->post('company'),
+					// 'phone' => $this->input->post('phone'),
 				];
 
 				if ($identity_column === 'email') {
@@ -722,24 +725,24 @@ class Auth extends CI_Controller
 			'type'  => 'text',
 			'value' => $this->form_validation->set_value('first_name', $user->first_name),
 		];
-		$this->data['last_name'] = [
-			'name'  => 'last_name',
-			'id'    => 'last_name',
-			'type'  => 'text',
-			'value' => $this->form_validation->set_value('last_name', $user->last_name),
-		];
-		$this->data['company'] = [
-			'name'  => 'company',
-			'id'    => 'company',
-			'type'  => 'text',
-			'value' => $this->form_validation->set_value('company', $user->company),
-		];
-		$this->data['phone'] = [
-			'name'  => 'phone',
-			'id'    => 'phone',
-			'type'  => 'text',
-			'value' => $this->form_validation->set_value('phone', $user->phone),
-		];
+		// $this->data['last_name'] = [
+		// 	'name'  => 'last_name',
+		// 	'id'    => 'last_name',
+		// 	'type'  => 'text',
+		// 	'value' => $this->form_validation->set_value('last_name', $user->last_name),
+		// ];
+		// $this->data['company'] = [
+		// 	'name'  => 'company',
+		// 	'id'    => 'company',
+		// 	'type'  => 'text',
+		// 	'value' => $this->form_validation->set_value('company', $user->company),
+		// ];
+		// $this->data['phone'] = [
+		// 	'name'  => 'phone',
+		// 	'id'    => 'phone',
+		// 	'type'  => 'text',
+		// 	'value' => $this->form_validation->set_value('phone', $user->phone),
+		// ];
 		$this->data['password'] = [
 			'name'  => 'password',
 			'id'    => 'password',

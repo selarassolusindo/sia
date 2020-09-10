@@ -10,10 +10,10 @@
             <?php echo form_input($first_name);?>
       </p>
 
-      <p>
+      <!-- <p>
             <?php echo lang('edit_user_lname_label', 'last_name');?> <br />
             <?php echo form_input($last_name);?>
-      </p>
+      </p> -->
 
       <?php
       if($identity_column!=='email') {
@@ -26,7 +26,7 @@
       }
       ?>
 
-      <p>
+      <!-- <p>
             <?php echo lang('edit_user_company_label', 'company');?> <br />
             <?php echo form_input($company);?>
       </p>
@@ -34,7 +34,7 @@
       <p>
             <?php echo lang('edit_user_phone_label', 'phone');?> <br />
             <?php echo form_input($phone);?>
-      </p>
+      </p> -->
 
       <p>
             <?php echo lang('edit_user_password_label', 'password');?> <br />

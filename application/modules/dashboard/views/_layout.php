@@ -410,6 +410,14 @@
                         </a>
                       </li>
 
+                      <!-- change password -->
+                      <li class="nav-item">
+                        <a href="<?php echo site_url('change-password'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'change-password' ? 'active' : ''; ?>">
+                          <i class="fas fa-key nav-icon"></i>
+                          <p>Change Password</p>
+                        </a>
+                      </li>
+
                     </ul>
 
                   </li>
