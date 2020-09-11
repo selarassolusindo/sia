@@ -180,7 +180,7 @@
               <!-- <img src="<?php //echo base_url();?>assets/adminlte/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
             </div>
             <div class="info">
-              <!-- <a href="#" class="d-block"><?php echo $this->session->userdata('username'); ?></a> -->
+              <!-- <a href="#" class="d-block"><?php //echo $this->session->userdata('username');?></a> -->
               <a href="#" class="d-block"><?php echo $this->session->userdata('fullName'); ?></a>
             </div>
           </div>
@@ -497,6 +497,8 @@
         <!-- Main content -->
         <section class="content">
           <div class="container-fluid">
+
+              <?php //echo pre($this->session->userdata()) ?>
 
             <?php
             if (!isset($output)) {

@@ -79,10 +79,26 @@ class Auth extends CI_Controller
                 //if the login is successful
                 //redirect them back to the home page
 
-                // simpan session username
+                /**
+                 * simpan session fullName
+                 * (nama lengkap dari tabel users)
+                 */
                 $this->load->model('Users/Users_model');
                 $users = $this->Users_model->get_by_id($this->session->userdata('user_id'));
                 $this->session->set_userdata('fullName', $users->first_name);
+
+                /**
+                 * check jumlah group pada user, berdasarkan user_id
+                 * apabila user berada pada lebih dari 2 group ... dan salah satu groupnya bukan group admin,
+                 * maka :: setelah login berhasil -> akan ditampilkan pilihan combo perusahaan yang akan dipilih
+                 * salah satu oleh user
+                 */
+                $this->load->model('Users_groups/Users_groups_model');
+                $countGroup = $this->Users_groups_model->getCountGroup();
+                //echo pre($countGroup); exit;
+                if ($countGroup >= 2) {
+                    redirect('select-company', 'refresh');
+                }
 
                 $this->session->set_flashdata('message', $this->ion_auth->messages());
                 redirect('/', 'refresh');
@@ -843,6 +859,38 @@ class Auth extends CI_Controller
         // This will return html on 3rd argument being true
         if ($returnhtml) {
             return $view_html;
+        }
+    }
+
+    public function selectCompany()
+    {
+        $this->data['title'] = 'Pilih Perusahaan';
+
+        // check combo company
+        $this->form_validation->set_rules(
+            'idcompany',
+            'Company',
+            array("required", array("f_check_company", function ($company) {
+                return $company != "Company";
+            })),
+            array("f_check_company" => "Company harus terisi !")
+        );
+
+        if ($this->form_validation->run() === true) {
+            /**
+             * mengaktifkan database mana yang dipilih oleh user
+             * dan simpan session idcompany
+             */
+            $this->session->set_userdata('idCompany', $this->input->post('idcompany'));
+
+            redirect('/', 'refresh');
+        } else {
+            $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+            
+            // ambil data company
+            $this->load->model('t01_company/t01_company_model');
+            $this->data['t01_company'] = $this->t01_company_model->get_all();
+            $this->_render_page('auth' . DIRECTORY_SEPARATOR . 'select_company', $this->data);
         }
     }
 }

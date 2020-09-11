@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller'] = 'dashboard';
 $route['404_override'] = '';
-$route['translate_uri_dashes'] = FALSE;
+$route['translate_uri_dashes'] = false;
 
 $route['company']           = 't01_company';
 $route['user-management']   = 'auth';
@@ -62,3 +62,4 @@ $route['deactivate/(:num)'] = 'auth/deactivate/$1';
 $route['activate/(:num)']   = 'auth/activate/$1';
 $route['edit-user/(:num)']  = 'auth/edit_user/$1';
 $route['change-password']   = 'auth/change_password';
+$route['select-company']    = 'auth/selectCompany';
