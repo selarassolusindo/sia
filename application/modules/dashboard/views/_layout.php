@@ -146,9 +146,9 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
           </li>
           <li class="nav-item d-none d-sm-inline-block">
-            <?php if ($this->session->userdata('nama_sklh') <> '') { ?>
-            <div class="nav-link"><b><?php echo $this->session->userdata('nama_sklh') . ' | ' . $this->session->userdata('tahun_ajaran'); ?></b></div>
-            <?php } ?>
+            <?php //if ($this->session->userdata('nama_sklh') <> '') { ?>
+            <!-- <div class="nav-link"><b><?php echo $this->session->userdata('nama_sklh') . ' | ' . $this->session->userdata('tahun_ajaran'); ?></b></div> -->
+            <?php //} ?>
           </li>
         </ul>
 
@@ -181,14 +181,20 @@
             </div>
             <div class="info">
               <!-- <a href="#" class="d-block"><?php //echo $this->session->userdata('username');?></a> -->
-              <a href="#" class="d-block"><?php echo $this->session->userdata('fullName'); ?></a>
+              <div class="row">
+                  <a href="#" class="d-block"><?php echo $this->session->userdata('fullName'); ?></a>
+              </div>
+              <div class="row">
+                  <a href="#" class="d-block"><?php echo $this->session->userdata('groupsName'); ?></a>
+              </div>
             </div>
           </div>
 
           <!-- Sidebar Menu -->
           <nav class="mt-2">
             <!-- <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false"> -->
-            <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-legacy nav-compact" data-widget="treeview" role="menu" data-accordion="false">
+            <!-- <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-legacy nav-compact" data-widget="treeview" role="menu" data-accordion="false"> -->
+            <ul class="nav nav-pills nav-sidebar flex-column nav-child-indent nav-compact" data-widget="treeview" role="menu" data-accordion="false">
               <!-- Add icons to the links using the .nav-icon class
                    with font-awesome or any other icon font library -->
 
@@ -206,7 +212,7 @@
               <?php if ($this->ion_auth->logged_in()) { ?>
 
                 <!-- setup -->
-                <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview <?php echo ($this->uri->segment(1) == 'company' ? 'menu-open' : ($this->uri->segment(1) == 'user-management' ? 'menu-open' : '')); ?>">
 
                   <a href="#" class="nav-link">
                     <i class="fas fa-coins nav-icon"></i>
@@ -499,6 +505,7 @@
           <div class="container-fluid">
 
               <?php //echo pre($this->session->userdata()) ?>
+              <?php //echo $this->uri->segment(1); ?>
 
             <?php
             if (!isset($output)) {
@@ -549,10 +556,10 @@
     <!-- ChartJS -->
     <script src="<?php echo base_url() ?>assets/adminlte/plugins/chart.js/Chart.min.js"></script>
     <!-- Sparkline -->
-    <script src="<?php echo base_url() ?>assets/adminlte/plugins/sparklines/sparkline.js"></script>
+    <!-- <script src="<?php //echo base_url() ?>assets/adminlte/plugins/sparklines/sparkline.js"></script> -->
     <!-- JQVMap -->
-    <script src="<?php echo base_url() ?>assets/adminlte/plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="<?php echo base_url() ?>assets/adminlte/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- <script src="<?php //echo base_url() ?>assets/adminlte/plugins/jqvmap/jquery.vmap.min.js"></script> -->
+    <!-- <script src="<?php //echo base_url() ?>assets/adminlte/plugins/jqvmap/maps/jquery.vmap.usa.js"></script> -->
     <!-- jQuery Knob Chart -->
     <script src="<?php echo base_url() ?>assets/adminlte/plugins/jquery-knob/jquery.knob.min.js"></script>
     <!-- daterangepicker -->
@@ -567,7 +574,7 @@
     <!-- AdminLTE App -->
     <script src="<?php echo base_url() ?>assets/adminlte/dist/js/adminlte.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="<?php echo base_url() ?>assets/adminlte/dist/js/pages/dashboard.js"></script>
+    <!-- <script src="<?php //echo base_url() ?>assets/adminlte/dist/js/pages/dashboard.js"></script> -->
     <!-- AdminLTE for demo purposes -->
     <script src="<?php echo base_url() ?>assets/adminlte/dist/js/demo.js"></script>
 

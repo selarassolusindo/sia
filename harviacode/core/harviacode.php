@@ -17,13 +17,13 @@ class Harviacode
     function connection()
     {
         $subject = file_get_contents('../application/config/database.php');
-        $string = str_replace("defined('BASEPATH') OR exit('No direct script access allowed');", "", $subject);
-        
+        $string = str_replace("defined('BASEPATH') or exit('No direct script access allowed');", "", $subject);
+
         $con = 'core/connection.php';
         $create = fopen($con, "w") or die("Change your permision folder for application and harviacode folder to 777");
         fwrite($create, $string);
         fclose($create);
-        
+
         require $con;
 
         $this->host = $db['default']['hostname'];
@@ -37,7 +37,7 @@ class Harviacode
             echo $this->sql->connect_error . ", please check 'application/config/database.php'.";
             die();
         }
-        
+
         unlink($con);
     }
 

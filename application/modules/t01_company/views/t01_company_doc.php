@@ -23,15 +23,22 @@
 		<th>Nama</th>
 		<th>Alamat</th>
 		<th>Kota</th>
+		<th>Group Kode</th>
+		<th>Created At</th>
+		<th>Updated At</th>
 		
             </tr><?php
-            foreach ($t01_company_data as $t01_company) {
+            foreach ($t01_company_data as $t01_company)
+            {
                 ?>
                 <tr>
 		      <td><?php echo ++$start ?></td>
 		      <td><?php echo $t01_company->Nama ?></td>
 		      <td><?php echo $t01_company->Alamat ?></td>
-		      <td><?php echo $t01_company->Kota ?></td>	
+		      <td><?php echo $t01_company->Kota ?></td>
+		      <td><?php echo $t01_company->Group_Kode ?></td>
+		      <td><?php echo $t01_company->created_at ?></td>
+		      <td><?php echo $t01_company->updated_at ?></td>	
                 </tr>
                 <?php
             }

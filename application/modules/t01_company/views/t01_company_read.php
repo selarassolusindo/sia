@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html>
     <head>
         <title>harviacode.com - codeigniter crud generator</title>
@@ -10,12 +10,15 @@
         </style>
     </head>
     <body>
-        <h2 style="margin-top:0px">T01_company Read</h2>
+        <h2 style="margin-top:0px">T01_company Read</h2> -->
         <table class="table">
 	    <tr><td>Nama</td><td><?php echo $Nama; ?></td></tr>
 	    <tr><td>Alamat</td><td><?php echo $Alamat; ?></td></tr>
 	    <tr><td>Kota</td><td><?php echo $Kota; ?></td></tr>
+	    <tr><td>Group Kode</td><td><?php echo $Group_Kode; ?></td></tr>
+	    <tr><td>Created At</td><td><?php echo $created_at; ?></td></tr>
+	    <tr><td>Updated At</td><td><?php echo $updated_at; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('t01_company') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
-        </body>
-</html>
+        <!-- </body>
+</html> -->
