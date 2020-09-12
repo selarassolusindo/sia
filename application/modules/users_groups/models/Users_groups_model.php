@@ -78,6 +78,13 @@ class Users_groups_model extends CI_Model
         $this->db->from($this->table);
         return $this->db->count_all_results();
     }
+
+    // get data by user_id
+    public function get_by_user_id($user_id)
+    {
+        $this->db->where('user_id', $user_id);
+        return $this->db->get($this->table)->row();
+    }
 }
 
 /* End of file Users_groups_model.php */

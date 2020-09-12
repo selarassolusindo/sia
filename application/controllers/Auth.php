@@ -95,7 +95,7 @@ class Auth extends CI_Controller
                  */
                 $this->load->model('Users_groups/Users_groups_model');
                 $countGroup = $this->Users_groups_model->getCountGroup();
-                //echo pre($countGroup); exit;
+
                 if ($countGroup >= 2) {
                     redirect('select-company', 'refresh');
                 }
@@ -103,7 +103,9 @@ class Auth extends CI_Controller
                 /**
                  * ambil group name
                  */
-
+                $Users_groups = $this->Users_groups_model->get_by_user_id($this->session->userdata('user_id'));
+                $this->load->model('Groups/Groups_model');
+                $this->session->set_userdata('groupName', $this->Groups_model->get_by_id($Users_groups->group_id)->name);
 
                 $this->session->set_flashdata('message', $this->ion_auth->messages());
                 redirect('/', 'refresh');
@@ -887,6 +889,10 @@ class Auth extends CI_Controller
              * dan simpan session idcompany
              */
             $this->session->set_userdata('idCompany', $this->input->post('idcompany'));
+
+            $this->load->model('T01_company/T01_company_model');
+            $T01_company = $this->T01_company_model->get_by_id($this->input->post('idcompany'));
+            $this->session->set_userdata('groupName', $T01_company->Group_Kode);
 
             redirect('/', 'refresh');
         } else {

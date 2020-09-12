@@ -180,13 +180,7 @@
               <!-- <img src="<?php //echo base_url();?>assets/adminlte/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
             </div>
             <div class="info">
-              <!-- <a href="#" class="d-block"><?php //echo $this->session->userdata('username');?></a> -->
-              <div class="row">
-                  <a href="#" class="d-block"><?php echo $this->session->userdata('fullName'); ?></a>
-              </div>
-              <div class="row">
-                  <a href="#" class="d-block"><?php echo $this->session->userdata('groupsName'); ?></a>
-              </div>
+                <a href="#" class="d-block" ><?php echo $this->session->userdata('fullName') . ' - ' . $this->session->userdata('groupName'); ?></a>
             </div>
           </div>
 
