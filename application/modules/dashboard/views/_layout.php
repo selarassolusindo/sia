@@ -206,7 +206,22 @@
               <?php if ($this->ion_auth->logged_in()) { ?>
 
                 <!-- setup -->
-                <li class="nav-item has-treeview <?php echo ($this->uri->segment(1) == 'company' ? 'menu-open' : ($this->uri->segment(1) == 'user-management' ? 'menu-open' : '')); ?>">
+                <li class="nav-item has-treeview
+                    <?php
+                    switch ($this->uri->segment(1)) {
+                        case 'company':
+                        case 'user-management':
+                        case 'level-1':
+                        case 'level-2':
+                        case 'level-3':
+                        case 'level-4':
+                            echo 'menu-open';
+                            break;
+                        default:
+                            echo '';
+                    }
+                    // echo ($this->uri->segment(1) == 'company' ? 'menu-open' : ($this->uri->segment(1) == 'user-management' ? 'menu-open' : '')); ?>
+                    ">
 
                   <a href="#" class="nav-link">
                     <i class="fas fa-coins nav-icon"></i>
@@ -237,11 +252,44 @@
 
                     <?php if ($this->ion_auth->in_group(array('piw', 'ssw'))) { ?>
                       <!-- klasifikasi akun -->
-                      <li class="nav-item">
-                        <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
+                      <li class="nav-item has-treeview
+                            <?php
+                            switch ($this->uri->segment(1)) {
+                                case 'level-1':
+                                case 'level-2':
+                                case 'level-3':
+                                case 'level-4':
+                                    echo 'menu-open';
+                                    break;
+                                default:
+                                    echo '';
+                            }
+                            // echo ($this->uri->segment(1) == 'level-1' ? 'menu-open' : ($this->uri->segment(1) == 'level-2' ? 'menu-open' : '')); ?>
+                          ">
+                        <a href="#" class="nav-link">
                           <i class="far fa-clone nav-icon"></i>
-                          <p>Klasifikasi Akun</p>
+                          <p>Klasifikasi Akun<i class="right fas fa-angle-left"></i></p>
                         </a>
+
+                        <ul class="nav nav-treeview">
+
+                            <!-- akun level 1 -->
+                            <li class="nav-item">
+                              <a href="<?php echo site_url('level-1'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'level-1' ? 'active' : ''; ?>">
+                                <i class="fas fa-door-open nav-icon"></i>
+                                <p>Level-1</p>
+                              </a>
+                            </li>
+
+                            <!-- akun level 2 -->
+                            <li class="nav-item">
+                              <a href="<?php echo site_url('level-2'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'level-2' ? 'active' : ''; ?>">
+                                <i class="fas fa-door-open nav-icon"></i>
+                                <p>Level-2</p>
+                              </a>
+                            </li>
+
+                        </ul>
                       </li>
                     <?php } ?>
 

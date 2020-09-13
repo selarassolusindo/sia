@@ -63,3 +63,5 @@ $route['activate/(:num)']   = 'auth/activate/$1';
 $route['edit-user/(:num)']  = 'auth/edit_user/$1';
 $route['change-password']   = 'auth/change_password';
 $route['select-company']    = 'auth/selectCompany';
+$route['level-1']           = 't02_akunl1';
+$route['level-2']           = 't03_akunl2';
