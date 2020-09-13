@@ -48,8 +48,8 @@
 		<th>Alamat</th>
 		<th>Kota</th>
 		<th>Group Kode</th>
-		<th>Created At</th>
-		<th>Updated At</th>
+		<!-- <th>Created At</th>
+		<th>Updated At</th> -->
 		<th>Action</th>
             </tr><?php
             foreach ($t01_company_data as $t01_company)
@@ -61,8 +61,8 @@
 			<td><?php echo $t01_company->Alamat ?></td>
 			<td><?php echo $t01_company->Kota ?></td>
 			<td><?php echo $t01_company->Group_Kode ?></td>
-			<td><?php echo $t01_company->created_at ?></td>
-			<td><?php echo $t01_company->updated_at ?></td>
+			<!-- <td><?php //echo $t01_company->created_at ?></td>
+			<td><?php //echo $t01_company->updated_at ?></td> -->
 			<td style="text-align:center" width="200px">
 				<?php
 				echo anchor(site_url('t01_company/read/'.$t01_company->idcompany),'Read');

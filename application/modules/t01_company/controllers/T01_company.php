@@ -57,8 +57,8 @@ class T01_company extends CI_Controller
                 'Alamat' => $row->Alamat,
                 'Kota' => $row->Kota,
                 'Group_Kode' => $row->Group_Kode,
-                'created_at' => $row->created_at,
-                'updated_at' => $row->updated_at,
+                // 'created_at' => $row->created_at,
+                // 'updated_at' => $row->updated_at,
             );
             // $this->load->view('t01_company/t01_company_read', $data);
             $data['_view'] = 't01_company/t01_company_read';
@@ -80,8 +80,8 @@ class T01_company extends CI_Controller
             'Alamat' => set_value('Alamat'),
             'Kota' => set_value('Kota'),
             'Group_Kode' => set_value('Group_Kode'),
-            'created_at' => set_value('created_at'),
-            'updated_at' => set_value('updated_at'),
+            // 'created_at' => set_value('created_at'),
+            // 'updated_at' => set_value('updated_at'),
         );
         // $this->load->view('t01_company/t01_company_form', $data);
         $data['_view'] = 't01_company/t01_company_form';
@@ -101,8 +101,8 @@ class T01_company extends CI_Controller
                 'Alamat' => $this->input->post('Alamat', true),
                 'Kota' => $this->input->post('Kota', true),
                 'Group_Kode' => $this->input->post('Group_Kode', true),
-                'created_at' => $this->input->post('created_at', true),
-                'updated_at' => $this->input->post('updated_at', true),
+                // 'created_at' => $this->input->post('created_at', true),
+                // 'updated_at' => $this->input->post('updated_at', true),
             );
             $this->T01_company_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -123,8 +123,8 @@ class T01_company extends CI_Controller
                 'Alamat' => set_value('Alamat', $row->Alamat),
                 'Kota' => set_value('Kota', $row->Kota),
                 'Group_Kode' => set_value('Group_Kode', $row->Group_Kode),
-                'created_at' => set_value('created_at', $row->created_at),
-                'updated_at' => set_value('updated_at', $row->updated_at),
+                // 'created_at' => set_value('created_at', $row->created_at),
+                // 'updated_at' => set_value('updated_at', $row->updated_at),
             );
             // $this->load->view('t01_company/t01_company_form', $data);
             $data['_view'] = 't01_company/t01_company_form';
@@ -148,8 +148,8 @@ class T01_company extends CI_Controller
                 'Alamat' => $this->input->post('Alamat', true),
                 'Kota' => $this->input->post('Kota', true),
                 'Group_Kode' => $this->input->post('Group_Kode', true),
-                'created_at' => $this->input->post('created_at', true),
-                'updated_at' => $this->input->post('updated_at', true),
+                // 'created_at' => $this->input->post('created_at', true),
+                // 'updated_at' => $this->input->post('updated_at', true),
             );
             $this->T01_company_model->update($this->input->post('idcompany', true), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -177,8 +177,8 @@ class T01_company extends CI_Controller
         $this->form_validation->set_rules('Alamat', 'alamat', 'trim|required');
         $this->form_validation->set_rules('Kota', 'kota', 'trim|required');
         $this->form_validation->set_rules('Group_Kode', 'group kode', 'trim|required');
-        $this->form_validation->set_rules('created_at', 'created at', 'trim|required');
-        $this->form_validation->set_rules('updated_at', 'updated at', 'trim|required');
+        // $this->form_validation->set_rules('created_at', 'created at', 'trim|required');
+        // $this->form_validation->set_rules('updated_at', 'updated at', 'trim|required');
         $this->form_validation->set_rules('idcompany', 'idcompany', 'trim');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
