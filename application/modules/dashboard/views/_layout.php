@@ -180,7 +180,9 @@
               <!-- <img src="<?php //echo base_url();?>assets/adminlte/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image"> -->
             </div>
             <div class="info">
+                <?php if ($this->session->userdata('fullName')) { ?>
                 <a href="#" class="d-block" ><?php echo $this->session->userdata('fullName') . ' - ' . $this->session->userdata('groupName'); ?></a>
+                <?php } ?>
             </div>
           </div>
 
@@ -556,10 +558,10 @@
                 }
             } else {
                 echo isset($_examples) ? $_examples : ''; ?>
-              <div style='height: 20px;'></div>
-              <div style="padding: 10px">
-                <?php echo $output; ?>
-              </div>
+                <div style='height: 20px;'></div>
+                <div style="padding: 10px">
+                    <?php echo $output; ?>
+                </div>
             <?php
             }
             ?>

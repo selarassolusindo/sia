@@ -8,8 +8,10 @@ class T03_akunl2 extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        if (!$this->ion_auth->logged_in()) redirect('auth/login', 'refresh');
         $this->load->model('T03_akunl2_model');
         $this->load->library('form_validation');
+        $this->load->library('grocery_CRUD');
     }
 
     public function index()
@@ -237,6 +239,26 @@ class T03_akunl2 extends CI_Controller
         );
 
         $this->load->view('t03_akunl2/t03_akunl2_doc',$data);
+    }
+
+    public function _example_output($output = null) {
+        //$output->_view    = 'd01_kls/d01_kls_form2';
+  		$output->_caption = 'Akun Level-2';
+  		$this->load->view('dashboard/_layout', (array)$output);
+    }
+
+    public function index2()
+    {
+        $crud = new grocery_CRUD();
+        $crud->set_table('t03_akunl2');
+        $crud->set_relation('idl1', 't02_akunl1', '{Kode} - {Nama}');
+        $crud->display_as('idl1', 'Kode - Nama L-1');
+        $crud->set_subject('Akun Level-2');
+        $crud->unset_columns(array('created_at', 'updated_at'));
+        $crud->unset_add_fields(array('created_at', 'updated_at'));
+
+        $output = $crud->render();
+        $this->_example_output($output);
     }
 
 }
