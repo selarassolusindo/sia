@@ -213,10 +213,7 @@
                     switch ($this->uri->segment(1)) {
                         case 'company':
                         case 'user-management':
-                        case 'level-1':
-                        case 'level-2':
-                        case 'level-3':
-                        case 'level-4':
+                        case 'akun':
                             echo 'menu-open';
                             break;
                         default:
@@ -257,10 +254,7 @@
                       <li class="nav-item has-treeview
                             <?php
                             switch ($this->uri->segment(1)) {
-                                case 'level-1':
-                                case 'level-2':
-                                case 'level-3':
-                                case 'level-4':
+                                case 'akun':
                                     echo 'menu-open';
                                     break;
                                 default:
@@ -277,17 +271,33 @@
 
                             <!-- akun level 1 -->
                             <li class="nav-item">
-                              <a href="<?php echo site_url('level-1'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'level-1' ? 'active' : ''; ?>">
+                              <a href="<?php echo site_url('akun/l1'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'akun' and $this->uri->segment(2) == 'l1') ? 'active' : ''; ?>">
                                 <i class="fas fa-door-open nav-icon"></i>
-                                <p>Level-1</p>
+                                <p>Akun Level-1</p>
                               </a>
                             </li>
 
                             <!-- akun level 2 -->
                             <li class="nav-item">
-                              <a href="<?php echo site_url('level-2'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'level-2' ? 'active' : ''; ?>">
+                              <a href="<?php echo site_url('akun/l2'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'akun' and $this->uri->segment(2) == 'l2') ? 'active' : ''; ?>">
                                 <i class="fas fa-door-open nav-icon"></i>
-                                <p>Level-2</p>
+                                <p>Akun Level-2</p>
+                              </a>
+                            </li>
+
+                            <!-- akun level 3 -->
+                            <li class="nav-item">
+                              <a href="<?php echo site_url('akun/l3'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'akun' and $this->uri->segment(2) == 'l3') ? 'active' : ''; ?>">
+                                <i class="fas fa-door-open nav-icon"></i>
+                                <p>Akun Level-3</p>
+                              </a>
+                            </li>
+
+                            <!-- akun level 4 -->
+                            <li class="nav-item">
+                              <a href="<?php echo site_url('akun/l4'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'akun' and $this->uri->segment(2) == 'l4') ? 'active' : ''; ?>">
+                                <i class="fas fa-door-open nav-icon"></i>
+                                <p>Akun Level-4</p>
                               </a>
                             </li>
 
@@ -637,6 +647,10 @@
         <script src="<?php echo $file; ?>"></script>
     <?php
       endforeach;
+    }
+
+    if (isset($_dependent_js)) {
+        echo $_dependent_js;
     }
     ?>
   </body>
