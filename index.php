@@ -58,10 +58,12 @@
 switch ($_SERVER["HTTP_HOST"]) {
 	case "localhost":
 		$env = "production";
+        define('DBPREFIX', 'db');
 		break;
 
 	case "sia.selusin.online":
 		$env = "testing";
+        define('DBPREFIX', 'u473805576');
 		break;
 
 	default:

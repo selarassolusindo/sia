@@ -7,12 +7,12 @@ function pre($data) {
   echo "</pre>";
 }
 
-function set_db_aktif($db_aktif) {
+function setDbAktif($dbAktif) {
   $db['dsn']	= '';
   $db['hostname'] = 'localhost';
   $db['username'] = 'root';
   $db['password'] = '';
-  $db['database'] = $db_aktif; //$this->session->userdata('db_aktif');
+  $db['database'] = $dbAktif; //$this->session->userdata('db_aktif');
   $db['dbdriver'] = 'mysqli';
   $db['dbprefix'] = '';
   $db['pconnect'] = FALSE;

@@ -107,6 +107,18 @@ class Auth extends CI_Controller
                 $this->load->model('Groups/Groups_model');
                 $this->session->set_userdata('groupName', $this->Groups_model->get_by_id($Users_groups->group_id)->name);
 
+                /**
+                 * ambil dbname untuk user yang bukan anggota group admin
+                 */
+                if ($this->session->userdata('groupName') != 'admin') {
+                    $this->session->set_userdata('dbAktif', DBPREFIX . '_' . $this->session->userdata('groupName'));
+                    /**
+                     * set dbaktif
+                     */
+                    setDbAktif($this->session->userdata('dbAktif'));
+                }
+
+
                 $this->session->set_flashdata('message', $this->ion_auth->messages());
                 redirect('/', 'refresh');
             } else {
