@@ -9,6 +9,7 @@ class T01_company extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        if (!$this->ion_auth->logged_in()) redirect('auth/login', 'refresh');
         $this->load->model('T01_company_model');
         $this->load->library('form_validation');
 

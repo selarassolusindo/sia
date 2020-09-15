@@ -8,6 +8,7 @@ class Users extends CI_Controller
     function __construct()
     {
         parent::__construct();
+        if (!$this->ion_auth->logged_in()) redirect('auth/login', 'refresh');
         $this->load->model('Users_model');
         $this->load->library('form_validation');
     }
@@ -16,7 +17,7 @@ class Users extends CI_Controller
     {
         $q = urldecode($this->input->get('q', TRUE));
         $start = intval($this->input->get('start'));
-        
+
         if ($q <> '') {
             $config['base_url'] = base_url() . 'users/index.html?q=' . urlencode($q);
             $config['first_url'] = base_url() . 'users/index.html?q=' . urlencode($q);
@@ -43,7 +44,7 @@ class Users extends CI_Controller
         $this->load->view('users/users_list', $data);
     }
 
-    public function read($id) 
+    public function read($id)
     {
         $row = $this->Users_model->get_by_id($id);
         if ($row) {
@@ -75,7 +76,7 @@ class Users extends CI_Controller
         }
     }
 
-    public function create() 
+    public function create()
     {
         $data = array(
             'button' => 'Create',
@@ -102,8 +103,8 @@ class Users extends CI_Controller
 	);
         $this->load->view('users/users_form', $data);
     }
-    
-    public function create_action() 
+
+    public function create_action()
     {
         $this->_rules();
 
@@ -136,8 +137,8 @@ class Users extends CI_Controller
             redirect(site_url('users'));
         }
     }
-    
-    public function update($id) 
+
+    public function update($id)
     {
         $row = $this->Users_model->get_by_id($id);
 
@@ -171,8 +172,8 @@ class Users extends CI_Controller
             redirect(site_url('users'));
         }
     }
-    
-    public function update_action() 
+
+    public function update_action()
     {
         $this->_rules();
 
@@ -205,8 +206,8 @@ class Users extends CI_Controller
             redirect(site_url('users'));
         }
     }
-    
-    public function delete($id) 
+
+    public function delete($id)
     {
         $row = $this->Users_model->get_by_id($id);
 
@@ -220,7 +221,7 @@ class Users extends CI_Controller
         }
     }
 
-    public function _rules() 
+    public function _rules()
     {
 	$this->form_validation->set_rules('ip_address', 'ip address', 'trim|required');
 	$this->form_validation->set_rules('username', 'username', 'trim|required');
@@ -327,7 +328,7 @@ class Users extends CI_Controller
             'users_data' => $this->Users_model->get_all(),
             'start' => 0
         );
-        
+
         $this->load->view('users/users_doc',$data);
     }
 

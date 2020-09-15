@@ -9,6 +9,7 @@ class Groups extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        if (!$this->ion_auth->logged_in()) redirect('auth/login', 'refresh');
         $this->load->model('Groups_model');
         $this->load->library('form_validation');
     }
@@ -17,7 +18,7 @@ class Groups extends CI_Controller
     {
         $q = urldecode($this->input->get('q', true));
         $start = intval($this->input->get('start'));
-        
+
         if ($q <> '') {
             $config['base_url'] = base_url() . 'groups/index.html?q=' . urlencode($q);
             $config['first_url'] = base_url() . 'groups/index.html?q=' . urlencode($q);
@@ -71,7 +72,7 @@ class Groups extends CI_Controller
     );
         $this->load->view('groups/groups_form', $data);
     }
-    
+
     public function create_action()
     {
         $this->_rules();
@@ -89,7 +90,7 @@ class Groups extends CI_Controller
             redirect(site_url('groups'));
         }
     }
-    
+
     public function update($id)
     {
         $row = $this->Groups_model->get_by_id($id);
@@ -108,7 +109,7 @@ class Groups extends CI_Controller
             redirect(site_url('groups'));
         }
     }
-    
+
     public function update_action()
     {
         $this->_rules();
@@ -126,7 +127,7 @@ class Groups extends CI_Controller
             redirect(site_url('groups'));
         }
     }
-    
+
     public function delete($id)
     {
         $row = $this->Groups_model->get_by_id($id);
@@ -200,7 +201,7 @@ class Groups extends CI_Controller
             'groups_data' => $this->Groups_model->get_all(),
             'start' => 0
         );
-        
+
         $this->load->view('groups/groups_doc', $data);
     }
 }

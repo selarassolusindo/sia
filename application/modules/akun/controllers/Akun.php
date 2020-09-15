@@ -8,6 +8,7 @@ class Akun extends CI_Controller
     {
         parent::__construct();
         if (!$this->ion_auth->logged_in()) redirect('auth/login', 'refresh');
+        $this->db = $this->load->database($this->session->userdata('groupName'), true);
         $this->load->library('grocery_CRUD');
     }
 
