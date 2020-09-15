@@ -28,7 +28,7 @@ class Groups_model extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
-    
+
     // get total rows
     public function total_rows($q = null)
     {
@@ -68,6 +68,16 @@ class Groups_model extends CI_Model
     {
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
+    }
+
+    // get all where left(description, 2) = 'PT' or 'CV'
+    public function get_all_by_title()
+    {
+        $where = "left(description, 2) = 'PT' or left(description, 2) = 'CV'";
+        $this->db->where($where);
+        $this->db->order_by('description', 'asc');
+        echo $this->db->last_query();
+        return $this->db->get($this->table)->result();
     }
 }
 

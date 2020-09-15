@@ -906,13 +906,33 @@ class Auth extends CI_Controller
             $T01_company = $this->T01_company_model->get_by_id($this->input->post('idcompany'));
             $this->session->set_userdata('groupName', $T01_company->Group_Kode);
 
+            /**
+             * ambil group name
+             */
+            $Users_groups = $this->Users_groups_model->get_by_user_id($this->session->userdata('user_id'));
+            $this->load->model('Groups/Groups_model');
+            $this->session->set_userdata('groupName', $this->Groups_model->get_by_id($Users_groups->group_id)->name);
+
+            /**
+             * ambil dbname untuk user yang bukan anggota group admin
+             */
+            if ($this->session->userdata('groupName') != 'admin') {
+                $this->session->set_userdata('dbAktif', DBPREFIX . '_' . $this->session->userdata('groupName'));
+                /**
+                 * set dbaktif
+                 */
+                setDbAktif($this->session->userdata('dbAktif'));
+            }
+
             redirect('/', 'refresh');
         } else {
             $this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
             // ambil data company
-            $this->load->model('t01_company/t01_company_model');
-            $this->data['t01_company'] = $this->t01_company_model->get_all();
+            // dari db_sia.groups
+            // $this->load->model('t01_company/t01_company_model');
+            $this->load->model('groups/Groups_model');
+            $this->data['groups'] = $this->Groups_model->get_all_by_title();
             $this->_render_page('auth' . DIRECTORY_SEPARATOR . 'select_company', $this->data);
         }
     }

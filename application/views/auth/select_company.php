@@ -46,8 +46,8 @@
           <div class="input-group mb-3">
               <select class="form-control" name="idcompany">
                 <option>Company</option>
-                <?php foreach ($t01_company as $r) { ?>
-                  <option value="<?php echo $r->idcompany; ?>"><?php echo $r->Nama; ?></option>
+                <?php foreach ($groups as $r) { ?>
+                  <option value="<?php echo $r->name; ?>"><?php echo $r->description; ?></option>
                 <?php } ?>
               </select>
               <div class="input-group-append">
