@@ -89,35 +89,22 @@ class Auth extends CI_Controller
 
                 /**
                  * check jumlah group pada user, berdasarkan user_id
-                 * apabila user berada pada lebih dari 2 group ... dan salah satu groupnya bukan group admin,
+                 * apabila user berada pada lebih dari 1 group ... dan salah satu groupnya bukan group admin,
                  * maka :: setelah login berhasil -> akan ditampilkan pilihan combo perusahaan yang akan dipilih
                  * salah satu oleh user
                  */
                 $this->load->model('Users_groups/Users_groups_model');
                 $countGroup = $this->Users_groups_model->getCountGroup();
-
                 if ($countGroup >= 2) {
                     redirect('select-company', 'refresh');
                 }
 
                 /**
-                 * ambil group name
+                 * simpan session groupName
                  */
                 $Users_groups = $this->Users_groups_model->get_by_user_id($this->session->userdata('user_id'));
                 $this->load->model('Groups/Groups_model');
                 $this->session->set_userdata('groupName', $this->Groups_model->get_by_id($Users_groups->group_id)->name);
-
-                /**
-                 * ambil dbname untuk user yang bukan anggota group admin
-                 */
-                if ($this->session->userdata('groupName') != 'admin') {
-                    $this->session->set_userdata('dbAktif', DBPREFIX . '_' . $this->session->userdata('groupName'));
-                    /**
-                     * set dbaktif
-                     */
-                    setDbAktif($this->session->userdata('dbAktif'));
-                }
-
 
                 $this->session->set_flashdata('message', $this->ion_auth->messages());
                 redirect('/', 'refresh');
@@ -144,10 +131,6 @@ class Auth extends CI_Controller
                 'id' => 'password',
                 'type' => 'password',
             ];
-
-            // ambil data company
-            // $this->load->model('t01_company/t01_company_model');
-            // $this->data['t01_company'] = $this->t01_company_model->get_all();
 
             $this->_render_page('auth' . DIRECTORY_SEPARATOR . 'login', $this->data);
         }
@@ -896,33 +879,12 @@ class Auth extends CI_Controller
         );
 
         if ($this->form_validation->run() === true) {
-            /**
-             * mengaktifkan database mana yang dipilih oleh user
-             * dan simpan session idcompany
-             */
-            $this->session->set_userdata('idCompany', $this->input->post('idcompany'));
-
-            $this->load->model('T01_company/T01_company_model');
-            $T01_company = $this->T01_company_model->get_by_id($this->input->post('idcompany'));
-            $this->session->set_userdata('groupName', $T01_company->Group_Kode);
 
             /**
-             * ambil group name
+             * simpan session groupName
              */
-            $Users_groups = $this->Users_groups_model->get_by_user_id($this->session->userdata('user_id'));
-            $this->load->model('Groups/Groups_model');
-            $this->session->set_userdata('groupName', $this->Groups_model->get_by_id($Users_groups->group_id)->name);
+            $this->session->set_userdata('groupName', $this->input->post('idcompany'));
 
-            /**
-             * ambil dbname untuk user yang bukan anggota group admin
-             */
-            if ($this->session->userdata('groupName') != 'admin') {
-                $this->session->set_userdata('dbAktif', DBPREFIX . '_' . $this->session->userdata('groupName'));
-                /**
-                 * set dbaktif
-                 */
-                setDbAktif($this->session->userdata('dbAktif'));
-            }
 
             redirect('/', 'refresh');
         } else {
@@ -930,7 +892,6 @@ class Auth extends CI_Controller
 
             // ambil data company
             // dari db_sia.groups
-            // $this->load->model('t01_company/t01_company_model');
             $this->load->model('groups/Groups_model');
             $this->data['groups'] = $this->Groups_model->get_all_by_title();
             $this->_render_page('auth' . DIRECTORY_SEPARATOR . 'select_company', $this->data);

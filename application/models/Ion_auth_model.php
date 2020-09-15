@@ -208,7 +208,7 @@ class Ion_auth_model extends CI_Model
 		if (empty($group_name))
 		{
 			// By default, use CI's db that should be already loaded
-            setDbAktif($this->session->has_userdata('dbAktif') ? $this->session->userdata('dbAktif') : DBPREFIX . '_sia');
+            // setDbAktif($this->session->has_userdata('dbAktif') ? $this->session->userdata('dbAktif') : DBPREFIX . '_sia');
 			$CI =& get_instance();
 			$this->db = $CI->db;
 		}
@@ -494,9 +494,9 @@ class Ion_auth_model extends CI_Model
 	 */
 	public function clear_forgotten_password_code($identity) {
 
-        setDbAktif(DBPREFIX . '_sia');
-		$CI =& get_instance();
-		$this->db = $CI->db;
+        // setDbAktif(DBPREFIX . '_sia');
+		// $CI =& get_instance();
+		// $this->db = $CI->db;
 
 		if (empty($identity))
 		{

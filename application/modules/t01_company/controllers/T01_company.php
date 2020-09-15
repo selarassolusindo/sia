@@ -11,6 +11,7 @@ class T01_company extends CI_Controller
         parent::__construct();
         $this->load->model('T01_company_model');
         $this->load->library('form_validation');
+
     }
 
     public function index()

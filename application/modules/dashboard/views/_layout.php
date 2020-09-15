@@ -514,8 +514,9 @@
             <section class="content">
               <div class="container-fluid">
 
-                  <?php //echo pre($this->session->userdata()) ?>
+                  <?php echo pre($this->session->userdata()); ?>
                   <?php //echo $this->uri->segment(1); ?>
+                  <?php echo pre($this->db->database); ?>
 
                 <?php
                 if (!isset($output)) {
