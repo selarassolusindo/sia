@@ -288,6 +288,13 @@
                                                             <p>Akun Level-4</p>
                                                         </a>
                                                     </li>
+                                                    <!-- akun level 5 -->
+                                                    <li class="nav-item">
+                                                        <a href="<?php echo site_url('akun/l5'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'akun' and $this->uri->segment(2) == 'l5') ? 'active' : ''; ?>">
+                                                            <i class="fas fa-door-open nav-icon"></i>
+                                                            <p>Akun Level-5</p>
+                                                        </a>
+                                                    </li>
                                                 </ul>
                                             </li>
                                         <?php } // if ($this->ion_auth->in_group(array('piw', 'ssw'))) { ?>
