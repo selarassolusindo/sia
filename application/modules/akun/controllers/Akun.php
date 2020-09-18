@@ -201,4 +201,56 @@ class Akun extends CI_Controller
 
         $this->_example_output($output);
     }
+
+    public function index()
+    {
+        $crud = new grocery_CRUD();
+        $crud->set_model('Akun_model');
+        $crud->set_table('t02_akun');
+        $crud->set_subject('Akun');
+        $crud->set_relation('Induk', 't02_akun', '{Kode} - {Nama}');
+        $crud->unset_columns(array('created_at', 'updated_at'));
+        $crud->unset_fields(array('created_at', 'updated_at'));
+        $crud->order_by('Urut');
+        $crud->columns(['Kode', 'Nama']);
+        $crud->fields('Kode', 'Nama', 'Induk', 'Urut');
+        $crud->change_field_type('Urut', 'invisible');
+        $crud->callback_before_insert(array($this, 'isiNol'));
+        $crud->callback_column('Nama', array($this, 'formatNama'));
+
+        $output = $crud->render();
+        $output->_caption = 'Klasifikasi Akun';
+        $this->_example_output($output);
+    }
+
+    public function formatNama($value, $row)
+    {
+        $lenKode = strlen($row->Kode);
+        switch ($lenKode) {
+            case 1:
+                $result = '<b>' . $value . '</b>';
+                break;
+            case 2:
+                $result = '&nbsp;&nbsp;&nbsp;&nbsp;<b>' . $value . '</b>';
+                break;
+            case 4:
+                $countId = $this->Akun_model->getById($row->idakun);
+                $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . ($countId == 0 ? $value : '<b>' . $value . '</b>');
+                break;
+            case 7:
+                $countId = $this->Akun_model->getById($row->idakun);
+                $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . ($countId == 0 ? $value : '<b>' . $value . '</b>');
+                break;
+            case 10:
+                $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $value;
+                break;
+        }
+        return $result;
+    }
+
+    public function isiNol($postArray)
+    {
+        $postArray['Urut'] = substr(trim($postArray['Kode']) . '0000000000', 0, 10);
+        return $postArray;
+    }
 }
