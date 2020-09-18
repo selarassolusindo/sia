@@ -202,11 +202,13 @@ class Akun extends CI_Controller
         $this->_example_output($output);
     }
 
+    public $table = 't02_akun';
+
     public function index()
     {
         $crud = new grocery_CRUD();
         $crud->set_model('Akun_model');
-        $crud->set_table('t02_akun');
+        $crud->set_table($this->table);
         $crud->set_subject('Akun');
         $crud->set_relation('Induk', 't02_akun', '{Kode} - {Nama}');
         $crud->unset_columns(array('created_at', 'updated_at'));
@@ -234,11 +236,11 @@ class Akun extends CI_Controller
                 $result = '&nbsp;&nbsp;&nbsp;&nbsp;<b>' . $value . '</b>';
                 break;
             case 4:
-                $countId = $this->Akun_model->getById($row->idakun);
+                $countId = $this->Akun_model->getById($row->idakun, $this->table);
                 $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . ($countId == 0 ? $value : '<b>' . $value . '</b>');
                 break;
             case 7:
-                $countId = $this->Akun_model->getById($row->idakun);
+                $countId = $this->Akun_model->getById($row->idakun, $this->table);
                 $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . ($countId == 0 ? $value : '<b>' . $value . '</b>');
                 break;
             case 10:
