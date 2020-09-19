@@ -237,11 +237,11 @@ class Akun extends CI_Controller
                 $result = '&nbsp;&nbsp;&nbsp;&nbsp;<b>' . $value . '</b>';
                 break;
             case 4:
-                $countId = $this->Akun_model->getById($row->idakun, $this->table);
+                $countId = $this->Akun_model->totalRows($row->idakun, $this->table);
                 $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . ($countId == 0 ? $value : '<b>' . $value . '</b>');
                 break;
             case 7:
-                $countId = $this->Akun_model->getById($row->idakun, $this->table);
+                $countId = $this->Akun_model->totalRows($row->idakun, $this->table);
                 $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . ($countId == 0 ? $value : '<b>' . $value . '</b>');
                 break;
             case 10:
@@ -255,5 +255,10 @@ class Akun extends CI_Controller
     {
         $postArray['Urut'] = substr(trim($postArray['Kode']) . '0000000000', 0, 10);
         return $postArray;
+    }
+
+    public function tambah($idakun)
+    {
+
     }
 }
