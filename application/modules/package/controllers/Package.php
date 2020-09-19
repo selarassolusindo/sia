@@ -79,15 +79,30 @@ class Package extends CI_Controller
         $crud->change_field_type('PNECP', 'invisible');
 
         $crud->callback_before_insert(array($this, 'updateCost'));
+        $crud->callback_before_update(array($this, 'updateCost'));
 
         $output = $crud->render();
         $output->_caption = 'Package';
         $this->_example_output($output);
     }
 
-    public function updateCost()
+    public function updateCost($postArray)
     {
+        $postArray['PN3C']  = $postArray['PN1LN'] * 3; // piw price 3 night cost
+        $postArray['PN3CP'] = round($postArray['PN3C'] / $postArray['SN3LN'], 2); // piw price 3 night %
+        $postArray['PN6C']  = $postArray['PN1LN'] * 6; // piw price 6 night cost
+        $postArray['PN6CP'] = round($postArray['PN6C'] / $postArray['SN6LN'], 2); // piw price 6 night %
+        $postArray['PNEC']  = $postArray['PN1LN']; // piw price extend /night cost
+        $postArray['PNECP'] = round($postArray['PNEC'] / $postArray['SNELN'], 2); // piw price extend /night %
 
+        $postArray['SN3C']  = $postArray['SN3LN'] - $postArray['PN3C']; // ssw price 3 night cost
+        $postArray['SN3CP'] = round($postArray['SN3C'] / $postArray['SN3LN'], 2); // ssw price 3 night %
+        $postArray['SN6C']  = $postArray['SN6LN'] - $postArray['PN6C']; // ssw price 6 night cost
+        $postArray['SN6CP'] = round($postArray['SN6C'] / $postArray['SN6LN'], 2); // ssw price 6 night %
+        $postArray['SNEC']  = $postArray['SNELN'] - $postArray['PNEC']; // ssw price extend /night cost
+        $postArray['SNECP'] = round($postArray['SNEC'] / $postArray['SNELN'], 2); // ssw price extend /night %
+
+        return $postArray;
     }
 
     public function valueToUsd($value, $row)
