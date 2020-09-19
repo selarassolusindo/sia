@@ -60,6 +60,12 @@ class Package extends CI_Controller
             ->callback_column('PN1DN', array($this, 'valueToIdr'))
             ;
 
+        $crud->columns(['PackageName', 'PackageCode', 'SN3LN', 'SN6LN', 'SNELN', 'PN1LN', 'PN1DN']);
+        $crud->fields('PackageName', 'PackageCode', 'SN3LN', 'SN6LN', 'SNELN', 'PN1LN', 'PN1DN',
+            'SN3C', 'SN3CP', 'SN6C', 'SN6CP', 'SNEC', 'SNECP', 'PN3C', 'PN3CP', 'PN6C', 'PN6CP',
+            'PNEC', 'PNECP'
+            );
+
         $output = $crud->render();
         $output->_caption = 'Package';
         $this->_example_output($output);
