@@ -206,7 +206,8 @@ class Akun extends CI_Controller
 
     public function index()
     {
-        $crud = new grocery_CRUD();
+        // $crud = new grocery_CRUD();
+        $crud = new custom_grocery_crud();
         $crud->set_model('Akun_model');
         $crud->set_table($this->table);
         $crud->set_subject('Akun');
@@ -215,16 +216,40 @@ class Akun extends CI_Controller
         $crud->unset_fields(array('created_at', 'updated_at'));
         $crud->order_by('Urut');
         $crud->columns(['Kode', 'Nama']);
-        $crud->fields('Kode', 'Nama', 'Induk', 'Urut');
+        $crud->fields('Induk', 'Kode', 'Nama', 'Urut');
         $crud->change_field_type('Urut', 'invisible');
         $crud->callback_before_insert(array($this, 'isiNol'));
         $crud->callback_before_update(array($this, 'isiNol'));
         $crud->callback_column('Nama', array($this, 'formatNama'));
-        // $crud->add_action('Tambah', base_url() . 'assets/grocery_crud/themes/flexigrid/css/images/add.png', 'akun/tambah');
+
+        $crud->add_action('Tambah', base_url() . 'assets/grocery_crud/themes/flexigrid/css/images/add.png', '', '', array($this, 'tambah'));
 
         $output = $crud->render();
         $output->_caption = 'Klasifikasi Akun';
+
+        $output->_js_output = '
+            <script>
+                $(\'select[name="Induk"] option[value="'.$_GET['induk'].'"]\').attr("selected", "selected");
+                $(\'input[name="Kode"]\').attr("value", "'.$_GET['kode'].'");
+
+
+                var urlParams = new URLSearchParams(window.location.search);
+                var foo = urlParams.get(\'induk\');
+
+                if(foo) {
+                    $(\'select[name="Induk"]\').attr("disabled", "disabled");
+                }
+            </script>
+            ';
+
         $this->_example_output($output);
+    }
+
+
+
+    public function tambah($primary_key, $row)
+    {
+        return (strlen($row->Kode) == 10 ? '' : site_url('akun/index/add?induk=' . $row->idakun . '&kode=' . $row->Kode));
     }
 
     public function formatNama($value, $row)

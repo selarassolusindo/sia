@@ -586,6 +586,10 @@
         if (isset($_dependent_js)) {
             echo $_dependent_js;
         }
+
+        if (isset($_js_output)) {
+            echo $_js_output;
+        }
         ?>
     </body>
 </html>
