@@ -1,10 +1,10 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Price extends CI_Controller
+class Package extends CI_Controller
 {
 
-    public $table = 't01_price';
+    public $table = 't01_package';
 
     public function __construct()
     {
@@ -22,7 +22,7 @@ class Price extends CI_Controller
     {
         $crud = new grocery_CRUD();
         $crud->set_table($this->table);
-        $crud->set_subject('Price');
+        $crud->set_subject('Package');
         $crud->unset_columns(array('created_at', 'updated_at'));
         $crud->unset_fields(array('created_at', 'updated_at'));
 
@@ -61,7 +61,7 @@ class Price extends CI_Controller
             ;
 
         $output = $crud->render();
-        $output->_caption = 'Price';
+        $output->_caption = 'Package';
         $this->_example_output($output);
     }
 

@@ -316,7 +316,7 @@
                                 <li class="nav-item has-treeview
                                     <?php
                                     switch ($this->uri->segment(1)) {
-                                        case 'price':
+                                        case 'package':
                                             echo 'menu-open';
                                             break;
                                         default:
@@ -345,9 +345,9 @@
                                         </li>
                                         <!-- input price -->
                                         <li class="nav-item">
-                                            <a href="<?php echo site_url('price'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'price' ? 'active' : ''; ?>">
+                                            <a href="<?php echo site_url('package'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'package' ? 'active' : ''; ?>">
                                                 <i class="fas fa-users nav-icon"></i>
-                                                <p>Input Price</p>
+                                                <p>Input Package</p>
                                             </a>
                                         </li>
                                     </ul>
