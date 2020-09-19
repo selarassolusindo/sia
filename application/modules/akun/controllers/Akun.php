@@ -218,6 +218,7 @@ class Akun extends CI_Controller
         $crud->fields('Kode', 'Nama', 'Induk', 'Urut');
         $crud->change_field_type('Urut', 'invisible');
         $crud->callback_before_insert(array($this, 'isiNol'));
+        $crud->callback_before_update(array($this, 'isiNol'));
         $crud->callback_column('Nama', array($this, 'formatNama'));
         // $crud->add_action('Tambah', base_url() . 'assets/grocery_crud/themes/flexigrid/css/images/add.png', 'akun/tambah');
 

@@ -66,6 +66,8 @@ class Package extends CI_Controller
             'PNEC', 'PNECP'
             );
 
+        $crud->callback_before_insert();
+
         $output = $crud->render();
         $output->_caption = 'Package';
         $this->_example_output($output);
