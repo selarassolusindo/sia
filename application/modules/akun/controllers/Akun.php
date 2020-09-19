@@ -206,8 +206,7 @@ class Akun extends CI_Controller
 
     public function index()
     {
-        // $crud = new grocery_CRUD();
-        $crud = new custom_grocery_crud();
+        $crud = new grocery_CRUD();
         $crud->set_model('Akun_model');
         $crud->set_table($this->table);
         $crud->set_subject('Akun');
