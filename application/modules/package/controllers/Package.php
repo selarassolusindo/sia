@@ -60,23 +60,23 @@ class Package extends CI_Controller
             ->callback_column('PN1DN', array($this, 'valueToIdr'))
             ;
 
-        // $crud->columns(['PackageName', 'PackageCode', 'SN3LN', 'SN6LN', 'SNELN', 'PN1LN', 'PN1DN']);
+        $crud->columns(['PackageName', 'PackageCode', 'SN3LN', 'SN6LN', 'SNELN', 'PN1LN', 'PN1DN']);
         $crud->fields('PackageName', 'PackageCode', 'SN3LN', 'SN6LN', 'SNELN', 'PN1LN', 'PN1DN',
             'SN3C', 'SN3CP', 'SN6C', 'SN6CP', 'SNEC', 'SNECP', 'PN3C', 'PN3CP', 'PN6C', 'PN6CP',
             'PNEC', 'PNECP'
             );
-        // $crud->change_field_type('SN3C', 'invisible');
-        // $crud->change_field_type('SN3CP', 'invisible');
-        // $crud->change_field_type('SN6C', 'invisible');
-        // $crud->change_field_type('SN6CP', 'invisible');
-        // $crud->change_field_type('SNEC', 'invisible');
-        // $crud->change_field_type('SNECP', 'invisible');
-        // $crud->change_field_type('PN3C', 'invisible');
-        // $crud->change_field_type('PN3CP', 'invisible');
-        // $crud->change_field_type('PN6C', 'invisible');
-        // $crud->change_field_type('PN6CP', 'invisible');
-        // $crud->change_field_type('PNEC', 'invisible');
-        // $crud->change_field_type('PNECP', 'invisible');
+        $crud->change_field_type('SN3C', 'invisible');
+        $crud->change_field_type('SN3CP', 'invisible');
+        $crud->change_field_type('SN6C', 'invisible');
+        $crud->change_field_type('SN6CP', 'invisible');
+        $crud->change_field_type('SNEC', 'invisible');
+        $crud->change_field_type('SNECP', 'invisible');
+        $crud->change_field_type('PN3C', 'invisible');
+        $crud->change_field_type('PN3CP', 'invisible');
+        $crud->change_field_type('PN6C', 'invisible');
+        $crud->change_field_type('PN6CP', 'invisible');
+        $crud->change_field_type('PNEC', 'invisible');
+        $crud->change_field_type('PNECP', 'invisible');
 
         $crud->callback_before_insert(array($this, 'updateCost'));
         $crud->callback_before_update(array($this, 'updateCost'));
