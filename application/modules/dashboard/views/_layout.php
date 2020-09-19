@@ -313,7 +313,17 @@
                                 <!-- /transaksi -->
 
                                 <!-- proses -->
-                                <li class="nav-item has-treeview">
+                                <li class="nav-item has-treeview
+                                    <?php
+                                    switch ($this->uri->segment(1)) {
+                                        case 'price':
+                                            echo 'menu-open';
+                                            break;
+                                        default:
+                                            echo '';
+                                    }
+                                    ?>
+                                    ">
                                     <a href="#" class="nav-link">
                                         <i class="fab fa-stack-overflow nav-icon"></i>
                                         <p>PROSES<i class="right fas fa-angle-left"></i></p>
@@ -331,6 +341,13 @@
                                             <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
                                                 <i class="fas fa-users nav-icon"></i>
                                                 <p>Input Data Tamu</p>
+                                            </a>
+                                        </li>
+                                        <!-- input price -->
+                                        <li class="nav-item">
+                                            <a href="<?php echo site_url('price'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'price' ? 'active' : ''; ?>">
+                                                <i class="fas fa-users nav-icon"></i>
+                                                <p>Input Price</p>
                                             </a>
                                         </li>
                                     </ul>
