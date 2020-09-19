@@ -228,6 +228,7 @@ class Akun extends CI_Controller
 
         $output->_js_output = '
             <script>
+                $(\'.add\').hide();
                 $(\'select[name="Induk"] option[value="'.$_GET['induk'].'"]\').attr("selected", "selected");
                 $(\'input[name="Kode"]\').attr("value", "'.$_GET['kode'].'");
 
