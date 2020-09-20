@@ -250,6 +250,13 @@
                                                     <p>Klasifikasi Akun</p>
                                                 </a>
                                             </li>
+                                            <!-- input price -->
+                                            <li class="nav-item">
+                                                <a href="<?php echo site_url('package'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'package' ? 'active' : ''; ?>">
+                                                    <i class="fas fa-users nav-icon"></i>
+                                                    <p>Input Package</p>
+                                                </a>
+                                            </li>
                                         <?php } // if ($this->ion_auth->in_group(array('piw', 'ssw'))) { ?>
                                     </ul>
                                 </li>
@@ -341,13 +348,6 @@
                                             <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
                                                 <i class="fas fa-users nav-icon"></i>
                                                 <p>Input Data Tamu</p>
-                                            </a>
-                                        </li>
-                                        <!-- input price -->
-                                        <li class="nav-item">
-                                            <a href="<?php echo site_url('package'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'package' ? 'active' : ''; ?>">
-                                                <i class="fas fa-users nav-icon"></i>
-                                                <p>Input Package</p>
                                             </a>
                                         </li>
                                     </ul>
