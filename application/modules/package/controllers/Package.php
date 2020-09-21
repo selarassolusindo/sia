@@ -37,19 +37,19 @@ class Package extends CI_Controller
             ;
 
         $crud->callback_field('SN3LN', function($value = '', $primary_key = null) {
-            return 'USD <input type="text" maxlength="50" value="'.$value.'" name="SN3LN">';
+            return 'USD <input type="text" maxlength="50" value="'.numIndo($value).'" name="SN3LN">';
         });
         $crud->callback_field('SN6LN', function($value = '', $primary_key = null) {
-            return 'USD <input type="text" maxlength="50" value="'.$value.'" name="SN6LN">';
+            return 'USD <input type="text" maxlength="50" value="'.numIndo($value).'" name="SN6LN">';
         });
         $crud->callback_field('SNELN', function($value = '', $primary_key = null) {
-            return 'USD <input type="text" maxlength="50" value="'.$value.'" name="SNELN">';
+            return 'USD <input type="text" maxlength="50" value="'.numIndo($value).'" name="SNELN">';
         });
         $crud->callback_field('PN1LN', function($value = '', $primary_key = null) {
-            return 'USD <input type="text" maxlength="50" value="'.$value.'" name="PN1LN">';
+            return 'USD <input type="text" maxlength="50" value="'.numIndo($value).'" name="PN1LN">';
         });
         $crud->callback_field('PN1DN', function($value = '', $primary_key = null) {
-            return 'IDR <input type="text" maxlength="50" value="'.$value.'" name="PN1DN">';
+            return 'IDR <input type="text" maxlength="50" value="'.numIndo($value).'" name="PN1DN">';
         });
 
         $crud
@@ -83,11 +83,28 @@ class Package extends CI_Controller
 
         $output = $crud->render();
         $output->_caption = 'Package';
+
+        $output->_js_output = '
+            <script>
+                $(\'.SN3LN\').mask("#.##0,00", {reverse: true});
+                $(\'.SN6LN\').mask("#.##0,00", {reverse: true});
+                $(\'.SNELN\').mask("#.##0,00", {reverse: true});
+                $(\'.PN1LN\').mask("#.##0,00", {reverse: true});
+                $(\'.PN1DN\').mask("#.##0,00", {reverse: true});
+            </script>
+        ';
         $this->_example_output($output);
     }
 
     public function updateCost($postArray)
     {
+        // ubah koma jadi titik
+        $postArray['SN3LN'] = str_replace(',', '.', $postArray['SN3LN']);
+        $postArray['SN6LN'] = str_replace(',', '.', $postArray['SN6LN']);
+        $postArray['SNELN'] = str_replace(',', '.', $postArray['SNELN']);
+        $postArray['PN1LN'] = str_replace(',', '.', $postArray['PN1LN']);
+        $postArray['PN1DN'] = str_replace(',', '.', $postArray['PN1DN']);
+
         $postArray['PN3C']  = $postArray['PN1LN'] * 3; // piw price 3 night cost
         $postArray['PN3CP'] = round($postArray['PN3C'] / $postArray['SN3LN'], 2); // piw price 3 night %
         $postArray['PN6C']  = $postArray['PN1LN'] * 6; // piw price 6 night cost

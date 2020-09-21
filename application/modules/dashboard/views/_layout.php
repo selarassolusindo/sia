@@ -214,6 +214,7 @@
                                         case 'company':
                                         case 'user-management':
                                         case 'akun':
+                                        case 'package':
                                             echo 'menu-open';
                                             break;
                                         default:
@@ -324,7 +325,7 @@
                                     <?php
                                     switch ($this->uri->segment(1)) {
                                         case 'package':
-                                            echo 'menu-open';
+                                            // echo 'menu-open';
                                             break;
                                         default:
                                             echo '';
@@ -586,10 +587,13 @@
         if (isset($_dependent_js)) {
             echo $_dependent_js;
         }
-
+        ?>
+        <script src="<?php echo base_url() ?>assets/js/jquery.mask.js"></script>
+        <?php
         if (isset($_js_output)) {
             echo $_js_output;
         }
         ?>
+
     </body>
 </html>
