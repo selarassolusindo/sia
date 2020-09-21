@@ -22,5 +22,9 @@ class Welcome extends CI_Controller
     public function index()
     {
         $this->load->view('welcome_message');
+        echo pre(shortDateIndo('2020-09-05'));
+        echo pre(dateIndo('2020-09-05'));
+        echo pre(mediumDateIndo('2020-09-05'));
+        echo pre(longDateIndo('2019-09-05'));
     }
 }

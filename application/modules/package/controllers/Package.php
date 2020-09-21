@@ -107,7 +107,7 @@ class Package extends CI_Controller
 
     public function valueToUsd($value, $row)
     {
-        return 'USD ' . $value;
+        return 'USD ' . numIndo($value);
     }
 
     public function valueToIdr($value, $row)
