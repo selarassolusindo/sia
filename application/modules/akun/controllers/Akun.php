@@ -232,7 +232,6 @@ class Akun extends CI_Controller
                 $(\'select[name="Induk"] option[value="'.$_GET['induk'].'"]\').attr("selected", "selected");
                 $(\'input[name="Kode"]\').attr("value", "'.$_GET['kode'].'");
 
-
                 var urlParams = new URLSearchParams(window.location.search);
                 var foo = urlParams.get(\'induk\');
 

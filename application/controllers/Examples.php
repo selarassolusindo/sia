@@ -245,4 +245,72 @@ class Examples extends CI_Controller {
 		}
 	}
 
+    public function multiGrid2($primaryKey)
+    {
+        $this->config->load('grocery_crud');
+		// $this->config->set_item('grocery_crud_dialog_forms',true);
+		$this->config->set_item('grocery_crud_default_per_page',10);
+
+		$output1 = $this->groups();
+
+		$output2 = $this->users_groups($primaryKey);
+
+		$js_files = $output1->js_files + $output2->js_files;
+		$css_files = $output1->css_files + $output2->css_files;
+		$output = "<h1>List 1</h1>".$output1->output."<h1>List 2</h1>".$output2->output;
+
+		$this->_example_output((object)array(
+				'js_files' => $js_files,
+				'css_files' => $css_files,
+				'output'	=> $output
+		));
+    }
+
+    public function groups()
+	{
+		$crud = new grocery_CRUD();
+		$crud->set_table('groups');
+		$crud->set_subject('Groups');
+        $crud->set_theme('datatables');
+
+		$crud->set_crud_url_path(site_url(strtolower(__CLASS__."/".__FUNCTION__)),site_url(strtolower(__CLASS__."/multiGrid2/99")));
+
+        // $crud->add_action('Users List', '', '', '', array($this, 'seturl'));
+        $crud->add_action('Users List', '', 'examples/multiGrid2');
+
+		$output = $crud->render();
+
+		if($crud->getState() != 'list') {
+			$this->_example_output($output);
+		} else {
+			return $output;
+		}
+	}
+
+    public function seturl($primaryKey, $row)
+    {
+        return site_url('examples/multiGrid2?group_id='.$primaryKey);
+    }
+
+    public function users_groups($primaryKey)
+    {
+        $crud = new grocery_CRUD();
+        $crud->set_table('users_groups');
+        $crud->set_relation('user_id', 'users', 'username');
+        // if (isset($_GET['group_id'])) {
+        if ($primaryKey != '') {
+            $crud->where('group_id', $primaryKey);
+        }
+
+        $crud->set_crud_url_path(site_url(strtolower(__CLASS__."/".__FUNCTION__)),site_url(strtolower(__CLASS__."/multiGrid2/99")));
+
+        $output = $crud->render();
+
+        if($crud->getState() != 'list') {
+			$this->_example_output($output);
+		} else {
+			return $output;
+		}
+    }
+
 }
