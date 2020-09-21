@@ -129,6 +129,6 @@ class Package extends CI_Controller
 
     public function valueToIdr($value, $row)
     {
-        return 'IDR ' . $value;
+        return 'IDR ' . numIndo($value);
     }
 }
