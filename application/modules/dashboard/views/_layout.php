@@ -255,7 +255,7 @@
                                             <li class="nav-item">
                                                 <a href="<?php echo site_url('package'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'package' ? 'active' : ''; ?>">
                                                     <i class="fas fa-users nav-icon"></i>
-                                                    <p>Input Package</p>
+                                                    <p>Package</p>
                                                 </a>
                                             </li>
                                         <?php } // if ($this->ion_auth->in_group(array('piw', 'ssw'))) { ?>
@@ -324,8 +324,8 @@
                                 <li class="nav-item has-treeview
                                     <?php
                                     switch ($this->uri->segment(1)) {
-                                        case 'package':
-                                            // echo 'menu-open';
+                                        case 'tamu':
+                                            echo 'menu-open';
                                             break;
                                         default:
                                             echo '';
@@ -338,17 +338,17 @@
                                     </a>
                                     <ul class="nav nav-treeview">
                                         <!-- posting -->
-                                        <li class="nav-item">
+                                        <!-- <li class="nav-item">
                                             <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
                                                 <i class="fab fa-ioxhost nav-icon"></i>
                                                 <p>Posting</p>
                                             </a>
-                                        </li>
+                                        </li> -->
                                         <!-- input data tamu -->
                                         <li class="nav-item">
-                                            <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
+                                            <a href="<?php echo site_url('tamu'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'tamu' ? 'active' : ''; ?>">
                                                 <i class="fas fa-users nav-icon"></i>
-                                                <p>Input Data Tamu</p>
+                                                <p>Data Tamu</p>
                                             </a>
                                         </li>
                                     </ul>
