@@ -16,6 +16,121 @@ class Akun extends CI_Controller
   		$this->load->view('dashboard/_layout', (array)$output);
     }
 
+    public $table = 't02_akun';
+
+    public function index()
+    {
+        $crud = new grocery_CRUD();
+        $crud->set_model('Akun_model');
+        $crud->set_table($this->table);
+        $crud->set_subject('Akun');
+        $crud->set_relation('Induk', 't02_akun', '{Kode} - {Nama}');
+        $crud->unset_columns(array('created_at', 'updated_at'));
+        $crud->unset_fields(array('created_at', 'updated_at'));
+        $crud->order_by('Urut');
+        $crud->columns(['Kode', 'Nama', 'Debit', 'Kredit']);
+        $crud->fields('Induk', 'Kode', 'Nama', 'Urut', 'Debit', 'Kredit');
+        $crud->change_field_type('Urut', 'invisible');
+        $crud->callback_before_insert(array($this, 'isiNol'));
+        $crud->callback_before_update(array($this, 'isiNol'));
+        $crud->callback_column('Nama', array($this, 'formatNama'));
+        $crud->callback_column('Debit', function($value, $row) { return numIndo($value); });
+        $crud->callback_column('Kredit', function($value, $row) { return numIndo($value); });
+
+        $crud->add_action('Tambah', base_url() . 'assets/grocery_crud/themes/flexigrid/css/images/add.png', '', '', array($this, 'tambah'));
+
+        $crud->callback_field('Debit', function($value = '', $primary_key = null) {
+            return '<input id="field-Debit" class="form-control form-control-sm" name="Debit" type="text" value="'.numIndo($value).'">';
+        });
+        $crud->callback_field('Kredit', function($value = '', $primary_key = null) {
+            return '<input id="field-Kredit" class="form-control form-control-sm" name="Kredit" type="text" value="'.numIndo($value).'">';
+        });
+
+        $output = $crud->render();
+        $output->_caption = 'Klasifikasi Akun';
+
+        $output->_js_output = '
+            <script>
+                $(\'.add\').hide();
+
+                // check parameter kode
+                var urlParams = new URLSearchParams(window.location.search);
+                var foo = urlParams.get(\'kode\');
+                if(foo) {
+                    $(\'input[name="Kode"]\').attr("value", "'.$_GET['kode'].'");
+                }
+
+                // check parameter induk
+                var urlParams = new URLSearchParams(window.location.search);
+                var foo = urlParams.get(\'induk\');
+                if(foo) {
+                    $(\'select[name="Induk"] option[value="'.$_GET['induk'].'"]\').attr("selected", "selected");
+                    $(\'select[name="Induk"]\').attr("disabled", "disabled");
+                }
+
+                $(\'.Debit\').mask("#.##0,00", {reverse: true});
+                $(\'.Kredit\').mask("#.##0,00", {reverse: true});
+            </script>
+            ';
+
+        $this->_example_output($output);
+    }
+
+    /**
+     * fungsi untuk mengubah hyperlink pada icon TAMBAH di setiap baris data
+     */
+    public function tambah($primary_key, $row)
+    {
+        return (strlen($row->Kode) == 10 ? '' : site_url('akun/index/add?induk=' . $row->idakun . '&kode=' . $row->Kode));
+    }
+
+    /**
+     * fungsi untuk mengubah posisi NAMA AKUN, disesuaikan dengan level akunnya
+     */
+    public function formatNama($value, $row)
+    {
+        $lenKode = strlen($row->Kode);
+        switch ($lenKode) {
+            case 1:
+                $result = '<b>' . $value . '</b>';
+                break;
+            case 2:
+                $result = '&nbsp;&nbsp;&nbsp;&nbsp;<b>' . $value . '</b>';
+                break;
+            case 4:
+                $countId = $this->Akun_model->totalRows($row->idakun, $this->table);
+                $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . ($countId == 0 ? $value : '<b>' . $value . '</b>');
+                break;
+            case 7:
+                $countId = $this->Akun_model->totalRows($row->idakun, $this->table);
+                $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . ($countId == 0 ? $value : '<b>' . $value . '</b>');
+                break;
+            case 10:
+                $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $value;
+                break;
+        }
+        return $result;
+    }
+
+    /**
+     * fungsi untuk mensetting urutan tiap akun
+     * dan, untuk memformat tanda titik (.) dihilangkan
+     * dan, untuk memformat tanda koma (,) diubah menjadi titik
+     */
+    public function isiNol($postArray, $pK = null)
+    {
+        $postArray['Urut']   = substr(trim($postArray['Kode']) . '0000000000', 0, 10);
+        $postArray['Debit']  = str_replace('.', '', $postArray['Debit']);
+        $postArray['Debit']  = str_replace(',', '.', $postArray['Debit']);
+        $postArray['Kredit'] = str_replace('.', '', $postArray['Kredit']);
+        $postArray['Kredit'] = str_replace(',', '.', $postArray['Kredit']);
+
+        return $postArray;
+    }
+
+    /**
+     * unused
+     */
     public function l1()
     {
         $crud = new grocery_CRUD();
@@ -200,85 +315,5 @@ class Akun extends CI_Controller
         $output->_caption = 'Akun Level-5';
 
         $this->_example_output($output);
-    }
-
-    public $table = 't02_akun';
-
-    public function index()
-    {
-        $crud = new grocery_CRUD();
-        $crud->set_model('Akun_model');
-        $crud->set_table($this->table);
-        $crud->set_subject('Akun');
-        $crud->set_relation('Induk', 't02_akun', '{Kode} - {Nama}');
-        $crud->unset_columns(array('created_at', 'updated_at'));
-        $crud->unset_fields(array('created_at', 'updated_at'));
-        $crud->order_by('Urut');
-        $crud->columns(['Kode', 'Nama']);
-        $crud->fields('Induk', 'Kode', 'Nama', 'Urut');
-        $crud->change_field_type('Urut', 'invisible');
-        $crud->callback_before_insert(array($this, 'isiNol'));
-        $crud->callback_before_update(array($this, 'isiNol'));
-        $crud->callback_column('Nama', array($this, 'formatNama'));
-
-        $crud->add_action('Tambah', base_url() . 'assets/grocery_crud/themes/flexigrid/css/images/add.png', '', '', array($this, 'tambah'));
-
-        $output = $crud->render();
-        $output->_caption = 'Klasifikasi Akun';
-
-        $output->_js_output = '
-            <script>
-                $(\'.add\').hide();
-                $(\'select[name="Induk"] option[value="'.$_GET['induk'].'"]\').attr("selected", "selected");
-                $(\'input[name="Kode"]\').attr("value", "'.$_GET['kode'].'");
-
-                var urlParams = new URLSearchParams(window.location.search);
-                var foo = urlParams.get(\'induk\');
-
-                if(foo) {
-                    $(\'select[name="Induk"]\').attr("disabled", "disabled");
-                }
-            </script>
-            ';
-
-        $this->_example_output($output);
-    }
-
-
-
-    public function tambah($primary_key, $row)
-    {
-        return (strlen($row->Kode) == 10 ? '' : site_url('akun/index/add?induk=' . $row->idakun . '&kode=' . $row->Kode));
-    }
-
-    public function formatNama($value, $row)
-    {
-        $lenKode = strlen($row->Kode);
-        switch ($lenKode) {
-            case 1:
-                $result = '<b>' . $value . '</b>';
-                break;
-            case 2:
-                $result = '&nbsp;&nbsp;&nbsp;&nbsp;<b>' . $value . '</b>';
-                break;
-            case 4:
-                $countId = $this->Akun_model->totalRows($row->idakun, $this->table);
-                $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . ($countId == 0 ? $value : '<b>' . $value . '</b>');
-                break;
-            case 7:
-                $countId = $this->Akun_model->totalRows($row->idakun, $this->table);
-                $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . ($countId == 0 ? $value : '<b>' . $value . '</b>');
-                break;
-            case 10:
-                $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $value;
-                break;
-        }
-        return $result;
-    }
-
-    public function isiNol($postArray)
-    {
-        $postArray['Urut'] = substr(trim($postArray['Kode']) . '0000000000', 0, 10);
-        return $postArray;
     }
 }
