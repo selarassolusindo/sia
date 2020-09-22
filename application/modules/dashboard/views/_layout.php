@@ -254,7 +254,7 @@
                                             <!-- input price -->
                                             <li class="nav-item">
                                                 <a href="<?php echo site_url('package'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'package' ? 'active' : ''; ?>">
-                                                    <i class="fas fa-users nav-icon"></i>
+                                                    <i class="fas fa-bed nav-icon"></i>
                                                     <p>Package</p>
                                                 </a>
                                             </li>
