@@ -59,6 +59,37 @@ class Tamu extends CI_Controller
         //         $(\'.PN1DN\').mask("#.##0,00", {reverse: true});
         //     </script>
         // ';
+        $output->_js_output = '
+            <script>
+                var table = $(\'#flex1\');
+                table.find(\'thead tr\').remove();
+                table.append(\' \
+                <thead> \
+                    <tr class="hDiv"> \
+                        <th colspan="2"><div class="text-left field-sorting " rel="Trip">Trip</div></th> \
+                        <th rowspan="2"><div class="text-left field-sorting " rel="Nama">Nama</div></th> \
+                        <th rowspan="2"><div class="text-left field-sorting " rel="MFC">MFC</div></th> \
+                        <th rowspan="2"><div class="text-left field-sorting " rel="Country">Country</div></th> \
+                        <th colspan="2"><div class="text-left field-sorting " rel="Package">Package</div></th> \
+                        <th><div class="text-left field-sorting " rel="CheckIn">CheckIn</div></th> \
+                        <th><div class="text-left field-sorting " rel="CheckOut">CheckOut</div></th> \
+                        <th><div class="text-left field-sorting " rel="Agent">Agent</div></th> \
+                        <th><div class="text-left field-sorting " rel="Status">Status</div></th> \
+                        <th><div class="text-left field-sorting " rel="DaysStay">DaysStay</div></th> \
+                        <th><div class="text-left field-sorting " rel="Price">Price</div></th> \
+                        <th align="left" abbr="tools" axis="col1" class="" width="20%"><div class="text-right">Actions</div></th> \
+                    </tr> \
+        			<tr class="hDiv"> \
+                        <th><div class="text-left field-sorting " rel="TripNo">No</div></th> \
+                        <th><div class="text-left field-sorting " rel="TripTgl">Tgl</div></th> \
+                        \
+                        <th><div class="text-left field-sorting " rel="PackageNight">Night</div></th> \
+                        <th><div class="text-left field-sorting " rel="PackageType">Type</div></th> \
+                    </tr> \
+        		</thead> \
+                \');
+            </script>
+        ';
         $this->_example_output($output);
     }
 }
