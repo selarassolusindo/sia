@@ -517,11 +517,11 @@
           </div>
           <!-- /.content-wrapper -->
           <footer class="main-footer">
-            <strong>&copy; <?php echo date('Y'); ?> <a href="#">PT. PIW - PT. SSW</a></strong>. All rights reserved. Created by <a href="http://selusin.online" target="_blank" title="SELARAS SOLUSINDO">SELUSIN</a>.
+            &copy; <strong><a href="#">PT. PIW - PT. SSW</a></strong> <?php echo date('Y'); ?>. All rights reserved. Sistem Informasi Akuntansi v1.0 created by <a href="http://selusin.online" target="_blank" title="SELARAS SOLUSINDO">SELUSIN</a>.
 
-            <div class="float-right d-none d-sm-inline-block">
+            <!-- <div class="float-right d-none d-sm-inline-block">
               <b><?php echo SITE_NAME; ?> </b> <?php echo SITE_VERSION; ?>
-            </div>
+            </div> -->
           </footer>
 
           <!-- Control Sidebar -->
