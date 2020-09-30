@@ -248,14 +248,14 @@
                                             <!-- klasifikasi akun -->
                                             <li class="nav-item">
                                                 <a href="<?php echo site_url('akun'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'akun') ? 'active' : ''; ?>">
-                                                    <i class="fas fa-dice-five nav-icon"></i>
+                                                    <i class="fab fa-adn nav-icon"></i>
                                                     <p>Klasifikasi Akun</p>
                                                 </a>
                                             </li>
                                             <!-- saldo awal -->
                                             <li class="nav-item">
                                                 <a href="<?php echo site_url('saldo-awal'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'saldo-awal') ? 'active' : ''; ?>">
-                                                    <i class="fas fa-dice-five nav-icon"></i>
+                                                    <i class="fas fa-code-branch nav-icon"></i>
                                                     <p>Saldo Awal</p>
                                                 </a>
                                             </li>
