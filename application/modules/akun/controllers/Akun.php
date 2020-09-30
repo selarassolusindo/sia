@@ -31,8 +31,8 @@ class Akun extends CI_Controller
         $crud->columns(['Kode', 'Nama', 'Debit', 'Kredit']);
         $crud->fields('Induk', 'Kode', 'Nama', 'Urut', 'Debit', 'Kredit');
         $crud->change_field_type('Urut', 'invisible');
-        $crud->callback_before_insert(array($this, 'isiNol'));
-        $crud->callback_before_update(array($this, 'isiNol'));
+        $crud->callback_before_insert(array($this, 'cb_before_i_u'));
+        $crud->callback_before_update(array($this, 'cb_before_i_u'));
         $crud->callback_column('Nama', array($this, 'formatNama'));
         $crud->callback_column('Debit', function($value, $row) { return numIndo($value); });
         $crud->callback_column('Kredit', function($value, $row) { return numIndo($value); });
@@ -117,7 +117,7 @@ class Akun extends CI_Controller
      * dan, untuk memformat tanda titik (.) dihilangkan
      * dan, untuk memformat tanda koma (,) diubah menjadi titik
      */
-    public function isiNol($postArray, $pK = null)
+    public function cb_before_i_u($postArray, $pK = null)
     {
         $postArray['Urut']   = substr(trim($postArray['Kode']) . '0000000000', 0, 10);
         $postArray['Debit']  = str_replace('.', '', $postArray['Debit']);

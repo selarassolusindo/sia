@@ -214,6 +214,7 @@
                                         case 'company':
                                         case 'user-management':
                                         case 'akun':
+                                        case 'saldo-awal':
                                         case 'package':
                                             echo 'menu-open';
                                             break;
@@ -249,6 +250,13 @@
                                                 <a href="<?php echo site_url('akun'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'akun') ? 'active' : ''; ?>">
                                                     <i class="fas fa-dice-five nav-icon"></i>
                                                     <p>Klasifikasi Akun</p>
+                                                </a>
+                                            </li>
+                                            <!-- saldo awal -->
+                                            <li class="nav-item">
+                                                <a href="<?php echo site_url('saldo-awal'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'saldo-awal') ? 'active' : ''; ?>">
+                                                    <i class="fas fa-dice-five nav-icon"></i>
+                                                    <p>Saldo Awal</p>
                                                 </a>
                                             </li>
                                             <!-- input price -->

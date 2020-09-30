@@ -53,16 +53,17 @@ $route['default_controller'] = 'dashboard';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = false;
 
-$route['company']                = 't01_company';
-$route['user-management']        = 'auth';
-$route['create-user']            = 'auth/create_user';
-$route['create-group']           = 'auth/create_group';
-$route['edit-group/(:num)']      = 'auth/edit_group/$1';
-$route['deactivate/(:num)']      = 'auth/deactivate/$1';
-$route['activate/(:num)']        = 'auth/activate/$1';
-$route['edit-user/(:num)']       = 'auth/edit_user/$1';
-$route['change-password']        = 'auth/change_password';
-$route['select-company']         = 'auth/selectCompany';
+$route['company']           = 't01_company';
+$route['user-management']   = 'auth';
+$route['create-user']       = 'auth/create_user';
+$route['create-group']      = 'auth/create_group';
+$route['edit-group/(:num)'] = 'auth/edit_group/$1';
+$route['deactivate/(:num)'] = 'auth/deactivate/$1';
+$route['activate/(:num)']   = 'auth/activate/$1';
+$route['edit-user/(:num)']  = 'auth/edit_user/$1';
+$route['change-password']   = 'auth/change_password';
+$route['select-company']    = 'auth/selectCompany';
+$route['saldo-awal']        = 'saldoawal';
 
 // $route['level-1']                = 'akun/level_1';
 // $route['level-1/read/(:num)']    = 'akun/level_1/read/$1';
