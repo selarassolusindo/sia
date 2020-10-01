@@ -28,23 +28,23 @@ class Akun extends CI_Controller
         $crud->unset_columns(array('created_at', 'updated_at'));
         $crud->unset_fields(array('created_at', 'updated_at'));
         $crud->order_by('Urut');
-        $crud->columns(['Kode', 'Nama', 'Debit', 'Kredit']);
-        $crud->fields('Induk', 'Kode', 'Nama', 'Urut', 'Debit', 'Kredit');
+        $crud->columns(['Kode', 'Nama']);
+        $crud->fields('Induk', 'Kode', 'Nama', 'Urut');
         $crud->change_field_type('Urut', 'invisible');
         $crud->callback_before_insert(array($this, 'cb_before_i_u'));
         $crud->callback_before_update(array($this, 'cb_before_i_u'));
         $crud->callback_column('Nama', array($this, 'formatNama'));
-        $crud->callback_column('Debit', function($value, $row) { return numIndo($value); });
-        $crud->callback_column('Kredit', function($value, $row) { return numIndo($value); });
+        // $crud->callback_column('Debit', function($value, $row) { return numIndo($value); });
+        // $crud->callback_column('Kredit', function($value, $row) { return numIndo($value); });
 
         $crud->add_action('Tambah', base_url() . 'assets/grocery_crud/themes/flexigrid/css/images/add.png', '', '', array($this, 'tambah'));
 
-        $crud->callback_field('Debit', function($value = '', $primary_key = null) {
-            return '<input id="field-Debit" class="form-control form-control-sm" name="Debit" type="text" value="'.numIndo($value).'">';
-        });
-        $crud->callback_field('Kredit', function($value = '', $primary_key = null) {
-            return '<input id="field-Kredit" class="form-control form-control-sm" name="Kredit" type="text" value="'.numIndo($value).'">';
-        });
+        // $crud->callback_field('Debit', function($value = '', $primary_key = null) {
+        //     return '<input id="field-Debit" class="form-control form-control-sm" name="Debit" type="text" value="'.numIndo($value).'">';
+        // });
+        // $crud->callback_field('Kredit', function($value = '', $primary_key = null) {
+        //     return '<input id="field-Kredit" class="form-control form-control-sm" name="Kredit" type="text" value="'.numIndo($value).'">';
+        // });
 
         $output = $crud->render();
         $output->_caption = 'Klasifikasi Akun';
@@ -68,8 +68,8 @@ class Akun extends CI_Controller
                     $(\'select[name="Induk"]\').attr("disabled", "disabled");
                 }
 
-                $(\'.Debit\').mask("#.##0,00", {reverse: true});
-                $(\'.Kredit\').mask("#.##0,00", {reverse: true});
+                // $(\'.Debit\').mask("#.##0,00", {reverse: true});
+                // $(\'.Kredit\').mask("#.##0,00", {reverse: true});
             </script>
             ';
 
@@ -120,10 +120,10 @@ class Akun extends CI_Controller
     public function cb_before_i_u($postArray, $pK = null)
     {
         $postArray['Urut']   = substr(trim($postArray['Kode']) . '0000000000', 0, 10);
-        $postArray['Debit']  = str_replace('.', '', $postArray['Debit']);
-        $postArray['Debit']  = str_replace(',', '.', $postArray['Debit']);
-        $postArray['Kredit'] = str_replace('.', '', $postArray['Kredit']);
-        $postArray['Kredit'] = str_replace(',', '.', $postArray['Kredit']);
+        // $postArray['Debit']  = str_replace('.', '', $postArray['Debit']);
+        // $postArray['Debit']  = str_replace(',', '.', $postArray['Debit']);
+        // $postArray['Kredit'] = str_replace('.', '', $postArray['Kredit']);
+        // $postArray['Kredit'] = str_replace(',', '.', $postArray['Kredit']);
 
         return $postArray;
     }

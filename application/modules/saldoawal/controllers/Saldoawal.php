@@ -41,6 +41,9 @@ class Saldoawal extends CI_Controller
             return '<input id="field-Kredit" class="form-control form-control-sm" name="Kredit" type="text" value="'.numIndo($value).'">';
         });
 
+        $crud->callback_before_insert(array($this, 'cb_before_i_u'));
+        $crud->callback_before_update(array($this, 'cb_before_i_u'));
+
         $crud->unset_columns(array('created_at', 'updated_at'));
         $crud->unset_fields(array('created_at', 'updated_at'));
 
@@ -54,5 +57,16 @@ class Saldoawal extends CI_Controller
             ';
 
         $this->_example_output($output);
+    }
+
+    public function cb_before_i_u($postArray, $pK = null)
+    {
+        // $postArray['Urut']   = substr(trim($postArray['Kode']) . '0000000000', 0, 10);
+        $postArray['Debit']  = str_replace('.', '', $postArray['Debit']);
+        $postArray['Debit']  = str_replace(',', '.', $postArray['Debit']);
+        $postArray['Kredit'] = str_replace('.', '', $postArray['Kredit']);
+        $postArray['Kredit'] = str_replace(',', '.', $postArray['Kredit']);
+
+        return $postArray;
     }
 }
