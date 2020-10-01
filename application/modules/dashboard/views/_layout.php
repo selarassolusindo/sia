@@ -214,6 +214,7 @@
                                         case 'company':
                                         case 'user-management':
                                         case 'akun':
+                                        case 'tanggal-saldo-awal':
                                         case 'saldo-awal':
                                         case 'package':
                                             echo 'menu-open';
@@ -254,9 +255,17 @@
                                             </li>
                                             <!-- saldo awal -->
                                             <li class="nav-item">
-                                                <a href="<?php echo site_url('saldo-awal'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'saldo-awal') ? 'active' : ''; ?>">
+                                                <!-- <a href="<?php echo site_url('saldo-awal'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'saldo-awal') ? 'active' : ''; ?>"> -->
+                                                <a href="<?php echo site_url('tanggal-saldo-awal/withNext'); ?>" class="nav-link <?php echo ($this->uri->segment(2) == 'withNext') ? 'active' : ''; ?>">
                                                     <i class="fas fa-code-branch nav-icon"></i>
                                                     <p>Saldo Awal</p>
+                                                </a>
+                                            </li>
+                                            <!-- tgl. input saldo awal -->
+                                            <li class="nav-item">
+                                                <a href="<?php echo site_url('tanggal-saldo-awal'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'tanggal-saldo-awal') ? 'active' : ''; ?>">
+                                                    <i class="fas fa-calendar-check nav-icon"></i>
+                                                    <p>Tgl. Input Saldo Awal</p>
                                                 </a>
                                             </li>
                                             <!-- input price -->
@@ -574,6 +583,19 @@
         <!-- <script src="<?php //echo base_url() ?>assets/adminlte/dist/js/pages/dashboard.js"></script> -->
         <!-- AdminLTE for demo purposes -->
         <script src="<?php echo base_url() ?>assets/adminlte/dist/js/demo.js"></script>
+
+        <script>
+            $(function () {
+                //Date range picker
+                $('#reservation').daterangepicker()
+            })
+            $(function () {
+                //Date range picker
+                $('#reservationdate').datetimepicker({
+                    format: 'DD/MM/YYYY'
+                })
+            })
+        </script>
 
         <script>
           $(function () {
