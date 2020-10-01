@@ -214,6 +214,7 @@
                                         case 'company':
                                         case 'user-management':
                                         case 'akun':
+                                        case 'input-tanggal-saldo-awal':
                                         case 'tanggal-saldo-awal':
                                         case 'saldo-awal':
                                         case 'package':
@@ -255,8 +256,8 @@
                                             </li>
                                             <!-- saldo awal -->
                                             <li class="nav-item">
-                                                <!-- <a href="<?php echo site_url('saldo-awal'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'saldo-awal') ? 'active' : ''; ?>"> -->
-                                                <a href="<?php echo site_url('tanggal-saldo-awal/withNext'); ?>" class="nav-link <?php echo ($this->uri->segment(2) == 'withNext') ? 'active' : ''; ?>">
+                                                <!-- <a href="<?php //echo site_url('saldo-awal'); ?>" class="nav-link <?php //echo ($this->uri->segment(1) == 'saldo-awal') ? 'active' : ''; ?>"> -->
+                                                <a href="<?php echo site_url('input-tanggal-saldo-awal'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'input-tanggal-saldo-awal' or $this->uri->segment(1) == 'saldo-awal') ? 'active' : ''; ?>">
                                                     <i class="fas fa-code-branch nav-icon"></i>
                                                     <p>Saldo Awal</p>
                                                 </a>
