@@ -43,26 +43,26 @@
         </div>
         <table class="table table-bordered" style="margin-bottom: 10px">
             <tr>
-                <th>No</th>
+                <!-- <th>No</th> -->
 		<th>Kode</th>
 		<th>Nama</th>
-		<th>Induk</th>
+		<!-- <th>Induk</th>
 		<th>Urut</th>
 		<th>Created At</th>
-		<th>Updated At</th>
+		<th>Updated At</th> -->
 		<th>Action</th>
             </tr><?php
             foreach ($akun_data as $akun)
             {
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
+			<!-- <td width="80px"><?php echo ++$start ?></td> -->
 			<td><?php echo $akun->Kode ?></td>
 			<td><?php echo $akun->Nama ?></td>
-			<td><?php echo $akun->Induk ?></td>
+			<!-- <td><?php echo $akun->Induk ?></td>
 			<td><?php echo $akun->Urut ?></td>
 			<td><?php echo $akun->created_at ?></td>
-			<td><?php echo $akun->updated_at ?></td>
+			<td><?php echo $akun->updated_at ?></td> -->
 			<td style="text-align:center" width="200px">
 				<?php
 				echo anchor(site_url('akun/read/'.$akun->idakun),'Read');
