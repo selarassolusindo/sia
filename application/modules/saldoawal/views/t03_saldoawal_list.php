@@ -44,21 +44,24 @@
         <table class="table table-bordered" style="margin-bottom: 10px">
             <tr>
                 <th>No</th>
-        		<th>Idakun</th>
+        		<th>Akun</th>
         		<th>Debit</th>
         		<th>Kredit</th>
         		<!-- <th>Created At</th>
         		<th>Updated At</th> -->
         		<th>Action</th>
             </tr><?php
+            $totalDebit = 0;
+            $totalKredit = 0;
             foreach ($saldoawal_data as $saldoawal)
             {
                 ?>
                 <tr>
         			<td width="80px"><?php echo ++$start ?></td>
-        			<td><?php echo $saldoawal->idakun ?></td>
-        			<td><?php echo $saldoawal->Debit ?></td>
-        			<td><?php echo $saldoawal->Kredit ?></td>
+        			<!-- <td><?php //echo $saldoawal->idakun ?></td> -->
+                    <td><?php echo $saldoawal->Kode . ' - ' . $saldoawal->Nama ?></td>
+        			<td align="right"><?php echo numIndo($saldoawal->Debit) ?></td>
+        			<td align="right"><?php echo numIndo($saldoawal->Kredit) ?></td>
         			<!-- <td><?php //echo $saldoawal->created_at ?></td>
         			<td><?php //echo $saldoawal->updated_at ?></td> -->
         			<td style="text-align:center" width="200px">
@@ -72,8 +75,28 @@
         			</td>
         		</tr>
                 <?php
+                $totalDebit += $saldoawal->Debit;
+                $totalKredit += $saldoawal->Kredit;
             }
             ?>
+            <tr>
+                <th>&nbsp;</th>
+        		<th>&nbsp;</th>
+        		<th>&nbsp;</th>
+        		<th>&nbsp;</th>
+        		<!-- <th>Created At</th>
+        		<th>Updated At</th> -->
+        		<th>&nbsp;</th>
+            </tr>
+            <tr>
+                <th>&nbsp;</th>
+        		<th>Total</th>
+        		<td align="right"><b><?php echo numIndo($totalDebit); ?></b></td>
+        		<td align="right"><b><?php echo numIndo($totalKredit); ?></b></td>
+        		<!-- <th>Created At</th>
+        		<th>Updated At</th> -->
+        		<th>&nbsp;</th>
+            </tr>
         </table>
         <div class="row">
             <div class="col-md-6">

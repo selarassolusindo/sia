@@ -1,319 +1,244 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 class Akun extends CI_Controller
 {
-
-    public function __construct()
+    function __construct()
     {
         parent::__construct();
-        if (!$this->ion_auth->logged_in()) redirect('auth/login', 'refresh');
-        $this->db = $this->load->database($this->session->userdata('groupName'), true);
-        $this->load->library('grocery_CRUD');
+        $this->load->model('Akun_model');
+        $this->load->library('form_validation');
     }
-
-    public function _example_output($output = null) {
-  		$this->load->view('dashboard/_layout', (array)$output);
-    }
-
-    public $table = 't02_akun';
 
     public function index()
     {
-        $crud = new grocery_CRUD();
-        $crud->set_model('Akun_model');
-        $crud->set_table($this->table);
-        $crud->set_subject('Akun');
-        $crud->set_relation('Induk', 't02_akun', '{Kode} - {Nama}');
-        $crud->unset_columns(array('created_at', 'updated_at'));
-        $crud->unset_fields(array('created_at', 'updated_at'));
-        $crud->order_by('Urut');
-        $crud->columns(['Kode', 'Nama']);
-        $crud->fields('Induk', 'Kode', 'Nama', 'Urut');
-        $crud->change_field_type('Urut', 'invisible');
-        $crud->callback_before_insert(array($this, 'cb_before_i_u'));
-        $crud->callback_before_update(array($this, 'cb_before_i_u'));
-        $crud->callback_column('Nama', array($this, 'formatNama'));
-        // $crud->callback_column('Debit', function($value, $row) { return numIndo($value); });
-        // $crud->callback_column('Kredit', function($value, $row) { return numIndo($value); });
-
-        $crud->add_action('Tambah', base_url() . 'assets/grocery_crud/themes/flexigrid/css/images/add.png', '', '', array($this, 'tambah'));
-
-        // $crud->callback_field('Debit', function($value = '', $primary_key = null) {
-        //     return '<input id="field-Debit" class="form-control form-control-sm" name="Debit" type="text" value="'.numIndo($value).'">';
-        // });
-        // $crud->callback_field('Kredit', function($value = '', $primary_key = null) {
-        //     return '<input id="field-Kredit" class="form-control form-control-sm" name="Kredit" type="text" value="'.numIndo($value).'">';
-        // });
-
-        $output = $crud->render();
-        $output->_caption = 'Klasifikasi Akun';
-
-        $output->_js_output = '
-            <script>
-                $(\'.add\').hide();
-
-                // check parameter kode
-                var urlParams = new URLSearchParams(window.location.search);
-                var foo = urlParams.get(\'kode\');
-                if(foo) {
-                    $(\'input[name="Kode"]\').attr("value", "'.$_GET['kode'].'");
-                }
-
-                // check parameter induk
-                var urlParams = new URLSearchParams(window.location.search);
-                var foo = urlParams.get(\'induk\');
-                if(foo) {
-                    $(\'select[name="Induk"] option[value="'.$_GET['induk'].'"]\').attr("selected", "selected");
-                    $(\'select[name="Induk"]\').attr("disabled", "disabled");
-                }
-
-                // $(\'.Debit\').mask("#.##0,00", {reverse: true});
-                // $(\'.Kredit\').mask("#.##0,00", {reverse: true});
-            </script>
-            ';
-
-        $this->_example_output($output);
-    }
-
-    /**
-     * fungsi untuk mengubah hyperlink pada icon TAMBAH di setiap baris data
-     */
-    public function tambah($primary_key, $row)
-    {
-        return (strlen($row->Kode) == 10 ? '' : site_url('akun/index/add?induk=' . $row->idakun . '&kode=' . $row->Kode));
-    }
-
-    /**
-     * fungsi untuk mengubah posisi NAMA AKUN, disesuaikan dengan level akunnya
-     */
-    public function formatNama($value, $row)
-    {
-        $lenKode = strlen($row->Kode);
-        switch ($lenKode) {
-            case 1:
-                $result = '<b>' . $value . '</b>';
-                break;
-            case 2:
-                $result = '&nbsp;&nbsp;&nbsp;&nbsp;<b>' . $value . '</b>';
-                break;
-            case 4:
-                $countId = $this->Akun_model->totalRows($row->idakun, $this->table);
-                $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . ($countId == 0 ? $value : '<b>' . $value . '</b>');
-                break;
-            case 7:
-                $countId = $this->Akun_model->totalRows($row->idakun, $this->table);
-                $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . ($countId == 0 ? $value : '<b>' . $value . '</b>');
-                break;
-            case 10:
-                $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $value;
-                break;
+        $q = urldecode($this->input->get('q', TRUE));
+        $start = intval($this->input->get('start'));
+        
+        if ($q <> '') {
+            $config['base_url'] = base_url() . 'akun/index.html?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'akun/index.html?q=' . urlencode($q);
+        } else {
+            $config['base_url'] = base_url() . 'akun/index.html';
+            $config['first_url'] = base_url() . 'akun/index.html';
         }
-        return $result;
-    }
 
-    /**
-     * fungsi untuk mensetting urutan tiap akun
-     * dan, untuk memformat tanda titik (.) dihilangkan
-     * dan, untuk memformat tanda koma (,) diubah menjadi titik
-     */
-    public function cb_before_i_u($postArray, $pK = null)
-    {
-        $postArray['Urut']   = substr(trim($postArray['Kode']) . '0000000000', 0, 10);
-        // $postArray['Debit']  = str_replace('.', '', $postArray['Debit']);
-        // $postArray['Debit']  = str_replace(',', '.', $postArray['Debit']);
-        // $postArray['Kredit'] = str_replace('.', '', $postArray['Kredit']);
-        // $postArray['Kredit'] = str_replace(',', '.', $postArray['Kredit']);
+        $config['per_page'] = 10;
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Akun_model->total_rows($q);
+        $akun = $this->Akun_model->get_limit_data($config['per_page'], $start, $q);
 
-        return $postArray;
-    }
+        $this->load->library('pagination');
+        $this->pagination->initialize($config);
 
-    /**
-     * unused
-     */
-    public function l1()
-    {
-        $crud = new grocery_CRUD();
-        $crud->set_table('t02_akunl1');
-        $crud->set_subject('Akun Level-1');
-        $crud->unset_columns(array('created_at', 'updated_at'));
-        $crud->unset_fields(array('created_at', 'updated_at'));
-
-        $output = $crud->render();
-        $output->_caption = 'Akun Level-1';
-        $this->_example_output($output);
-    }
-
-    public function l2()
-    {
-        $crud = new grocery_CRUD();
-        $crud->set_table('t03_akunl2');
-        $crud->set_relation('l1_id', 't02_akunl1', '{Kode} - {Nama}');
-        $crud->display_as('l1_id', 'Akun Level-1');
-        $crud->unset_columns(array('created_at', 'updated_at'));
-        $crud->unset_fields(array('created_at', 'updated_at'));
-
-        $output = $crud->render();
-        $output->_caption = 'Akun Level-2';
-        $this->_example_output($output);
-    }
-
-    public function l3()
-    {
-        $crud = new grocery_CRUD();
-        $crud->set_table('t04_akunl3');
-        $crud->set_relation('l1_id', 't02_akunl1', '{Kode} - {Nama}');
-        $crud->set_relation('l2_id', 't03_akunl2', '{Kode} - {Nama}');
-        $crud->display_as('l1_id', 'Akun Level-1');
-        $crud->display_as('l2_id', 'Akun Level-2');
-        $crud->unset_columns(array('created_at', 'updated_at'));
-        $crud->unset_fields(array('created_at', 'updated_at'));
-
-        $this->load->library('gc_dependent_select');
-
-        $fields = array(
-            'l1_id' => array(
-                'table_name' => 't02_akunl1',
-                'title'      => '{Kode} - {Nama}',
-                'relate'     => null
-            ),
-            'l2_id' => array(
-                'table_name' => 't03_akunl2',
-                'title'      => '{Kode} - {Nama}',
-                'id_field'   => 'id',
-                'relate'     => 'l1_id'
-            )
+        $data = array(
+            'akun_data' => $akun,
+            'q' => $q,
+            'pagination' => $this->pagination->create_links(),
+            'total_rows' => $config['total_rows'],
+            'start' => $start,
         );
-
-        $config = array(
-            'main_table' => 't04_akunl3',
-            'main_table_primary' => 'id',
-            "url" => base_url() . __CLASS__ . '/' . __FUNCTION__ . '/'
-        );
-
-        $akun = new gc_dependent_select($crud, $fields, $config);
-
-        $js = $akun->get_js();
-        $output = $crud->render();
-
-        // $output->output .= $js;
-        $output->_dependent_js = $js;
-        $output->_caption = 'Akun Level-3';
-
-        $this->_example_output($output);
+        $this->load->view('akun/t02_akun_list', $data);
     }
 
-    public function l4()
+    public function read($id) 
     {
-        $crud = new grocery_CRUD();
-        $crud->set_table('t05_akunl4');
-        $crud->set_relation('l1_id', 't02_akunl1', '{Kode} - {Nama}');
-        $crud->set_relation('l2_id', 't03_akunl2', '{Kode} - {Nama}');
-        $crud->set_relation('l3_id', 't04_akunl3', '{Kode} - {Nama}');
-        $crud->display_as('l1_id', 'Akun Level-1');
-        $crud->display_as('l2_id', 'Akun Level-2');
-        $crud->display_as('l3_id', 'Akun Level-3');
-        $crud->unset_columns(array('created_at', 'updated_at'));
-        $crud->unset_fields(array('created_at', 'updated_at'));
-
-        $this->load->library('gc_dependent_select');
-
-        $fields = array(
-            'l1_id' => array(
-                'table_name' => 't02_akunl1',
-                'title'      => '{Kode} - {Nama}',
-                'relate'     => null
-            ),
-            'l2_id' => array(
-                'table_name' => 't03_akunl2',
-                'title'      => '{Kode} - {Nama}',
-                'id_field'   => 'id',
-                'relate'     => 'l1_id'
-            ),
-            'l3_id' => array(
-                'table_name' => 't04_akunl3',
-                'title'      => '{Kode} - {Nama}',
-                'id_field'   => 'id',
-                'relate'     => 'l2_id'
-            )
-        );
-
-        $config = array(
-            'main_table' => 't05_akunl4',
-            'main_table_primary' => 'id',
-            "url" => base_url() . __CLASS__ . '/' . __FUNCTION__ . '/'
-        );
-
-        $akun = new gc_dependent_select($crud, $fields, $config);
-
-        $js = $akun->get_js();
-        $output = $crud->render();
-
-        // $output->output .= $js;
-        $output->_dependent_js = $js;
-        $output->_caption = 'Akun Level-4';
-
-        $this->_example_output($output);
+        $row = $this->Akun_model->get_by_id($id);
+        if ($row) {
+            $data = array(
+		'idakun' => $row->idakun,
+		'Kode' => $row->Kode,
+		'Nama' => $row->Nama,
+		'Induk' => $row->Induk,
+		'Urut' => $row->Urut,
+		'created_at' => $row->created_at,
+		'updated_at' => $row->updated_at,
+	    );
+            $this->load->view('akun/t02_akun_read', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('akun'));
+        }
     }
 
-    public function l5()
+    public function create() 
     {
-        $crud = new grocery_CRUD();
-        $crud->set_table('t06_akunl5');
-        $crud->set_relation('l1_id', 't02_akunl1', '{Kode} - {Nama}');
-        $crud->set_relation('l2_id', 't03_akunl2', '{Kode} - {Nama}');
-        $crud->set_relation('l3_id', 't04_akunl3', '{Kode} - {Nama}');
-        $crud->set_relation('l4_id', 't05_akunl4', '{Kode} - {Nama}');
-        $crud->display_as('l1_id', 'Akun Level-1');
-        $crud->display_as('l2_id', 'Akun Level-2');
-        $crud->display_as('l3_id', 'Akun Level-3');
-        $crud->display_as('l4_id', 'Akun Level-4');
-        $crud->unset_columns(array('created_at', 'updated_at'));
-        $crud->unset_fields(array('created_at', 'updated_at'));
-
-        $this->load->library('gc_dependent_select');
-
-        $fields = array(
-            'l1_id' => array(
-                'table_name' => 't02_akunl1',
-                'title'      => '{Kode} - {Nama}',
-                'relate'     => null
-            ),
-            'l2_id' => array(
-                'table_name' => 't03_akunl2',
-                'title'      => '{Kode} - {Nama}',
-                'id_field'   => 'id',
-                'relate'     => 'l1_id'
-            ),
-            'l3_id' => array(
-                'table_name' => 't04_akunl3',
-                'title'      => '{Kode} - {Nama}',
-                'id_field'   => 'id',
-                'relate'     => 'l2_id'
-            ),
-            'l4_id' => array(
-                'table_name' => 't05_akunl4',
-                'title'      => '{Kode} - {Nama}',
-                'id_field'   => 'id',
-                'relate'     => 'l3_id'
-            )
-        );
-
-        $config = array(
-            'main_table' => 't06_akunl5',
-            'main_table_primary' => 'id',
-            "url" => base_url() . __CLASS__ . '/' . __FUNCTION__ . '/'
-        );
-
-        $akun = new gc_dependent_select($crud, $fields, $config);
-
-        $js = $akun->get_js();
-        $output = $crud->render();
-
-        // $output->output .= $js;
-        $output->_dependent_js = $js;
-        $output->_caption = 'Akun Level-5';
-
-        $this->_example_output($output);
+        $data = array(
+            'button' => 'Create',
+            'action' => site_url('akun/create_action'),
+	    'idakun' => set_value('idakun'),
+	    'Kode' => set_value('Kode'),
+	    'Nama' => set_value('Nama'),
+	    'Induk' => set_value('Induk'),
+	    'Urut' => set_value('Urut'),
+	    'created_at' => set_value('created_at'),
+	    'updated_at' => set_value('updated_at'),
+	);
+        $this->load->view('akun/t02_akun_form', $data);
     }
+    
+    public function create_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->create();
+        } else {
+            $data = array(
+		'Kode' => $this->input->post('Kode',TRUE),
+		'Nama' => $this->input->post('Nama',TRUE),
+		'Induk' => $this->input->post('Induk',TRUE),
+		'Urut' => $this->input->post('Urut',TRUE),
+		'created_at' => $this->input->post('created_at',TRUE),
+		'updated_at' => $this->input->post('updated_at',TRUE),
+	    );
+
+            $this->Akun_model->insert($data);
+            $this->session->set_flashdata('message', 'Create Record Success');
+            redirect(site_url('akun'));
+        }
+    }
+    
+    public function update($id) 
+    {
+        $row = $this->Akun_model->get_by_id($id);
+
+        if ($row) {
+            $data = array(
+                'button' => 'Update',
+                'action' => site_url('akun/update_action'),
+		'idakun' => set_value('idakun', $row->idakun),
+		'Kode' => set_value('Kode', $row->Kode),
+		'Nama' => set_value('Nama', $row->Nama),
+		'Induk' => set_value('Induk', $row->Induk),
+		'Urut' => set_value('Urut', $row->Urut),
+		'created_at' => set_value('created_at', $row->created_at),
+		'updated_at' => set_value('updated_at', $row->updated_at),
+	    );
+            $this->load->view('akun/t02_akun_form', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('akun'));
+        }
+    }
+    
+    public function update_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->update($this->input->post('idakun', TRUE));
+        } else {
+            $data = array(
+		'Kode' => $this->input->post('Kode',TRUE),
+		'Nama' => $this->input->post('Nama',TRUE),
+		'Induk' => $this->input->post('Induk',TRUE),
+		'Urut' => $this->input->post('Urut',TRUE),
+		'created_at' => $this->input->post('created_at',TRUE),
+		'updated_at' => $this->input->post('updated_at',TRUE),
+	    );
+
+            $this->Akun_model->update($this->input->post('idakun', TRUE), $data);
+            $this->session->set_flashdata('message', 'Update Record Success');
+            redirect(site_url('akun'));
+        }
+    }
+    
+    public function delete($id) 
+    {
+        $row = $this->Akun_model->get_by_id($id);
+
+        if ($row) {
+            $this->Akun_model->delete($id);
+            $this->session->set_flashdata('message', 'Delete Record Success');
+            redirect(site_url('akun'));
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('akun'));
+        }
+    }
+
+    public function _rules() 
+    {
+	$this->form_validation->set_rules('Kode', 'kode', 'trim|required');
+	$this->form_validation->set_rules('Nama', 'nama', 'trim|required');
+	$this->form_validation->set_rules('Induk', 'induk', 'trim|required');
+	$this->form_validation->set_rules('Urut', 'urut', 'trim|required');
+	$this->form_validation->set_rules('created_at', 'created at', 'trim|required');
+	$this->form_validation->set_rules('updated_at', 'updated at', 'trim|required');
+
+	$this->form_validation->set_rules('idakun', 'idakun', 'trim');
+	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
+
+    public function excel()
+    {
+        $this->load->helper('exportexcel');
+        $namaFile = "t02_akun.xls";
+        $judul = "t02_akun";
+        $tablehead = 0;
+        $tablebody = 1;
+        $nourut = 1;
+        //penulisan header
+        header("Pragma: public");
+        header("Expires: 0");
+        header("Cache-Control: must-revalidate, post-check=0,pre-check=0");
+        header("Content-Type: application/force-download");
+        header("Content-Type: application/octet-stream");
+        header("Content-Type: application/download");
+        header("Content-Disposition: attachment;filename=" . $namaFile . "");
+        header("Content-Transfer-Encoding: binary ");
+
+        xlsBOF();
+
+        $kolomhead = 0;
+        xlsWriteLabel($tablehead, $kolomhead++, "No");
+	xlsWriteLabel($tablehead, $kolomhead++, "Kode");
+	xlsWriteLabel($tablehead, $kolomhead++, "Nama");
+	xlsWriteLabel($tablehead, $kolomhead++, "Induk");
+	xlsWriteLabel($tablehead, $kolomhead++, "Urut");
+	xlsWriteLabel($tablehead, $kolomhead++, "Created At");
+	xlsWriteLabel($tablehead, $kolomhead++, "Updated At");
+
+	foreach ($this->Akun_model->get_all() as $data) {
+            $kolombody = 0;
+
+            //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
+            xlsWriteNumber($tablebody, $kolombody++, $nourut);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->Kode);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->Nama);
+	    xlsWriteNumber($tablebody, $kolombody++, $data->Induk);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->Urut);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->created_at);
+	    xlsWriteLabel($tablebody, $kolombody++, $data->updated_at);
+
+	    $tablebody++;
+            $nourut++;
+        }
+
+        xlsEOF();
+        exit();
+    }
+
+    public function word()
+    {
+        header("Content-type: application/vnd.ms-word");
+        header("Content-Disposition: attachment;Filename=t02_akun.doc");
+
+        $data = array(
+            't02_akun_data' => $this->Akun_model->get_all(),
+            'start' => 0
+        );
+        
+        $this->load->view('akun/t02_akun_doc',$data);
+    }
+
 }
+
+/* End of file Akun.php */
+/* Location: ./application/controllers/Akun.php */
+/* Please DO NOT modify this information : */
+/* Generated by Harviacode Codeigniter CRUD Generator 2020-10-03 23:12:32 */
+/* http://harviacode.com */

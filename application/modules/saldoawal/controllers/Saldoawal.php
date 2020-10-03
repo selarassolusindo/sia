@@ -29,7 +29,8 @@ class Saldoawal extends CI_Controller
         $config['per_page'] = 10;
         $config['page_query_string'] = TRUE;
         $config['total_rows'] = $this->Saldoawal_model->total_rows($q);
-        $saldoawal = $this->Saldoawal_model->get_limit_data($config['per_page'], $start, $q);
+        // $saldoawal = $this->Saldoawal_model->get_limit_data($config['per_page'], $start, $q);
+        $saldoawal = $this->Saldoawal_model->getLimitData($config['per_page'], $start, $q);
 
         $this->load->library('pagination');
         $this->pagination->initialize($config);
@@ -49,7 +50,8 @@ class Saldoawal extends CI_Controller
 
     public function read($id)
     {
-        $row = $this->Saldoawal_model->get_by_id($id);
+        // $row = $this->Saldoawal_model->get_by_id($id);
+        $row = $this->Saldoawal_model->getById($id);
         if ($row) {
             $data = array(
         		'idsa' => $row->idsa,
@@ -58,6 +60,8 @@ class Saldoawal extends CI_Controller
         		'Kredit' => $row->Kredit,
         		// 'created_at' => $row->created_at,
         		// 'updated_at' => $row->updated_at,
+                'Kode' => $row->Kode,
+                'Nama' => $row->Nama,
         	    );
             // $this->load->view('saldoawal/t03_saldoawal_read', $data);
             $data['_view'] = 'saldoawal/t03_saldoawal_read';
@@ -71,15 +75,18 @@ class Saldoawal extends CI_Controller
 
     public function create()
     {
+        $this->load->model('akun/Akun_model');
+        $akun = $this->Akun_model->getAllLastLevel();
         $data = array(
             'button' => 'Create',
             'action' => site_url('saldoawal/create_action'),
     	    'idsa' => set_value('idsa'),
-    	    'idakun' => set_value('idakun'),
+    	    // 'idakun' => set_value('idakun'),
     	    'Debit' => set_value('Debit'),
     	    'Kredit' => set_value('Kredit'),
     	    // 'created_at' => set_value('created_at'),
     	    // 'updated_at' => set_value('updated_at'),
+            'akun_data' => $akun,
             );
         // $this->load->view('saldoawal/t03_saldoawal_form', $data);
         $data['_view'] = 'saldoawal/t03_saldoawal_form';
@@ -113,6 +120,8 @@ class Saldoawal extends CI_Controller
         $row = $this->Saldoawal_model->get_by_id($id);
 
         if ($row) {
+            $this->load->model('akun/Akun_model');
+            $akun = $this->Akun_model->getAllLastLevel();
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('saldoawal/update_action'),
@@ -122,6 +131,7 @@ class Saldoawal extends CI_Controller
         		'Kredit' => set_value('Kredit', $row->Kredit),
         		// 'created_at' => set_value('created_at', $row->created_at),
         		// 'updated_at' => set_value('updated_at', $row->updated_at),
+                'akun_data' => $akun,
         	    );
             // $this->load->view('saldoawal/t03_saldoawal_form', $data);
             $data['_view'] = 'saldoawal/t03_saldoawal_form';
