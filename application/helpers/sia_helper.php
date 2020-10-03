@@ -28,31 +28,12 @@ function formatNamaAkun($akunAll, $akun)
             break;
     }
 
-    // echo pre($akunAll);
-    // $aObj = (array)$akun_data;
-    // echo pre($aObj);
-
-    // echo pre(in_array($akun->Induk, $aObj));
-    // echo count($akun_data);
-    // echo count((array)$akun_data);
-
-    // echo pre($aObj);
-    // echo array_search('1', $aObj);
-
-
-    // if (in_array('1', $idArray))
-    // {
-    //     echo $msg = 'found';
-    // }
-    //
-    // die();
-
     return $result;
 }
 
 function toArray($obj)
 {
-    $obj = (array) $obj;//cast to array, optional
+    $obj = (array) $obj; //cast to array, optional
     return $obj['Induk'];
 }
 
