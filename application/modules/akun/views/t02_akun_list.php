@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html>
     <head>
         <title>harviacode.com - codeigniter crud generator</title>
@@ -10,7 +10,7 @@
         </style>
     </head>
     <body>
-        <h2 style="margin-top:0px">T02_akun List</h2>
+        <h2 style="margin-top:0px">T02_akun List</h2> -->
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
                 <?php echo anchor(site_url('akun/create'),'Create', 'class="btn btn-primary"'); ?>
@@ -27,7 +27,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
                         <span class="input-group-btn">
-                            <?php 
+                            <?php
                                 if ($q <> '')
                                 {
                                     ?>
@@ -64,12 +64,12 @@
 			<td><?php echo $akun->created_at ?></td>
 			<td><?php echo $akun->updated_at ?></td>
 			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('akun/read/'.$akun->idakun),'Read'); 
-				echo ' | '; 
-				echo anchor(site_url('akun/update/'.$akun->idakun),'Update'); 
-				echo ' | '; 
-				echo anchor(site_url('akun/delete/'.$akun->idakun),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+				<?php
+				echo anchor(site_url('akun/read/'.$akun->idakun),'Read');
+				echo ' | ';
+				echo anchor(site_url('akun/update/'.$akun->idakun),'Update');
+				echo ' | ';
+				echo anchor(site_url('akun/delete/'.$akun->idakun),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 				?>
 			</td>
 		</tr>
@@ -87,5 +87,5 @@
                 <?php echo $pagination ?>
             </div>
         </div>
-    </body>
-</html>
+    <!-- </body>
+</html> -->
