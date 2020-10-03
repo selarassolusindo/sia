@@ -1,6 +1,62 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+/**
+ * fungsi untuk mengubah posisi NAMA AKUN, disesuaikan dengan level akunnya
+ */
+function formatNamaAkun($akunAll, $akun)
+{
+    $indukArray = array_map('toArray', $akunAll);
+    $lenKode = strlen($akun->Kode);
+    switch ($lenKode) {
+        case 1:
+            $result = '<b>' . $akun->Nama . '</b>';
+            break;
+        case 2:
+            $result = '&nbsp;&nbsp;&nbsp;&nbsp;<b>' . $akun->Nama . '</b>';
+            break;
+        case 4:
+            // $countId = $this->Akun_model0->totalRows($row->idakun, $this->table);
+            $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . (!in_array($akun->idakun, $indukArray, true) ? $akun->Nama : '<b>' . $akun->Nama . '</b>');
+            break;
+        case 7:
+            // $countId = $this->Akun_model0->totalRows($row->idakun, $this->table);
+            $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . (!in_array($akun->idakun, $indukArray, true) ? $akun->Nama : '<b>' . $akun->Nama . '</b>');
+            break;
+        case 10:
+            $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $akun->Nama;
+            break;
+    }
+
+    // echo pre($akunAll);
+    // $aObj = (array)$akun_data;
+    // echo pre($aObj);
+
+    // echo pre(in_array($akun->Induk, $aObj));
+    // echo count($akun_data);
+    // echo count((array)$akun_data);
+
+    // echo pre($aObj);
+    // echo array_search('1', $aObj);
+
+
+    // if (in_array('1', $idArray))
+    // {
+    //     echo $msg = 'found';
+    // }
+    //
+    // die();
+
+    return $result;
+}
+
+function toArray($obj)
+{
+    $obj = (array) $obj;//cast to array, optional
+    return $obj['Induk'];
+}
+
+
 function numIndo($angka)
 {
     return number_format($angka, 2, ',', '.');

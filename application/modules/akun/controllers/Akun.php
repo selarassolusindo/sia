@@ -19,18 +19,23 @@ class Akun extends CI_Controller
         $start = intval($this->input->get('start'));
 
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'akun/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'akun/index.html?q=' . urlencode($q);
+            // $config['base_url'] = base_url() . 'akun/index.html?q=' . urlencode($q);
+            // $config['first_url'] = base_url() . 'akun/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'akun?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'akun?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'akun/index.html';
-            $config['first_url'] = base_url() . 'akun/index.html';
+            // $config['base_url'] = base_url() . 'akun/index.html';
+            // $config['first_url'] = base_url() . 'akun/index.html';
+            $config['base_url'] = base_url() . 'akun';
+            $config['first_url'] = base_url() . 'akun';
         }
 
-        $config['per_page'] = 10;
+        $config['per_page'] = 10000;
         $config['page_query_string'] = TRUE;
         $config['total_rows'] = $this->Akun_model->total_rows($q);
         // $akun = $this->Akun_model->get_limit_data($config['per_page'], $start, $q);
         $akun = $this->Akun_model->getLimitData($config['per_page'], $start, $q);
+        $akunAll = $this->Akun_model->get_all();
 
         $this->load->library('pagination');
         $this->pagination->initialize($config);
@@ -41,6 +46,7 @@ class Akun extends CI_Controller
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
+            'akunAll' => $akunAll,
             );
         // $this->load->view('akun/t02_akun_list', $data);
         $data['_view'] = 'akun/t02_akun_list';

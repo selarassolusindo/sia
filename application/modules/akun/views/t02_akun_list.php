@@ -58,7 +58,8 @@
                 <tr>
 			<!-- <td width="80px"><?php echo ++$start ?></td> -->
 			<td><?php echo $akun->Kode ?></td>
-			<td><?php echo $akun->Nama ?></td>
+			<!-- <td><?php //echo $akun->Nama ?></td> -->
+            <td><?php echo formatNamaAkun($akunAll, $akun) ?></td>
 			<!-- <td><?php echo $akun->Induk ?></td>
 			<td><?php echo $akun->Urut ?></td>
 			<td><?php echo $akun->created_at ?></td>
