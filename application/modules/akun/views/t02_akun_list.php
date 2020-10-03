@@ -13,7 +13,7 @@
         <h2 style="margin-top:0px">T02_akun List</h2> -->
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
-                <?php echo anchor(site_url('akun/create'),'Create', 'class="btn btn-primary"'); ?>
+                <!-- <?php //echo anchor(site_url('akun/create'),'Create', 'class="btn btn-primary"'); ?> -->
             </div>
             <div class="col-md-4 text-center">
                 <div style="margin-top: 8px" id="message">
@@ -59,15 +59,16 @@
 			<!-- <td width="80px"><?php echo ++$start ?></td> -->
 			<td><?php echo $akun->Kode ?></td>
 			<!-- <td><?php //echo $akun->Nama ?></td> -->
-            <td><?php echo formatNamaAkun($akunAll, $akun) ?></td>
-			<!-- <td><?php echo $akun->Induk ?></td>
-			<td><?php echo $akun->Urut ?></td>
-			<td><?php echo $akun->created_at ?></td>
-			<td><?php echo $akun->updated_at ?></td> -->
-			<td style="text-align:center" width="200px">
+            <td><?php echo formatNamaAkun($akunLastLevel, $akun) ?></td>
+			<!-- <td><?php //echo $akun->Induk ?></td>
+			<td><?php //echo $akun->Urut ?></td>
+			<td><?php //echo $akun->created_at ?></td>
+			<td><?php //echo $akun->updated_at ?></td> -->
+			<td style="text-align:right" width="200px">
 				<?php
-				echo anchor(site_url('akun/read/'.$akun->idakun),'Read');
-				echo ' | ';
+                echo (!isLastLevel($akunLastLevel, $akun) ? anchor(site_url('akun/read/'.$akun->idakun),'Add') . ' | ' : '');
+				// echo anchor(site_url('akun/read/'.$akun->idakun),'Read');
+				// echo ' | ';
 				echo anchor(site_url('akun/update/'.$akun->idakun),'Update');
 				echo ' | ';
 				echo anchor(site_url('akun/delete/'.$akun->idakun),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
