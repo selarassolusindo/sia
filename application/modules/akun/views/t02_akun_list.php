@@ -66,7 +66,8 @@
 			<td><?php //echo $akun->updated_at ?></td> -->
 			<td style="text-align:right" width="200px">
 				<?php
-                echo (!isLastLevel($akunLastLevel, $akun) ? anchor(site_url('akun/create/'.$akun->idakun),'Add') . ' | ' : '');
+                echo (strlen($akun->Kode) < 10 ? anchor(site_url('akun/create/'.$akun->idakun),'Add') . ' | ' : '');
+                // echo (!isLastLevel($akunLastLevel, $akun) ? anchor(site_url('akun/create/'.$akun->idakun),'Add') . ' | ' : '');
                 // echo (!isLastLevel($akunLastLevel, $akun) ? anchor(site_url('akun/read/'.$akun->idakun),'Add') . ' | ' : '');
 				// echo anchor(site_url('akun/read/'.$akun->idakun),'Read');
 				// echo ' | ';
