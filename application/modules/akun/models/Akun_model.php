@@ -103,6 +103,19 @@ class Akun_model extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    /**
+     * get new kode-sub by kode-induk
+     */
+    function getNewKode($induk, $kodeInduk)
+    {
+
+        $this->db->where('induk', $induk);
+        $this->db->limit(1);
+        $this->db->order_by('urut', 'desc');
+        $recCount = $this->db->get($this->table)->count_all_results();
+        return $this->db->get($this->table)->row();
+    }
+
 }
 
 /* End of file Akun_model.php */

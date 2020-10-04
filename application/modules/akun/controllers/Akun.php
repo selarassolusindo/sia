@@ -77,23 +77,33 @@ class Akun extends CI_Controller
         }
     }
 
-    public function create($idakun)
+    public function create($induk)
     {
-        $data = array(
-            'button' => 'Create',
-            'action' => site_url('akun/create_action'),
-    	    'idakun' => set_value('idakun', $idakun),
-    	    'Kode' => set_value('Kode'),
-    	    'Nama' => set_value('Nama'),
-    	    'Induk' => set_value('Induk'),
-    	    'Urut' => set_value('Urut'),
-    	    // 'created_at' => set_value('created_at'),
-    	    // 'updated_at' => set_value('updated_at'),
-            );
-        // $this->load->view('akun/t02_akun_form', $data);
-        $data['_view'] = 'akun/t02_akun_form';
-        $data['_caption'] = 'Klasifikasi Akun';
-        $this->load->view('dashboard/_layout', $data);
+        $row = $this->Akun_model->get_by_id($induk);
+
+        if ($row) {
+            $newRow = $this->Akun_model->getNewSubByInduk($induk, $row->Kode);
+            $data = array(
+                'button' => 'Create',
+                'action' => site_url('akun/create_action'),
+                'idakun' => set_value('idakun'),
+                'Kode' => set_value('Kode'),
+                'Nama' => set_value('Nama'),
+                'Induk' => set_value('Induk', $induk),
+                'Urut' => set_value('Urut'),
+                // 'created_at' => set_value('created_at'),
+                // 'updated_at' => set_value('updated_at'),
+                'KodeInduk' => $row->Kode,
+                'NamaInduk' => $row->Nama,
+                );
+            // $this->load->view('akun/t02_akun_form', $data);
+            $data['_view'] = 'akun/t02_akun_form';
+            $data['_caption'] = 'Klasifikasi Akun';
+            $this->load->view('dashboard/_layout', $data);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('akun'));
+        }
     }
 
     public function create_action()
