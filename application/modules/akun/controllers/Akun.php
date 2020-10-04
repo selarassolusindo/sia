@@ -77,12 +77,12 @@ class Akun extends CI_Controller
         }
     }
 
-    public function create()
+    public function create($idakun)
     {
         $data = array(
             'button' => 'Create',
             'action' => site_url('akun/create_action'),
-    	    'idakun' => set_value('idakun'),
+    	    'idakun' => set_value('idakun', $idakun),
     	    'Kode' => set_value('Kode'),
     	    'Nama' => set_value('Nama'),
     	    'Induk' => set_value('Induk'),
