@@ -106,14 +106,66 @@ class Akun_model extends CI_Model
     /**
      * get new kode-sub by kode-induk
      */
-    function getNewKode($induk, $kodeInduk)
+    function getNewKode($idakun)
     {
-
-        $this->db->where('induk', $induk);
+        $row = $this->get_by_id($idakun);
+        $kode = $row->Kode;
+        $lenKode = strlen($row->Kode);
+        switch ($lenKode) {
+            case 1:
+                $strLeft = 2;
+                $strBetween1 = '1';
+                $strBetween2 = STRBETWEEN21;
+                $strSubStr = 1;
+                break;
+            case 2:
+                $strLeft = 4;
+                $strBetween1 = '01';
+                $strBetween2 = STRBETWEEN22;
+                $strSubStr = 2;
+                break;
+            case 4:
+                $strLeft = 7;
+                $strBetween1 = '001';
+                $strBetween2 = STRBETWEEN24;
+                $strSubStr = 3;
+                break;
+            case 7:
+                $strLeft = 10;
+                $strBetween1 = '001';
+                $strBetween2 = STRBETWEEN27;
+                $strSubStr = 3;
+                break;
+        }
+        $this->db->where('left(kode, '.$strLeft.') >=', $kode . $strBetween1);
+        $this->db->where('left(kode, '.$strLeft.') <=', $kode . $strBetween2);
+        $this->db->where('length(kode) = '.$strLeft);
+        $this->db->order_by('kode', 'desc');
         $this->db->limit(1);
-        $this->db->order_by('urut', 'desc');
-        $recCount = $this->db->get($this->table)->count_all_results();
-        return $this->db->get($this->table)->row();
+        $row = $this->db->get($this->table)->row();
+        // echo pre($this->db->last_query()); die();
+        if ($row) {
+            /**
+             * data yang dicari :: ditemukan
+             */
+            $value = $row->Kode;
+            // $sLastKode = intval(substr($value, 3, 3)); // ambil 3 digit terakhir
+            $sLastKode = intval(substr($value, $lenKode, $strSubStr)); // ambil 3 digit terakhir
+            $sLastKode = intval($sLastKode) + 1; // konversi ke integer, lalu tambahkan satu
+            $sNextKode = $kode . ($lenKode > 1 ? sprintf('%0'.$strSubStr.'s', $sLastKode) : $sLastKode); // format hasilnya dan tambahkan prefix
+            // if (strlen($sNextKode) > 6) {
+            //     $sNextKode = "JNS999";
+            // }
+        } else {
+            /**
+             * data yang dicari :: tidak ditemukan, maka
+             * kode-induk + 1   => untuk level 2
+             *            + 01  => untuk level 3
+             *            + 001 = > untuk level 4 dan 5
+             */
+            $sNextKode = $kode . $strBetween1;
+        }
+        return $sNextKode;
     }
 
 }

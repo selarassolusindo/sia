@@ -77,17 +77,20 @@ class Akun extends CI_Controller
         }
     }
 
-    public function create($induk)
+    public function create($idakun)
     {
-        $row = $this->Akun_model->get_by_id($induk);
+        /**
+         * mencari satu baris record data -> berdasarkan idakun
+         */
+        $row = $this->Akun_model->get_by_id($idakun);
 
         if ($row) {
-            $newRow = $this->Akun_model->getNewSubByInduk($induk, $row->Kode);
+            // $newKode = $this->Akun_model->getNewKode($idakun);
             $data = array(
                 'button' => 'Create',
                 'action' => site_url('akun/create_action'),
                 'idakun' => set_value('idakun'),
-                'Kode' => set_value('Kode'),
+                'Kode' => set_value('Kode', $this->Akun_model->getNewKode($idakun)),
                 'Nama' => set_value('Nama'),
                 'Induk' => set_value('Induk', $induk),
                 'Urut' => set_value('Urut'),

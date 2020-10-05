@@ -86,3 +86,8 @@ defined('EXIT__AUTO_MAX')      or define('EXIT__AUTO_MAX', 125); // highest auto
 
 define('SITE_NAME', 'SIA');
 define('SITE_VERSION', 'v1.0');
+
+define('STRBETWEEN21', '7');
+define('STRBETWEEN22', '98');
+define('STRBETWEEN24', '998');
+define('STRBETWEEN27', '998');
