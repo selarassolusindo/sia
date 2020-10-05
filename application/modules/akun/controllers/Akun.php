@@ -120,7 +120,8 @@ class Akun extends CI_Controller
         		'Kode' => $this->input->post('Kode',TRUE),
         		'Nama' => $this->input->post('Nama',TRUE),
         		'Induk' => $this->input->post('Induk',TRUE),
-        		'Urut' => $this->input->post('Urut',TRUE),
+        		//'Urut' => $this->input->post('Urut',TRUE),
+                'Urut' => substr(trim($this->input->post('Kode',TRUE)) . '0000000000', 0, 10),
         		// 'created_at' => $this->input->post('created_at',TRUE),
         		// 'updated_at' => $this->input->post('updated_at',TRUE),
         	    );
@@ -136,6 +137,7 @@ class Akun extends CI_Controller
         $row = $this->Akun_model->get_by_id($id);
 
         if ($row) {
+            $rowInduk = $this->Akun_model->get_by_id($row->Induk);
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('akun/update_action'),
@@ -146,6 +148,8 @@ class Akun extends CI_Controller
         		'Urut' => set_value('Urut', $row->Urut),
         		// 'created_at' => set_value('created_at', $row->created_at),
         		// 'updated_at' => set_value('updated_at', $row->updated_at),
+                'KodeInduk' => $rowInduk->Kode,
+                'NamaInduk' => $rowInduk->Nama,
         	    );
             // $this->load->view('akun/t02_akun_form', $data);
             $data['_view'] = 'akun/t02_akun_form';
@@ -168,7 +172,8 @@ class Akun extends CI_Controller
         		'Kode' => $this->input->post('Kode',TRUE),
         		'Nama' => $this->input->post('Nama',TRUE),
         		'Induk' => $this->input->post('Induk',TRUE),
-        		'Urut' => $this->input->post('Urut',TRUE),
+        		// 'Urut' => $this->input->post('Urut',TRUE),
+                'Urut' => substr(trim($this->input->post('Kode',TRUE)) . '0000000000', 0, 10),
                 // 'created_at' => $this->input->post('created_at',TRUE),
         		// 'updated_at' => $this->input->post('updated_at',TRUE),
         	    );
@@ -198,7 +203,7 @@ class Akun extends CI_Controller
     	$this->form_validation->set_rules('Kode', 'kode', 'trim|required');
     	$this->form_validation->set_rules('Nama', 'nama', 'trim|required');
     	$this->form_validation->set_rules('Induk', 'induk', 'trim|required');
-    	$this->form_validation->set_rules('Urut', 'urut', 'trim|required');
+    	// $this->form_validation->set_rules('Urut', 'urut', 'trim|required');
     	// $this->form_validation->set_rules('created_at', 'created at', 'trim|required');
     	// $this->form_validation->set_rules('updated_at', 'updated at', 'trim|required');
 
