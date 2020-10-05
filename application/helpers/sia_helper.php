@@ -22,7 +22,7 @@ function formatNamaAkun($akunLastLevel, $akun)
             $result = '<b>' . $akun->Nama . '</b>';
             break;
         case 2:
-            $result = '&nbsp;&nbsp;&nbsp;&nbsp;<b>' . $akun->Nama . '</b>';
+            $result = '&nbsp;&nbsp;&nbsp;&nbsp;' . (in_array($akun->idakun, $idakunArray, true) ? $akun->Nama : '<b>' . $akun->Nama . '</b>');
             break;
         case 4:
             // $countId = $this->Akun_model0->totalRows($row->idakun, $this->table);
