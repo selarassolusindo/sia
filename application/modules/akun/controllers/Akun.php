@@ -92,7 +92,7 @@ class Akun extends CI_Controller
                 'idakun' => set_value('idakun'),
                 'Kode' => set_value('Kode', $this->Akun_model->getNewKode($idakun)),
                 'Nama' => set_value('Nama'),
-                'Induk' => set_value('Induk', $induk),
+                'Induk' => set_value('Induk', $idakun),
                 'Urut' => set_value('Urut'),
                 // 'created_at' => set_value('created_at'),
                 // 'updated_at' => set_value('updated_at'),
@@ -114,7 +114,7 @@ class Akun extends CI_Controller
         $this->_rules();
 
         if ($this->form_validation->run() == FALSE) {
-            $this->create();
+            $this->create($this->input->post('idakun', TRUE));
         } else {
             $data = array(
         		'Kode' => $this->input->post('Kode',TRUE),

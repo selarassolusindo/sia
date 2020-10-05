@@ -25,12 +25,12 @@
                 <input type="text" class="form-control" name="Nama" id="Nama" placeholder="Nama" value="<?php echo $Nama; ?>" />
             </div>
     	    <div class="form-group">
-                <label for="int">Induk <?php echo form_error('Induk') ?></label>
-                <input type="text" class="form-control" name="Induk" id="Induk" placeholder="Induk" value="<?php echo $Induk; ?>" />
+                <!-- <label for="int">Induk <?php echo form_error('Induk') ?></label> -->
+                <input type="hidden" class="form-control" name="Induk" id="Induk" placeholder="Induk" value="<?php echo $Induk; ?>" />
             </div>
     	    <div class="form-group">
-                <label for="varchar">Urut <?php echo form_error('Urut') ?></label>
-                <input type="text" class="form-control" name="Urut" id="Urut" placeholder="Urut" value="<?php echo $Urut; ?>" />
+                <!-- <label for="varchar">Urut <?php echo form_error('Urut') ?></label> -->
+                <input type="hidden" class="form-control" name="Urut" id="Urut" placeholder="Urut" value="<?php echo $Urut; ?>" />
             </div>
     	    <!-- <div class="form-group">
                 <label for="timestamp">Created At <?php echo form_error('created_at') ?></label>
