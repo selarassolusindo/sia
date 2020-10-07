@@ -44,43 +44,43 @@
         <table class="table table-bordered" style="margin-bottom: 10px">
             <tr>
                 <!-- <th>No</th> -->
-		<th>Kode</th>
-		<th>Nama</th>
-        <th colspan="5">Debit</th>
-        <th colspan="5">Kredit</th>
-		<!-- <th>Induk</th>
-		<th>Urut</th>
-		<th>Created At</th>
-		<th>Updated At</th> -->
-		<th>Action</th>
+        		<th>Kode</th>
+        		<th>Nama</th>
+                <th colspan="5">Debit</th>
+                <th colspan="5">Kredit</th>
+        		<!-- <th>Induk</th>
+        		<th>Urut</th>
+        		<th>Created At</th>
+        		<th>Updated At</th> -->
+        		<!-- <th>Action</th> -->
             </tr><?php
             foreach ($akun_data as $akun)
             {
                 ?>
                 <tr>
-			<!-- <td width="80px"><?php echo ++$start ?></td> -->
-			<td><?php echo $akun->Kode ?></td>
-			<!-- <td><?php //echo $akun->Nama ?></td> -->
-            <td><?php echo formatNamaAkun($akunLastLevel, $akun) ?></td>
-            <td align="right"><?php echo formatLevelDK($akunLastLevel, $akun, 'Debit') ?></td>
-            <td align="right"><?php echo formatLevelDK($akunLastLevel, $akun, 'Kredit') ?></td>
-			<!-- <td><?php //echo $akun->Induk ?></td>
-			<td><?php //echo $akun->Urut ?></td>
-			<td><?php //echo $akun->created_at ?></td>
-			<td><?php //echo $akun->updated_at ?></td> -->
-			<td style="text-align:right" width="13%"> <!-- width="200px" -->
-				<?php
-                echo (strlen($akun->Kode) < 10 ? anchor(site_url('akun/create/'.$akun->idakun),'Add') . ' | ' : '');
-                // echo (!isLastLevel($akunLastLevel, $akun) ? anchor(site_url('akun/create/'.$akun->idakun),'Add') . ' | ' : '');
-                // echo (!isLastLevel($akunLastLevel, $akun) ? anchor(site_url('akun/read/'.$akun->idakun),'Add') . ' | ' : '');
-				// echo anchor(site_url('akun/read/'.$akun->idakun),'Read');
-				// echo ' | ';
-				echo anchor(site_url('akun/update/'.$akun->idakun),'Update');
-				echo ' | ';
-				echo anchor(site_url('akun/delete/'.$akun->idakun),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
-				?>
-			</td>
-		</tr>
+        			<!-- <td width="80px"><?php echo ++$start ?></td> -->
+        			<td><?php echo $akun->Kode ?></td>
+        			<!-- <td><?php //echo $akun->Nama ?></td> -->
+                    <td><?php echo formatNamaAkun($akunLastLevel, $akun) ?></td>
+                    <td align="right"><?php echo formatLevelDK($akunLastLevel, $akun, 'Debit') ?></td>
+                    <td align="right"><?php echo formatLevelDK($akunLastLevel, $akun, 'Kredit') ?></td>
+        			<!-- <td><?php //echo $akun->Induk ?></td>
+        			<td><?php //echo $akun->Urut ?></td>
+        			<td><?php //echo $akun->created_at ?></td>
+        			<td><?php //echo $akun->updated_at ?></td> -->
+        			<!-- <td style="text-align:right" width="13%">
+        				<?php
+                        //echo (strlen($akun->Kode) < 10 ? anchor(site_url('akun/create/'.$akun->idakun),'Add') . ' | ' : '');
+                        // echo (!isLastLevel($akunLastLevel, $akun) ? anchor(site_url('akun/create/'.$akun->idakun),'Add') . ' | ' : '');
+                        // echo (!isLastLevel($akunLastLevel, $akun) ? anchor(site_url('akun/read/'.$akun->idakun),'Add') . ' | ' : '');
+        				// echo anchor(site_url('akun/read/'.$akun->idakun),'Read');
+        				// echo ' | ';
+        				//echo anchor(site_url('akun/update/'.$akun->idakun),'Update');
+        				//echo ' | ';
+        				//echo anchor(site_url('akun/delete/'.$akun->idakun),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+        				?>
+        			</td> -->
+        		</tr>
                 <?php
             }
             ?>

@@ -181,7 +181,7 @@ class Akun_model extends CI_Model
     	// $this->db->or_like('created_at', $q);
     	// $this->db->or_like('updated_at', $q);
     	$this->db->limit($limit, $start);
-        return $this->db->get('v_bb')->result();
+        return $this->db->get('v02_bukubesar')->result();
     }
 
 }
