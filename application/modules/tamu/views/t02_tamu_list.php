@@ -71,32 +71,32 @@
             {
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $tamu->TripNo ?></td>
-			<td><?php echo $tamu->TripTgl ?></td>
-			<td><?php echo $tamu->Nama ?></td>
-			<td><?php echo $tamu->MFC ?></td>
-			<td><?php echo $tamu->Country ?></td>
-			<td><?php echo $tamu->PackageNight ?></td>
-			<td><?php echo $tamu->PackageType ?></td>
-			<td><?php echo $tamu->CheckIn ?></td>
-			<td><?php echo $tamu->CheckOut ?></td>
-			<td><?php echo $tamu->Agent ?></td>
-			<td><?php echo $tamu->Status ?></td>
-			<td><?php echo $tamu->DaysStay ?></td>
-			<td><?php echo $tamu->Price ?></td>
-			<!-- <td><?php //echo $tamu->created_at ?></td>
-			<td><?php //echo $tamu->updated_at ?></td> -->
-			<td style="text-align:center" width="200px">
-				<?php
-				echo anchor(site_url('tamu/read/'.$tamu->idtamu),'Read');
-				echo ' | ';
-				echo anchor(site_url('tamu/update/'.$tamu->idtamu),'Update');
-				echo ' | ';
-				echo anchor(site_url('tamu/delete/'.$tamu->idtamu),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
-				?>
-			</td>
-		</tr>
+        			<td><?php echo ++$start ?></td>
+        			<td><?php echo $tamu->TripNo ?></td>
+        			<td><?php echo shortDateIndo($tamu->TripTgl) ?></td>
+        			<td><?php echo $tamu->Nama ?></td>
+        			<td><?php echo $tamu->MFC ?></td>
+        			<td><?php echo $tamu->Country ?></td>
+        			<td><?php echo $tamu->PackageNight ?></td>
+        			<td><?php echo $tamu->PackageType ?></td>
+        			<td><?php echo shortDateIndo($tamu->CheckIn) ?></td>
+        			<td><?php echo shortDateIndo($tamu->CheckOut) ?></td>
+        			<td><?php echo $tamu->Agent ?></td>
+        			<td><?php echo $tamu->Status ?></td>
+        			<td><?php echo $tamu->DaysStay ?></td>
+        			<td><?php echo numIndo($tamu->Price) ?></td>
+        			<!-- <td><?php //echo $tamu->created_at ?></td>
+        			<td><?php //echo $tamu->updated_at ?></td> -->
+        			<td style="text-align:center" width="200px">
+        				<?php
+        				echo anchor(site_url('tamu/read/'.$tamu->idtamu),'Read');
+        				echo ' | ';
+        				echo anchor(site_url('tamu/update/'.$tamu->idtamu),'Update');
+        				echo ' | ';
+        				echo anchor(site_url('tamu/delete/'.$tamu->idtamu),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+        				?>
+        			</td>
+        		</tr>
                 <?php
             }
             ?>

@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html>
     <head>
         <title>harviacode.com - codeigniter crud generator</title>
@@ -10,7 +10,7 @@
         </style>
     </head>
     <body>
-        <h2 style="margin-top:0px">T02_tamu Read</h2>
+        <h2 style="margin-top:0px">T02_tamu Read</h2> -->
         <table class="table">
 	    <tr><td>TripNo</td><td><?php echo $TripNo; ?></td></tr>
 	    <tr><td>TripTgl</td><td><?php echo $TripTgl; ?></td></tr>
@@ -25,9 +25,9 @@
 	    <tr><td>Status</td><td><?php echo $Status; ?></td></tr>
 	    <tr><td>DaysStay</td><td><?php echo $DaysStay; ?></td></tr>
 	    <tr><td>Price</td><td><?php echo $Price; ?></td></tr>
-	    <tr><td>Created At</td><td><?php echo $created_at; ?></td></tr>
-	    <tr><td>Updated At</td><td><?php echo $updated_at; ?></td></tr>
+	    <!-- <tr><td>Created At</td><td><?php echo $created_at; ?></td></tr>
+	    <tr><td>Updated At</td><td><?php echo $updated_at; ?></td></tr> -->
 	    <tr><td></td><td><a href="<?php echo site_url('tamu') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
-        </body>
-</html>
+        <!-- </body>
+</html> -->

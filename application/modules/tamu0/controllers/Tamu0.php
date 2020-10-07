@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Tamu extends CI_Controller
+class Tamu0 extends CI_Controller
 {
 
     public $table = 't02_tamu';

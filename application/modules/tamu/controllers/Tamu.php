@@ -19,11 +19,11 @@ class Tamu extends CI_Controller
         $start = intval($this->input->get('start'));
 
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'tamu/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'tamu/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'tamu?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'tamu?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'tamu/index.html';
-            $config['first_url'] = base_url() . 'tamu/index.html';
+            $config['base_url'] = base_url() . 'tamu';
+            $config['first_url'] = base_url() . 'tamu';
         }
 
         $config['per_page'] = 10;
@@ -52,24 +52,27 @@ class Tamu extends CI_Controller
         $row = $this->Tamu_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'idtamu' => $row->idtamu,
-		'TripNo' => $row->TripNo,
-		'TripTgl' => $row->TripTgl,
-		'Nama' => $row->Nama,
-		'MFC' => $row->MFC,
-		'Country' => $row->Country,
-		'PackageNight' => $row->PackageNight,
-		'PackageType' => $row->PackageType,
-		'CheckIn' => $row->CheckIn,
-		'CheckOut' => $row->CheckOut,
-		'Agent' => $row->Agent,
-		'Status' => $row->Status,
-		'DaysStay' => $row->DaysStay,
-		'Price' => $row->Price,
-		'created_at' => $row->created_at,
-		'updated_at' => $row->updated_at,
-	    );
-            $this->load->view('tamu/t02_tamu_read', $data);
+        		'idtamu' => $row->idtamu,
+        		'TripNo' => $row->TripNo,
+        		'TripTgl' => $row->TripTgl,
+        		'Nama' => $row->Nama,
+        		'MFC' => $row->MFC,
+        		'Country' => $row->Country,
+        		'PackageNight' => $row->PackageNight,
+        		'PackageType' => $row->PackageType,
+        		'CheckIn' => $row->CheckIn,
+        		'CheckOut' => $row->CheckOut,
+        		'Agent' => $row->Agent,
+        		'Status' => $row->Status,
+        		'DaysStay' => $row->DaysStay,
+        		'Price' => $row->Price,
+        		// 'created_at' => $row->created_at,
+        		// 'updated_at' => $row->updated_at,
+        	    );
+            // $this->load->view('tamu/t02_tamu_read', $data);
+            $data['_view'] = 'tamu/t02_tamu_read';
+            $data['_caption'] = 'Data Tamu';
+            $this->load->view('dashboard/_layout', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('tamu'));
@@ -81,24 +84,27 @@ class Tamu extends CI_Controller
         $data = array(
             'button' => 'Create',
             'action' => site_url('tamu/create_action'),
-	    'idtamu' => set_value('idtamu'),
-	    'TripNo' => set_value('TripNo'),
-	    'TripTgl' => set_value('TripTgl'),
-	    'Nama' => set_value('Nama'),
-	    'MFC' => set_value('MFC'),
-	    'Country' => set_value('Country'),
-	    'PackageNight' => set_value('PackageNight'),
-	    'PackageType' => set_value('PackageType'),
-	    'CheckIn' => set_value('CheckIn'),
-	    'CheckOut' => set_value('CheckOut'),
-	    'Agent' => set_value('Agent'),
-	    'Status' => set_value('Status'),
-	    'DaysStay' => set_value('DaysStay'),
-	    'Price' => set_value('Price'),
-	    'created_at' => set_value('created_at'),
-	    'updated_at' => set_value('updated_at'),
-	);
-        $this->load->view('tamu/t02_tamu_form', $data);
+            'idtamu' => set_value('idtamu'),
+            'TripNo' => set_value('TripNo'),
+            'TripTgl' => set_value('TripTgl'),
+            'Nama' => set_value('Nama'),
+            'MFC' => set_value('MFC'),
+            'Country' => set_value('Country'),
+            'PackageNight' => set_value('PackageNight'),
+            'PackageType' => set_value('PackageType'),
+            'CheckIn' => set_value('CheckIn'),
+            'CheckOut' => set_value('CheckOut'),
+            'Agent' => set_value('Agent'),
+            'Status' => set_value('Status'),
+            'DaysStay' => set_value('DaysStay'),
+            'Price' => set_value('Price'),
+            // 'created_at' => set_value('created_at'),
+            // 'updated_at' => set_value('updated_at'),
+            );
+        // $this->load->view('tamu/t02_tamu_form', $data);
+        $data['_view'] = 'tamu/t02_tamu_form';
+        $data['_caption'] = 'Data Tamu';
+        $this->load->view('dashboard/_layout', $data);
     }
 
     public function create_action()
@@ -109,22 +115,22 @@ class Tamu extends CI_Controller
             $this->create();
         } else {
             $data = array(
-		'TripNo' => $this->input->post('TripNo',TRUE),
-		'TripTgl' => $this->input->post('TripTgl',TRUE),
-		'Nama' => $this->input->post('Nama',TRUE),
-		'MFC' => $this->input->post('MFC',TRUE),
-		'Country' => $this->input->post('Country',TRUE),
-		'PackageNight' => $this->input->post('PackageNight',TRUE),
-		'PackageType' => $this->input->post('PackageType',TRUE),
-		'CheckIn' => $this->input->post('CheckIn',TRUE),
-		'CheckOut' => $this->input->post('CheckOut',TRUE),
-		'Agent' => $this->input->post('Agent',TRUE),
-		'Status' => $this->input->post('Status',TRUE),
-		'DaysStay' => $this->input->post('DaysStay',TRUE),
-		'Price' => $this->input->post('Price',TRUE),
-		'created_at' => $this->input->post('created_at',TRUE),
-		'updated_at' => $this->input->post('updated_at',TRUE),
-	    );
+        		'TripNo' => $this->input->post('TripNo',TRUE),
+        		'TripTgl' => $this->input->post('TripTgl',TRUE),
+        		'Nama' => $this->input->post('Nama',TRUE),
+        		'MFC' => $this->input->post('MFC',TRUE),
+        		'Country' => $this->input->post('Country',TRUE),
+        		'PackageNight' => $this->input->post('PackageNight',TRUE),
+        		'PackageType' => $this->input->post('PackageType',TRUE),
+        		'CheckIn' => $this->input->post('CheckIn',TRUE),
+        		'CheckOut' => $this->input->post('CheckOut',TRUE),
+        		'Agent' => $this->input->post('Agent',TRUE),
+        		'Status' => $this->input->post('Status',TRUE),
+        		'DaysStay' => $this->input->post('DaysStay',TRUE),
+        		'Price' => $this->input->post('Price',TRUE),
+        		// 'created_at' => $this->input->post('created_at',TRUE),
+        		// 'updated_at' => $this->input->post('updated_at',TRUE),
+        	    );
 
             $this->Tamu_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -140,24 +146,27 @@ class Tamu extends CI_Controller
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('tamu/update_action'),
-		'idtamu' => set_value('idtamu', $row->idtamu),
-		'TripNo' => set_value('TripNo', $row->TripNo),
-		'TripTgl' => set_value('TripTgl', $row->TripTgl),
-		'Nama' => set_value('Nama', $row->Nama),
-		'MFC' => set_value('MFC', $row->MFC),
-		'Country' => set_value('Country', $row->Country),
-		'PackageNight' => set_value('PackageNight', $row->PackageNight),
-		'PackageType' => set_value('PackageType', $row->PackageType),
-		'CheckIn' => set_value('CheckIn', $row->CheckIn),
-		'CheckOut' => set_value('CheckOut', $row->CheckOut),
-		'Agent' => set_value('Agent', $row->Agent),
-		'Status' => set_value('Status', $row->Status),
-		'DaysStay' => set_value('DaysStay', $row->DaysStay),
-		'Price' => set_value('Price', $row->Price),
-		'created_at' => set_value('created_at', $row->created_at),
-		'updated_at' => set_value('updated_at', $row->updated_at),
-	    );
-            $this->load->view('tamu/t02_tamu_form', $data);
+        		'idtamu' => set_value('idtamu', $row->idtamu),
+        		'TripNo' => set_value('TripNo', $row->TripNo),
+        		'TripTgl' => set_value('TripTgl', $row->TripTgl),
+        		'Nama' => set_value('Nama', $row->Nama),
+        		'MFC' => set_value('MFC', $row->MFC),
+        		'Country' => set_value('Country', $row->Country),
+        		'PackageNight' => set_value('PackageNight', $row->PackageNight),
+        		'PackageType' => set_value('PackageType', $row->PackageType),
+        		'CheckIn' => set_value('CheckIn', $row->CheckIn),
+        		'CheckOut' => set_value('CheckOut', $row->CheckOut),
+        		'Agent' => set_value('Agent', $row->Agent),
+        		'Status' => set_value('Status', $row->Status),
+        		'DaysStay' => set_value('DaysStay', $row->DaysStay),
+        		'Price' => set_value('Price', $row->Price),
+        		// 'created_at' => set_value('created_at', $row->created_at),
+        		// 'updated_at' => set_value('updated_at', $row->updated_at),
+        	    );
+            // $this->load->view('tamu/t02_tamu_form', $data);
+            $data['_view'] = 'tamu/t02_tamu_form';
+            $data['_caption'] = 'Data Tamu';
+            $this->load->view('dashboard/_layout', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('tamu'));
@@ -172,22 +181,22 @@ class Tamu extends CI_Controller
             $this->update($this->input->post('idtamu', TRUE));
         } else {
             $data = array(
-		'TripNo' => $this->input->post('TripNo',TRUE),
-		'TripTgl' => $this->input->post('TripTgl',TRUE),
-		'Nama' => $this->input->post('Nama',TRUE),
-		'MFC' => $this->input->post('MFC',TRUE),
-		'Country' => $this->input->post('Country',TRUE),
-		'PackageNight' => $this->input->post('PackageNight',TRUE),
-		'PackageType' => $this->input->post('PackageType',TRUE),
-		'CheckIn' => $this->input->post('CheckIn',TRUE),
-		'CheckOut' => $this->input->post('CheckOut',TRUE),
-		'Agent' => $this->input->post('Agent',TRUE),
-		'Status' => $this->input->post('Status',TRUE),
-		'DaysStay' => $this->input->post('DaysStay',TRUE),
-		'Price' => $this->input->post('Price',TRUE),
-		'created_at' => $this->input->post('created_at',TRUE),
-		'updated_at' => $this->input->post('updated_at',TRUE),
-	    );
+        		'TripNo' => $this->input->post('TripNo',TRUE),
+        		'TripTgl' => $this->input->post('TripTgl',TRUE),
+        		'Nama' => $this->input->post('Nama',TRUE),
+        		'MFC' => $this->input->post('MFC',TRUE),
+        		'Country' => $this->input->post('Country',TRUE),
+        		'PackageNight' => $this->input->post('PackageNight',TRUE),
+        		'PackageType' => $this->input->post('PackageType',TRUE),
+        		'CheckIn' => $this->input->post('CheckIn',TRUE),
+        		'CheckOut' => $this->input->post('CheckOut',TRUE),
+        		'Agent' => $this->input->post('Agent',TRUE),
+        		'Status' => $this->input->post('Status',TRUE),
+        		'DaysStay' => $this->input->post('DaysStay',TRUE),
+        		'Price' => $this->input->post('Price',TRUE),
+        		// 'created_at' => $this->input->post('created_at',TRUE),
+        		// 'updated_at' => $this->input->post('updated_at',TRUE),
+        	    );
 
             $this->Tamu_model->update($this->input->post('idtamu', TRUE), $data);
             $this->session->set_flashdata('message', 'Update Record Success');
@@ -224,8 +233,8 @@ class Tamu extends CI_Controller
 	$this->form_validation->set_rules('Status', 'status', 'trim|required');
 	$this->form_validation->set_rules('DaysStay', 'daysstay', 'trim|required');
 	$this->form_validation->set_rules('Price', 'price', 'trim|required|numeric');
-	$this->form_validation->set_rules('created_at', 'created at', 'trim|required');
-	$this->form_validation->set_rules('updated_at', 'updated at', 'trim|required');
+	// $this->form_validation->set_rules('created_at', 'created at', 'trim|required');
+	// $this->form_validation->set_rules('updated_at', 'updated at', 'trim|required');
 
 	$this->form_validation->set_rules('idtamu', 'idtamu', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
@@ -253,44 +262,44 @@ class Tamu extends CI_Controller
 
         $kolomhead = 0;
         xlsWriteLabel($tablehead, $kolomhead++, "No");
-	xlsWriteLabel($tablehead, $kolomhead++, "TripNo");
-	xlsWriteLabel($tablehead, $kolomhead++, "TripTgl");
-	xlsWriteLabel($tablehead, $kolomhead++, "Nama");
-	xlsWriteLabel($tablehead, $kolomhead++, "MFC");
-	xlsWriteLabel($tablehead, $kolomhead++, "Country");
-	xlsWriteLabel($tablehead, $kolomhead++, "PackageNight");
-	xlsWriteLabel($tablehead, $kolomhead++, "PackageType");
-	xlsWriteLabel($tablehead, $kolomhead++, "CheckIn");
-	xlsWriteLabel($tablehead, $kolomhead++, "CheckOut");
-	xlsWriteLabel($tablehead, $kolomhead++, "Agent");
-	xlsWriteLabel($tablehead, $kolomhead++, "Status");
-	xlsWriteLabel($tablehead, $kolomhead++, "DaysStay");
-	xlsWriteLabel($tablehead, $kolomhead++, "Price");
-	xlsWriteLabel($tablehead, $kolomhead++, "Created At");
-	xlsWriteLabel($tablehead, $kolomhead++, "Updated At");
+    	xlsWriteLabel($tablehead, $kolomhead++, "TripNo");
+    	xlsWriteLabel($tablehead, $kolomhead++, "TripTgl");
+    	xlsWriteLabel($tablehead, $kolomhead++, "Nama");
+    	xlsWriteLabel($tablehead, $kolomhead++, "MFC");
+    	xlsWriteLabel($tablehead, $kolomhead++, "Country");
+    	xlsWriteLabel($tablehead, $kolomhead++, "PackageNight");
+    	xlsWriteLabel($tablehead, $kolomhead++, "PackageType");
+    	xlsWriteLabel($tablehead, $kolomhead++, "CheckIn");
+    	xlsWriteLabel($tablehead, $kolomhead++, "CheckOut");
+    	xlsWriteLabel($tablehead, $kolomhead++, "Agent");
+    	xlsWriteLabel($tablehead, $kolomhead++, "Status");
+    	xlsWriteLabel($tablehead, $kolomhead++, "DaysStay");
+    	xlsWriteLabel($tablehead, $kolomhead++, "Price");
+    	xlsWriteLabel($tablehead, $kolomhead++, "Created At");
+    	xlsWriteLabel($tablehead, $kolomhead++, "Updated At");
 
-	foreach ($this->Tamu_model->get_all() as $data) {
+    	foreach ($this->Tamu_model->get_all() as $data) {
             $kolombody = 0;
 
             //ubah xlsWriteLabel menjadi xlsWriteNumber untuk kolom numeric
             xlsWriteNumber($tablebody, $kolombody++, $nourut);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->TripNo);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->TripTgl);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->Nama);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->MFC);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->Country);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->PackageNight);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->PackageType);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->CheckIn);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->CheckOut);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->Agent);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->Status);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->DaysStay);
-	    xlsWriteNumber($tablebody, $kolombody++, $data->Price);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->created_at);
-	    xlsWriteLabel($tablebody, $kolombody++, $data->updated_at);
+    	    xlsWriteLabel($tablebody, $kolombody++, $data->TripNo);
+    	    xlsWriteLabel($tablebody, $kolombody++, $data->TripTgl);
+    	    xlsWriteLabel($tablebody, $kolombody++, $data->Nama);
+    	    xlsWriteLabel($tablebody, $kolombody++, $data->MFC);
+    	    xlsWriteLabel($tablebody, $kolombody++, $data->Country);
+    	    xlsWriteLabel($tablebody, $kolombody++, $data->PackageNight);
+    	    xlsWriteLabel($tablebody, $kolombody++, $data->PackageType);
+    	    xlsWriteLabel($tablebody, $kolombody++, $data->CheckIn);
+    	    xlsWriteLabel($tablebody, $kolombody++, $data->CheckOut);
+    	    xlsWriteLabel($tablebody, $kolombody++, $data->Agent);
+    	    xlsWriteLabel($tablebody, $kolombody++, $data->Status);
+    	    xlsWriteLabel($tablebody, $kolombody++, $data->DaysStay);
+    	    xlsWriteNumber($tablebody, $kolombody++, $data->Price);
+    	    xlsWriteLabel($tablebody, $kolombody++, $data->created_at);
+    	    xlsWriteLabel($tablebody, $kolombody++, $data->updated_at);
 
-	    $tablebody++;
+    	    $tablebody++;
             $nourut++;
         }
 
