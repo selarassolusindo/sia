@@ -10,19 +10,19 @@ function formatLevelDK($akunLastLevel, $akun, $dk)
     $lenKode = strlen($akun->Kode);
     switch ($lenKode) {
         case 1:
-            $result = '&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td align="right"><b>' . numIndo($akun->$dk) . '</b>';
+            $result =  '<b>'. numIndo($akun->$dk) . '</b></td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;';
             break;
         case 2:
-            $result = '&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td align="right">' . (in_array($akun->idakun, $idakunArray, true) ? numIndo($akun->$dk) : '<b>' . numIndo($akun->$dk) . '</b>') . '<td>&nbsp;';
+            $result = '&nbsp;</td> <td align="right">' . (in_array($akun->idakun, $idakunArray, true) ? numIndo($akun->$dk) : '<b>' . numIndo($akun->$dk) . '</b>') . '</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;';
             break;
         case 4:
-            $result = '&nbsp;</td><td>&nbsp;</td><td align="right">' . (in_array($akun->idakun, $idakunArray, true) ? numIndo($akun->$dk) : '<b>' . numIndo($akun->$dk) . '</b>') . '</td><td>&nbsp;</td><td>&nbsp;';
+            $result = '&nbsp;</td> <td>&nbsp;</td> <td align="right">' . (in_array($akun->idakun, $idakunArray, true) ? numIndo($akun->$dk) : '<b>' . numIndo($akun->$dk) . '</b>') . '</td> <td>&nbsp;</td> <td>&nbsp;';
             break;
         case 7:
-            $result = '&nbsp;</td><td align="right">' . (in_array($akun->idakun, $idakunArray, true) ? numIndo($akun->$dk) : '<b>' . numIndo($akun->$dk) . '</b>') . '</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;';
+            $result = '&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> <td align="right">' . (in_array($akun->idakun, $idakunArray, true) ? numIndo($akun->$dk) : '<b>' . numIndo($akun->$dk) . '</b>') . '</td> <td>&nbsp;';
             break;
         case 10:
-            $result = numIndo($akun->$dk) . '</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;';
+            $result = '&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> <td>&nbsp;</td> <td align="right">' . numIndo($akun->$dk);
             break;
     }
 
