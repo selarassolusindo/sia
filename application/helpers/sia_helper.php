@@ -2,6 +2,34 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
+ * untuk menampilkan debit & kredit sesuai levelnya masing2
+ */
+function formatLevelDK($akunLastLevel, $akun, $dk)
+{
+    $idakunArray = array_map('toArray', $akunLastLevel);
+    $lenKode = strlen($akun->Kode);
+    switch ($lenKode) {
+        case 1:
+            $result = '&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td align="right"><b>' . numIndo($akun->$dk) . '</b>';
+            break;
+        case 2:
+            $result = '&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td align="right">' . (in_array($akun->idakun, $idakunArray, true) ? numIndo($akun->$dk) : '<b>' . numIndo($akun->$dk) . '</b>') . '<td>&nbsp;';
+            break;
+        case 4:
+            $result = '&nbsp;</td><td>&nbsp;</td><td align="right">' . (in_array($akun->idakun, $idakunArray, true) ? numIndo($akun->$dk) : '<b>' . numIndo($akun->$dk) . '</b>') . '</td><td>&nbsp;</td><td>&nbsp;';
+            break;
+        case 7:
+            $result = '&nbsp;</td><td align="right">' . (in_array($akun->idakun, $idakunArray, true) ? numIndo($akun->$dk) : '<b>' . numIndo($akun->$dk) . '</b>') . '</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;';
+            break;
+        case 10:
+            $result = numIndo($akun->$dk) . '</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;';
+            break;
+    }
+
+    return $result;
+}
+
+/**
  * check akun last level
  */
 function isLastLevel($akunLastLevel, $akun)

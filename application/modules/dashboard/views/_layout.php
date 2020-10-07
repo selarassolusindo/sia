@@ -215,6 +215,7 @@
                                         case 'company':
                                         case 'user-management':
                                         case 'akun':
+                                        case 'akun2':
                                         case 'input-tanggal-saldo-awal':
                                         case 'tanggal-saldo-awal':
                                         case 'saldo-awal':
@@ -253,6 +254,13 @@
                                                 <a href="<?php echo site_url('akun'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'akun') ? 'active' : ''; ?>">
                                                     <i class="fab fa-adn nav-icon"></i>
                                                     <p>Klasifikasi Akun</p>
+                                                </a>
+                                            </li>
+                                            <!-- klasak 2 -->
+                                            <li class="nav-item">
+                                                <a href="<?php echo site_url('akun2'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'akun2') ? 'active' : ''; ?>">
+                                                    <i class="fab fa-adn nav-icon"></i>
+                                                    <p>Klasifikasi Akun #2</p>
                                                 </a>
                                             </li>
                                             <!-- saldo awal -->

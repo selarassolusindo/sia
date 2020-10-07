@@ -168,6 +168,22 @@ class Akun_model extends CI_Model
         return $sNextKode;
     }
 
+    /**
+     * modif klasak #2
+     */
+    function getLimitData2($limit, $start = 0, $q = NULL) {
+        $this->db->order_by('urut', 'asc');
+        $this->db->like('idakun', $q);
+    	$this->db->or_like('Kode', $q);
+    	$this->db->or_like('Nama', $q);
+    	$this->db->or_like('Induk', $q);
+    	$this->db->or_like('Urut', $q);
+    	// $this->db->or_like('created_at', $q);
+    	// $this->db->or_like('updated_at', $q);
+    	$this->db->limit($limit, $start);
+        return $this->db->get('v_bb')->result();
+    }
+
 }
 
 /* End of file Akun_model.php */
