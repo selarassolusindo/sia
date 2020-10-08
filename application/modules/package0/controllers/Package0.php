@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Package extends CI_Controller
+class Package0 extends CI_Controller
 {
 
     public $table = 't01_package';

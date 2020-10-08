@@ -43,67 +43,79 @@
         </div>
         <table class="table table-bordered" style="margin-bottom: 10px">
             <tr>
-                <th>No</th>
-		<th>PackageName</th>
-		<th>PackageCode</th>
-		<th>SN3LN</th>
-		<th>SN6LN</th>
-		<th>SNELN</th>
-		<th>PN1LN</th>
-		<th>PN1DN</th>
-		<th>SN3C</th>
-		<th>SN3CP</th>
-		<th>SN6C</th>
-		<th>SN6CP</th>
-		<th>SNEC</th>
-		<th>SNECP</th>
-		<th>PN3C</th>
-		<th>PN3CP</th>
-		<th>PN6C</th>
-		<th>PN6CP</th>
-		<th>PNEC</th>
-		<th>PNECP</th>
-		<!-- <th>Created At</th>
-		<th>Updated At</th> -->
-		<th>Action</th>
-            </tr><?php
-            foreach ($package_data as $package)
-            {
-                ?>
-                <tr>
-			<td width="80px"><?php echo ++$start ?></td>
-			<td><?php echo $package->PackageName ?></td>
-			<td><?php echo $package->PackageCode ?></td>
-			<td><?php echo $package->SN3LN ?></td>
-			<td><?php echo $package->SN6LN ?></td>
-			<td><?php echo $package->SNELN ?></td>
-			<td><?php echo $package->PN1LN ?></td>
-			<td><?php echo $package->PN1DN ?></td>
-			<td><?php echo $package->SN3C ?></td>
-			<td><?php echo $package->SN3CP ?></td>
-			<td><?php echo $package->SN6C ?></td>
-			<td><?php echo $package->SN6CP ?></td>
-			<td><?php echo $package->SNEC ?></td>
-			<td><?php echo $package->SNECP ?></td>
-			<td><?php echo $package->PN3C ?></td>
-			<td><?php echo $package->PN3CP ?></td>
-			<td><?php echo $package->PN6C ?></td>
-			<td><?php echo $package->PN6CP ?></td>
-			<td><?php echo $package->PNEC ?></td>
-			<td><?php echo $package->PNECP ?></td>
-			<!-- <td><?php echo $package->created_at ?></td>
-			<td><?php echo $package->updated_at ?></td> -->
-			<td style="text-align:center" width="200px">
-				<?php
-				echo anchor(site_url('package/read/'.$package->idprice),'Read');
-				echo ' | ';
-				echo anchor(site_url('package/update/'.$package->idprice),'Update');
-				echo ' | ';
-				echo anchor(site_url('package/delete/'.$package->idprice),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
-				?>
-			</td>
-		</tr>
-                <?php
+                <th rowspan="3">No</th>
+                <th colspan="2" rowspan="2">Package</th>
+                <th colspan="3">SSW Price</th>
+                <th colspan="2">PIW Price</th>
+                <th rowspan="3">Action</th>
+            </tr>
+            <tr>
+                <th>3 Night</th>
+                <th>6 Night</th>
+                <th>Extend /Night</th>
+                <th colspan="2">1 Night</th>
+            </tr>
+            <tr>
+            	<th>Name</th>
+            	<th>Code</th>
+                <th>LN</th>
+                <th>LN</th>
+                <th>LN</th>
+                <th>LN</th>
+                <th>DN</th>
+            	<!-- <th>SN3C</th>
+            	<th>SN3CP</th>
+            	<th>SN6C</th>
+            	<th>SN6CP</th>
+            	<th>SNEC</th>
+            	<th>SNECP</th>
+            	<th>PN3C</th>
+            	<th>PN3CP</th>
+            	<th>PN6C</th>
+            	<th>PN6CP</th>
+            	<th>PNEC</th>
+            	<th>PNECP</th> -->
+            	<!-- <th>Created At</th>
+            	<th>Updated At</th> -->
+
+            </tr>
+            <?php
+            foreach ($package_data as $package) {
+            ?>
+            <tr>
+    			<td width="80px"><?php echo ++$start ?></td>
+    			<td><?php echo $package->PackageName ?></td>
+    			<td><?php echo $package->PackageCode ?></td>
+    			<td align="right">USD <?php echo numIndo($package->SN3LN) ?></td>
+    			<td align="right">USD <?php echo numIndo($package->SN6LN) ?></td>
+    			<td align="right">USD <?php echo numIndo($package->SNELN) ?></td>
+    			<td align="right">USD <?php echo numIndo($package->PN1LN) ?></td>
+    			<td align="right">IDR <?php echo numIndo($package->PN1DN) ?></td>
+    			<!-- <td><?php echo $package->SN3C ?></td>
+    			<td><?php echo $package->SN3CP ?></td>
+    			<td><?php echo $package->SN6C ?></td>
+    			<td><?php echo $package->SN6CP ?></td>
+    			<td><?php echo $package->SNEC ?></td>
+    			<td><?php echo $package->SNECP ?></td>
+    			<td><?php echo $package->PN3C ?></td>
+    			<td><?php echo $package->PN3CP ?></td>
+    			<td><?php echo $package->PN6C ?></td>
+    			<td><?php echo $package->PN6CP ?></td>
+    			<td><?php echo $package->PNEC ?></td>
+    			<td><?php echo $package->PNECP ?></td> -->
+    			<!-- <td><?php echo $package->created_at ?></td>
+    			<td><?php echo $package->updated_at ?></td> -->
+    			<td style="text-align:center" width="200px">
+    				<?php
+    				echo anchor(site_url('package/read/'.$package->idprice),'Read');
+    				echo ' | ';
+    				echo anchor(site_url('package/update/'.$package->idprice),'Update');
+    				echo ' | ';
+    				echo anchor(site_url('package/delete/'.$package->idprice),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+    				?>
+    			</td>
+    		</tr>
+            <?php
             }
             ?>
         </table>
