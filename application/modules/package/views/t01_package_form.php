@@ -40,7 +40,7 @@
             <label for="double">PN1DN <?php echo form_error('PN1DN') ?></label>
             <input type="text" class="form-control" name="PN1DN" id="PN1DN" placeholder="PN1DN" value="<?php echo $PN1DN; ?>" />
         </div>
-	    <div class="form-group">
+	    <!-- <div class="form-group">
             <label for="double">SN3C <?php echo form_error('SN3C') ?></label>
             <input type="text" class="form-control" name="SN3C" id="SN3C" placeholder="SN3C" value="<?php echo $SN3C; ?>" />
         </div>
@@ -87,7 +87,7 @@
 	    <div class="form-group">
             <label for="decimal">PNECP <?php echo form_error('PNECP') ?></label>
             <input type="text" class="form-control" name="PNECP" id="PNECP" placeholder="PNECP" value="<?php echo $PNECP; ?>" />
-        </div>
+        </div> -->
 	    <!-- <div class="form-group">
             <label for="timestamp">Created At <?php echo form_error('created_at') ?></label>
             <input type="text" class="form-control" name="created_at" id="created_at" placeholder="Created At" value="<?php echo $created_at; ?>" />

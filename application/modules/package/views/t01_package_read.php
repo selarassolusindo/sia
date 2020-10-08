@@ -19,7 +19,7 @@
 	    <tr><td>SNELN</td><td><?php echo $SNELN; ?></td></tr>
 	    <tr><td>PN1LN</td><td><?php echo $PN1LN; ?></td></tr>
 	    <tr><td>PN1DN</td><td><?php echo $PN1DN; ?></td></tr>
-	    <tr><td>SN3C</td><td><?php echo $SN3C; ?></td></tr>
+	    <!-- <tr><td>SN3C</td><td><?php echo $SN3C; ?></td></tr>
 	    <tr><td>SN3CP</td><td><?php echo $SN3CP; ?></td></tr>
 	    <tr><td>SN6C</td><td><?php echo $SN6C; ?></td></tr>
 	    <tr><td>SN6CP</td><td><?php echo $SN6CP; ?></td></tr>
@@ -32,7 +32,7 @@
 	    <tr><td>PNEC</td><td><?php echo $PNEC; ?></td></tr>
 	    <tr><td>PNECP</td><td><?php echo $PNECP; ?></td></tr>
 	    <tr><td>Created At</td><td><?php echo $created_at; ?></td></tr>
-	    <tr><td>Updated At</td><td><?php echo $updated_at; ?></td></tr>
+	    <tr><td>Updated At</td><td><?php echo $updated_at; ?></td></tr> -->
 	    <tr><td></td><td><a href="<?php echo site_url('package') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
         <!-- </body>
