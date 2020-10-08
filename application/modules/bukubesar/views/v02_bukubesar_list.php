@@ -48,8 +48,8 @@
         ?>
         <table class="table table-bordered" style="margin-bottom: 10px">
             <tr>
-        		<th>Tanggalx</th>
-        		<th>No. Buktix</th>
+        		<th>Tanggal</th>
+        		<th>No. Bukti</th>
         		<th>Keterangan</th>
         		<th>Debit</th>
         		<th>Kredit</th>
