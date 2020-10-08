@@ -383,7 +383,18 @@
                                 <!-- /proses -->
 
                                 <!-- laporan -->
-                                <li class="nav-item has-treeview">
+                                <!-- <li class="nav-item has-treeview"> -->
+                                <li class="nav-item has-treeview
+                                    <?php
+                                    switch ($this->uri->segment(1)) {
+                                        case 'buku-besar':
+                                            echo 'menu-open';
+                                            break;
+                                        default:
+                                            echo '';
+                                    }
+                                    ?>
+                                ">
                                     <a href="#" class="nav-link">
                                         <i class="fas fa-scroll nav-icon"></i>
                                         <p>LAPORAN<i class="right fas fa-angle-left"></i></p>
