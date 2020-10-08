@@ -48,7 +48,6 @@
         ?>
         <table class="table table-bordered" style="margin-bottom: 10px">
             <tr>
-                <th>No</th>
         		<th>Tanggal</th>
         		<th>No. Bukti</th>
         		<th>Keterangan</th>
@@ -57,13 +56,11 @@
         		<th>Saldo</th>
             </tr>
             <?php
-            $start = 0;
             $saldo = 0;
             $debit = 0;
             $kredit = 0;
             ?>
             <tr>
-    			<td align="right"><?php echo ++$start ?>.</td>
     			<td>-</td>
     			<td>-</td>
     			<td>Saldo Awal</td>
