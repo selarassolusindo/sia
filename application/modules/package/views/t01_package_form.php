@@ -13,32 +13,32 @@
         <h2 style="margin-top:0px">T01_package <?php echo $button ?></h2> -->
         <form action="<?php echo $action; ?>" method="post">
 	    <div class="form-group">
-            <label for="varchar">PackageName <?php echo form_error('PackageName') ?></label>
-            <input type="text" class="form-control" name="PackageName" id="PackageName" placeholder="PackageName" value="<?php echo $PackageName; ?>" />
+            <label for="varchar">Name <?php echo form_error('PackageName') ?></label>
+            <input type="text" class="form-control" name="PackageName" id="PackageName" placeholder="Name" value="<?php echo $PackageName; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="varchar">PackageCode <?php echo form_error('PackageCode') ?></label>
-            <input type="text" class="form-control" name="PackageCode" id="PackageCode" placeholder="PackageCode" value="<?php echo $PackageCode; ?>" />
+            <label for="varchar">Code <?php echo form_error('PackageCode') ?></label>
+            <input type="text" class="form-control" name="PackageCode" id="PackageCode" placeholder="Code" value="<?php echo $PackageCode; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="double">SN3LN <?php echo form_error('SN3LN') ?></label>
-            <input type="text" class="form-control" name="SN3LN" id="SN3LN" placeholder="SN3LN" value="<?php echo $SN3LN; ?>" />
+            <label for="double">SSW Price 3 Night LN (USD)<?php echo form_error('SN3LN') ?></label>
+            <input type="text" class="form-control" name="SN3LN" id="SN3LN" placeholder="SSW Price 3 Night LN (USD)" value="<?php echo $SN3LN; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="double">SN6LN <?php echo form_error('SN6LN') ?></label>
-            <input type="text" class="form-control" name="SN6LN" id="SN6LN" placeholder="SN6LN" value="<?php echo $SN6LN; ?>" />
+            <label for="double">SSW Price 6 Night LN (USD)<?php echo form_error('SN6LN') ?></label>
+            <input type="text" class="form-control" name="SN6LN" id="SN6LN" placeholder="SSW Price 6 Night LN (USD)" value="<?php echo $SN6LN; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="double">SNELN <?php echo form_error('SNELN') ?></label>
-            <input type="text" class="form-control" name="SNELN" id="SNELN" placeholder="SNELN" value="<?php echo $SNELN; ?>" />
+            <label for="double">SSW Price Extend /Night LN (USD)<?php echo form_error('SNELN') ?></label>
+            <input type="text" class="form-control" name="SNELN" id="SNELN" placeholder="SSW Price Extend /Night LN (USD)" value="<?php echo $SNELN; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="double">PN1LN <?php echo form_error('PN1LN') ?></label>
-            <input type="text" class="form-control" name="PN1LN" id="PN1LN" placeholder="PN1LN" value="<?php echo $PN1LN; ?>" />
+            <label for="double">PIW Price 1 Night LN (USD)<?php echo form_error('PN1LN') ?></label>
+            <input type="text" class="form-control" name="PN1LN" id="PN1LN" placeholder="PIW Price 1 Night LN (USD)" value="<?php echo $PN1LN; ?>" />
         </div>
 	    <div class="form-group">
-            <label for="double">PN1DN <?php echo form_error('PN1DN') ?></label>
-            <input type="text" class="form-control" name="PN1DN" id="PN1DN" placeholder="PN1DN" value="<?php echo $PN1DN; ?>" />
+            <label for="double">PIW Price 1 Night DN (IDR)<?php echo form_error('PN1DN') ?></label>
+            <input type="text" class="form-control" name="PN1DN" id="PN1DN" placeholder="PIW Price 1 Night DN (IDR)" value="<?php echo $PN1DN; ?>" />
         </div>
 	    <!-- <div class="form-group">
             <label for="double">SN3C <?php echo form_error('SN3C') ?></label>
