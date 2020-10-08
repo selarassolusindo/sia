@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html>
     <head>
         <title>harviacode.com - codeigniter crud generator</title>
@@ -10,7 +10,7 @@
         </style>
     </head>
     <body>
-        <h2 style="margin-top:0px">T01_package Read</h2>
+        <h2 style="margin-top:0px">T01_package Read</h2> -->
         <table class="table">
 	    <tr><td>PackageName</td><td><?php echo $PackageName; ?></td></tr>
 	    <tr><td>PackageCode</td><td><?php echo $PackageCode; ?></td></tr>
@@ -35,5 +35,5 @@
 	    <tr><td>Updated At</td><td><?php echo $updated_at; ?></td></tr>
 	    <tr><td></td><td><a href="<?php echo site_url('package') ?>" class="btn btn-default">Cancel</a></td></tr>
 	</table>
-        </body>
-</html>
+        <!-- </body>
+</html> -->

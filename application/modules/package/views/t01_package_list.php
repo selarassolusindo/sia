@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html>
     <head>
         <title>harviacode.com - codeigniter crud generator</title>
@@ -10,7 +10,7 @@
         </style>
     </head>
     <body>
-        <h2 style="margin-top:0px">T01_package List</h2>
+        <h2 style="margin-top:0px">T01_package List</h2> -->
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
                 <?php echo anchor(site_url('package/create'),'Create', 'class="btn btn-primary"'); ?>
@@ -27,7 +27,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" name="q" value="<?php echo $q; ?>">
                         <span class="input-group-btn">
-                            <?php 
+                            <?php
                                 if ($q <> '')
                                 {
                                     ?>
@@ -63,8 +63,8 @@
 		<th>PN6CP</th>
 		<th>PNEC</th>
 		<th>PNECP</th>
-		<th>Created At</th>
-		<th>Updated At</th>
+		<!-- <th>Created At</th>
+		<th>Updated At</th> -->
 		<th>Action</th>
             </tr><?php
             foreach ($package_data as $package)
@@ -91,15 +91,15 @@
 			<td><?php echo $package->PN6CP ?></td>
 			<td><?php echo $package->PNEC ?></td>
 			<td><?php echo $package->PNECP ?></td>
-			<td><?php echo $package->created_at ?></td>
-			<td><?php echo $package->updated_at ?></td>
+			<!-- <td><?php echo $package->created_at ?></td>
+			<td><?php echo $package->updated_at ?></td> -->
 			<td style="text-align:center" width="200px">
-				<?php 
-				echo anchor(site_url('package/read/'.$package->idprice),'Read'); 
-				echo ' | '; 
-				echo anchor(site_url('package/update/'.$package->idprice),'Update'); 
-				echo ' | '; 
-				echo anchor(site_url('package/delete/'.$package->idprice),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'); 
+				<?php
+				echo anchor(site_url('package/read/'.$package->idprice),'Read');
+				echo ' | ';
+				echo anchor(site_url('package/update/'.$package->idprice),'Update');
+				echo ' | ';
+				echo anchor(site_url('package/delete/'.$package->idprice),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
 				?>
 			</td>
 		</tr>
@@ -117,5 +117,5 @@
                 <?php echo $pagination ?>
             </div>
         </div>
-    </body>
-</html>
+    <!-- </body>
+</html> -->
