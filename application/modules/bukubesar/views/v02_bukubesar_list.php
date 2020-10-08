@@ -49,7 +49,7 @@
         <table class="table table-bordered" style="margin-bottom: 10px">
             <tr>
         		<th>Tanggalx</th>
-        		<th>No. Bukti</th>
+        		<th>No. Buktix</th>
         		<th>Keterangan</th>
         		<th>Debit</th>
         		<th>Kredit</th>
