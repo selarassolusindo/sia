@@ -70,6 +70,7 @@ $route['tanggal-saldo-awal/update/(:num)'] = 'tglsaldoawal/update/$1';
 $route['input-tanggal-saldo-awal']         = 'tglsaldoawal/withNext';
 $route['akun2']                            = 'akun/akun2';
 $route['akun3']                            = 'akun/akun3';
+$route['buku-besar']                       = 'bukubesar';
 
 // $route['level-1']                = 'akun/level_1';
 // $route['level-1/read/(:num)']    = 'akun/level_1/read/$1';

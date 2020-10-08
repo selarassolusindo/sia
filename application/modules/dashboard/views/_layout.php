@@ -391,7 +391,7 @@
                                     <ul class="nav nav-treeview">
                                         <!-- buku besar -->
                                         <li class="nav-item">
-                                            <a href="<?php echo site_url('s01_thaj'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 's01_thaj' ? 'active' : ''; ?>">
+                                            <a href="<?php echo site_url('buku-besar'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'buku-besar' ? 'active' : ''; ?>">
                                                 <i class="fab fa-accusoft nav-icon"></i>
                                                 <p>Buku Besar</p>
                                             </a>
