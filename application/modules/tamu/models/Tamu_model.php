@@ -95,6 +95,13 @@ class Tamu_model extends CI_Model
         $this->db->delete($this->table);
     }
 
+    /**
+     * modif
+     */
+    function insert2($data)
+    {
+        $this->db->insert_batch($this->table, $data);
+    }
 }
 
 /* End of file Tamu_model.php */

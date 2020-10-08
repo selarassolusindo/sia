@@ -320,6 +320,77 @@ class Tamu extends CI_Controller
         $this->load->view('tamu/t02_tamu_doc',$data);
     }
 
+    /**
+     * import file excel
+     */
+    public function import()
+    {
+        $data['_view'] = 'tamu/t02_tamu_import';
+        $data['_caption'] = 'Data Tamu';
+        $this->load->view('dashboard/_layout', $data);
+    }
+
+    /**
+     * handling proses import
+     */
+    public function import_action()
+    {
+        include APPPATH . 'third_party/PHPExcel/PHPExcel.php';
+
+        $config['upload_path'] = realpath('excel');
+        $config['allowed_types'] = 'xlsx|xls|csv';
+        $config['max_size'] = '10000';
+        $config['encrypt_name'] = true;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload()) {
+            $this->session->set_flashdata('notif', '<div class="alert alert-danger"><b>Proses import data gagal !</b> ' . $this->upload->display_errors() . '</div>');
+            redirect('tamu/import');
+        } else {
+            $data_upload = $this->upload->data();
+
+            $excelreader = new PHPExcel_Reader_Excel2007();
+            // $format = new PHPExcel_Style_NumberFormat();
+            $loadexcel = $excelreader->load('excel/' . $data_upload['file_name']);
+            $sheet = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
+            $data = array();
+            $numRow = 1;
+            foreach ($sheet as $row) {
+                // if ($numRow > 1) {
+                    array_push($data, array(
+                        'TripNo'       => $row['B'],
+                        'TripTgl'      => date_format(date_create($row['C']), 'Y-m-d'),
+                        'Nama'         => $row['D'],
+                		'MFC'          => $row['E'],
+                		'Country'      => $row['F'],
+                		'PackageNight' => $row['G'],
+                		'PackageType'  => $row['H'],
+                		'CheckIn'      => date_format(date_create($row['I']), 'Y-m-d'),
+                		'CheckOut'     => date_format(date_create($row['J']), 'Y-m-d'),
+                		'Agent'        => $row['K'],
+                		'Status'       => $row['L'],
+                		'DaysStay'     => $row['M'],
+                		'Price'        => $row['N'],
+                        // 'a' => $format->toFormattedString($row['C'], 'yyyy-mm-dd'),
+                        // 'b' =>
+                        // 'c' => strtotime(PHPExcel_Shared_Date::ExcelToPHP($row['C'])),
+                        )
+                    );
+                // }
+                $numRow++;
+            }
+
+            // echo pre($data); die();
+
+            $this->Tamu_model->insert2($data);
+            unlink(realpath('excel/' . $data_upload['file_name']));
+
+            $this->session->set_flashdata('notif', '<div class="alert alert-success"><b>Proses import berhasil !</b> Data berhasil diimport !</div>');
+            redirect('tamu');
+        }
+    }
+
 }
 
 /* End of file Tamu.php */

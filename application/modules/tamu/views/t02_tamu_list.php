@@ -14,6 +14,7 @@
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
                 <?php echo anchor(site_url('tamu/create'),'Create', 'class="btn btn-primary"'); ?>
+                <?php echo anchor(site_url('tamu/import'),'Import', 'class="btn btn-primary"'); ?>
             </div>
             <div class="col-md-4 text-center">
                 <div style="margin-top: 8px" id="message">
@@ -87,13 +88,14 @@
         			<td><?php echo numIndo($tamu->Price) ?></td>
         			<!-- <td><?php //echo $tamu->created_at ?></td>
         			<td><?php //echo $tamu->updated_at ?></td> -->
-        			<td style="text-align:center" width="200px">
+        			<td style="text-align:center">
+                        <!-- <i class="fas fa-edit"></i> -->
         				<?php
-        				echo anchor(site_url('tamu/read/'.$tamu->idtamu),'Read');
-        				echo ' | ';
-        				echo anchor(site_url('tamu/update/'.$tamu->idtamu),'Update');
-        				echo ' | ';
-        				echo anchor(site_url('tamu/delete/'.$tamu->idtamu),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+        				echo anchor(site_url('tamu/read/'.$tamu->idtamu),'<i class="fas fa-search"></i>', 'title="Read"');
+        				 echo '&nbsp;';
+        				echo anchor(site_url('tamu/update/'.$tamu->idtamu),'<i class="fas fa-edit"></i>', 'title="Update"');
+        				 echo '&nbsp;';
+        				echo anchor(site_url('tamu/delete/'.$tamu->idtamu),'<i class="fas fa-trash-alt"></i>', 'title="Delete" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
         				?>
         			</td>
         		</tr>
