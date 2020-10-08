@@ -89,7 +89,6 @@
         			<!-- <td><?php //echo $tamu->created_at ?></td>
         			<td><?php //echo $tamu->updated_at ?></td> -->
         			<td style="text-align:center">
-                        <!-- <i class="fas fa-edit"></i> -->
         				<?php
         				echo anchor(site_url('tamu/read/'.$tamu->idtamu),'<i class="fas fa-search"></i>', 'title="Read"');
         				 echo '&nbsp;';

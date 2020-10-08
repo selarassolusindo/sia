@@ -381,8 +381,6 @@ class Tamu extends CI_Controller
                 $numRow++;
             }
 
-            // echo pre($data); die();
-
             $this->Tamu_model->insert2($data);
             unlink(realpath('excel/' . $data_upload['file_name']));
 
