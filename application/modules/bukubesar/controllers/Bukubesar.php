@@ -11,6 +11,7 @@ class Bukubesar extends CI_Controller
         if (!$this->ion_auth->logged_in()) redirect('auth/login', 'refresh');
         $this->load->model('Bukubesar_model');
         $this->load->library('form_validation');
+        $this->load->model('tglsaldoawal/Tglsaldoawal_model');
     }
 
     public function index()
@@ -33,6 +34,7 @@ class Bukubesar extends CI_Controller
         // $bukubesar = $this->Bukubesar_model->get_limit_data($config['per_page'], $start, $q);
         $bukubesar = $this->Bukubesar_model->getById($idakun);
         $akun = $this->Bukubesar_model->getAllAkun();
+        $tglsaldoawal = $this->Tglsaldoawal_model->get_all();
 
         $this->load->library('pagination');
         $this->pagination->initialize($config);
@@ -45,6 +47,7 @@ class Bukubesar extends CI_Controller
             'start' => $start,
             'akun_data' => $akun,
             'idakun' => $idakun,
+            'tglsaldoawal' => $tglsaldoawal,
         );
         // $this->load->view('bukubesar/v02_bukubesar_list', $data);
         $data['_view'] = 'bukubesar/v02_bukubesar_list';

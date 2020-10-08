@@ -61,7 +61,7 @@
             $kredit = 0;
             ?>
             <tr>
-    			<td>-</td>
+    			<td><?php echo shortDateIndo($tglsaldoawal[0]->Tanggal) ?></td>
     			<td>-</td>
     			<td>Saldo Awal</td>
     			<td align="right"><?php echo numIndo($bukubesar_data->Debit) ?></td>
