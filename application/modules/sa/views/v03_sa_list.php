@@ -59,10 +59,10 @@
         			<td width="80px"><?php echo ++$start ?></td>
         			<!-- <td><?php //echo $sa->idsa ?></td> -->
         			<td><?php echo $sa->Kode . ' - ' . $sa->Nama ?></td>
-        			<td><?php echo $sa->Debit ?></td>
-        			<td><?php echo $sa->Kredit ?></td>
+        			<td align="right"><?php echo numIndo($sa->Debit) ?></td>
+        			<td align="right"><?php echo numIndo($sa->Kredit) ?></td>
         			<!-- <td><?php //echo $sa->c ?></td> -->
-        			<td style="text-align:center" width="200px">
+        			<td style="text-align:center">
         				<?php
         				echo anchor(site_url('sa/read/'.$sa->idsa),'Read');
         				echo ' | ';
