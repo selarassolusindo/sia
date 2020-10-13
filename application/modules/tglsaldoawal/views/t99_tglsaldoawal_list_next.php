@@ -41,38 +41,39 @@
                 </form>
             </div>
         </div>
-        <table class="table table-bordered" style="margin-bottom: 10px">
+        <table class="table-sm table-bordered" style="margin-bottom: 10px">
             <tr>
-		<th>Tanggal</th>
-		<!-- <th>Created At</th>
-		<th>Updated At</th> -->
-		<th>Action</th>
-            </tr><?php
+        		<th>Tanggal</th>
+        		<!-- <th>Created At</th>
+        		<th>Updated At</th> -->
+        		<th>Action</th>
+            </tr>
+            <?php
             foreach ($tglsaldoawal_data as $tglsaldoawal)
             {
-                ?>
+            ?>
                 <tr>
-			<td><?php echo date_format(date_create($tglsaldoawal->Tanggal), 'd/m/Y') ?></td>
-			<!-- <td><?php //echo $tglsaldoawal->created_at ?></td>
-			<td><?php //echo $tglsaldoawal->updated_at ?></td> -->
-			<td style="text-align:center" width="200px">
-				<?php
-				//echo anchor(site_url('tglsaldoawal/read/'.$tglsaldoawal->idtgl),'Read');
-				//echo ' | ';
-				echo anchor(site_url('tanggal-saldo-awal/update/'.$tglsaldoawal->idtgl),'Update');
-				//echo ' | ';
-				//echo anchor(site_url('tglsaldoawal/delete/'.$tglsaldoawal->idtgl),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
-				?>
-			</td>
-		</tr>
-                <?php
+        			<td><?php echo date_format(date_create($tglsaldoawal->Tanggal), 'd/m/Y') ?></td>
+        			<!-- <td><?php //echo $tglsaldoawal->created_at ?></td>
+        			<td><?php //echo $tglsaldoawal->updated_at ?></td> -->
+        			<td style="text-align:center">
+        				<?php
+        				//echo anchor(site_url('tglsaldoawal/read/'.$tglsaldoawal->idtgl),'Read');
+        				//echo ' | ';
+        				echo anchor(site_url('tanggal-saldo-awal/update/'.$tglsaldoawal->idtgl),'Update');
+        				//echo ' | ';
+        				//echo anchor(site_url('tglsaldoawal/delete/'.$tglsaldoawal->idtgl),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+        				?>
+        			</td>
+                </tr>
+            <?php
             }
             ?>
         </table>
         <div class="row">
             <div class="col-md-6">
                 <a href="<?php echo site_url('saldo-awal'); ?>" class="btn btn-primary">Next</a>
-	    </div>
+            </div>
             <div class="col-md-6 text-right">
                 <?php //echo $pagination ?>
             </div>
