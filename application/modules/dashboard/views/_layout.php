@@ -214,6 +214,7 @@
                                     switch ($this->uri->segment(1)) {
                                         case 'company':
                                         case 'user-management':
+                                        case 'klasifikasi-akun':
                                         case 'akun':
                                         case 'akun2':
                                         case 'input-tanggal-saldo-awal':
@@ -251,7 +252,7 @@
                                         <?php if ($this->ion_auth->in_group(array('piw', 'ssw'))) { ?>
                                             <!-- klasifikasi akun -->
                                             <li class="nav-item">
-                                                <a href="<?php echo site_url('akun'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'akun') ? 'active' : ''; ?>">
+                                                <a href="<?php echo site_url('klasifikasi-akun'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'klasifikasi-akun') ? 'active' : ''; ?>">
                                                     <i class="fab fa-adn nav-icon"></i>
                                                     <p>Klasifikasi Akun</p>
                                                 </a>

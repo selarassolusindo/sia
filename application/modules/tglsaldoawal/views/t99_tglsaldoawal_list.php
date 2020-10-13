@@ -43,7 +43,6 @@
         </div>
         <table class="table table-bordered" style="margin-bottom: 10px">
             <tr>
-                <th>No</th>
 		<th>Tanggal</th>
 		<!-- <th>Created At</th>
 		<th>Updated At</th> -->
@@ -53,7 +52,6 @@
             {
                 ?>
                 <tr>
-			<td width="80px"><?php echo ++$start ?></td>
 			<td><?php echo date_format(date_create($tglsaldoawal->Tanggal), 'd/m/Y') ?></td>
 			<!-- <td><?php //echo $tglsaldoawal->created_at ?></td>
 			<td><?php //echo $tglsaldoawal->updated_at ?></td> -->

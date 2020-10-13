@@ -44,7 +44,7 @@ function isLastLevel($akunLastLevel, $akun)
 function formatNamaAkun($akunLastLevel, $akun)
 {
     $idakunArray = array_map('toArray', $akunLastLevel);
-    $lenKode = strlen($akun->Kode);
+    $lenKode = strlen(($akun->KodeBB <> '' ? $akun->KodeBB : ($akun->KodeBP <> '' ? $akun->KodeBP : $akun->Kode)));
     switch ($lenKode) {
         case 1:
             $result = '<b>' . $akun->Nama . '</b>';
@@ -64,6 +64,9 @@ function formatNamaAkun($akunLastLevel, $akun)
             break;
         case 10:
             $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $akun->Nama;
+            break;
+        case 13:
+            $result = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $akun->Nama;
             break;
     }
 

@@ -10,7 +10,7 @@
         </style>
     </head>
     <body>
-        <h2 style="margin-top:0px">T02_akun <?php echo $button ?></h2> -->
+        <h2 style="margin-top:0px">T04_akunp <?php echo $button ?></h2> -->
         <form action="<?php echo $action; ?>" method="post">
             <div class="form-group">
                 <label for="varchar">Akun Induk</label>
@@ -43,6 +43,6 @@
     	    <input type="hidden" name="idakun" value="<?php echo $idakun; ?>" />
     	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button>
     	    <a href="<?php echo site_url('klasifikasi-akun') ?>" class="btn btn-default">Cancel</a>
-        </form>
+    	</form>
     <!-- </body>
 </html> -->
