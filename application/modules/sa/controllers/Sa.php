@@ -52,12 +52,12 @@ class Sa extends CI_Controller
         $row = $this->Sa_model->get_by_id($id);
         if ($row) {
             $data = array(
-		'idsa' => $row->idsa,
-		'idakun' => $row->idakun,
-		'Debit' => $row->Debit,
-		'Kredit' => $row->Kredit,
-		'c' => $row->c,
-	    );
+    		'idsa' => $row->idsa,
+    		'idakun' => $row->idakun,
+    		'Debit' => $row->Debit,
+    		'Kredit' => $row->Kredit,
+    		'c' => $row->c,
+    	    );
             $this->load->view('sa/v03_sa_read', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
@@ -67,16 +67,22 @@ class Sa extends CI_Controller
 
     public function create()
     {
+        $this->load->model('klasak/Klasak_model');
+        $akun = $this->Klasak_model->getAllLastLevel2();
         $data = array(
             'button' => 'Create',
             'action' => site_url('sa/create_action'),
-	    'idsa' => set_value('idsa'),
-	    'idakun' => set_value('idakun'),
-	    'Debit' => set_value('Debit'),
-	    'Kredit' => set_value('Kredit'),
-	    'c' => set_value('c'),
-	);
-        $this->load->view('sa/v03_sa_form', $data);
+    	    'idsa' => set_value('idsa'),
+    	    'idakun' => set_value('idakun'),
+    	    'Debit' => set_value('Debit'),
+    	    'Kredit' => set_value('Kredit'),
+    	    'c' => set_value('c'),
+            'akun_data' => $akun,
+            );
+        // $this->load->view('sa/v03_sa_form', $data);
+        $data['_view'] = 'sa/v03_sa_form';
+        $data['_caption'] = 'Saldo Awal';
+        $this->load->view('dashboard/_layout', $data);
     }
 
     public function create_action()

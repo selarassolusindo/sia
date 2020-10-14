@@ -13,7 +13,7 @@
         <h2 style="margin-top:0px">V03_sa List</h2> -->
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
-                <?php echo anchor(site_url('sa/create'),'Create', 'class="btn btn-primary"'); ?>
+                <?php echo anchor(site_url('saldo-awal/create'),'Create', 'class="btn btn-primary"'); ?>
             </div>
             <div class="col-md-4 text-center">
                 <div style="margin-top: 8px" id="message">
