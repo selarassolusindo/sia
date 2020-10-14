@@ -258,12 +258,12 @@
                                                 </a>
                                             </li>
                                             <!-- klasak 2 -->
-                                            <li class="nav-item">
+                                            <!-- <li class="nav-item">
                                                 <a href="<?php echo site_url('akun2'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'akun2') ? 'active' : ''; ?>">
                                                     <i class="fab fa-adn nav-icon"></i>
                                                     <p>Klasifikasi Akun #2</p>
                                                 </a>
-                                            </li>
+                                            </li> -->
                                             <!-- saldo awal -->
                                             <li class="nav-item">
                                                 <!-- <a href="<?php //echo site_url('saldo-awal'); ?>" class="nav-link <?php //echo ($this->uri->segment(1) == 'saldo-awal') ? 'active' : ''; ?>"> -->

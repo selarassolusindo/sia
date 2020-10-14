@@ -52,6 +52,8 @@
         		<th>Action</th>
             </tr>
             <?php
+            $totalDebit = 0;
+            $totalKredit = 0;
             foreach ($sa_data as $sa)
             {
             ?>
@@ -73,8 +75,28 @@
         			</td>
         		</tr>
             <?php
+                $totalDebit += $sa->Debit;
+                $totalKredit += $sa->Kredit;
             }
             ?>
+            <tr>
+                <th>&nbsp;</th>
+        		<th>&nbsp;</th>
+        		<th>&nbsp;</th>
+        		<th>&nbsp;</th>
+        		<!-- <th>Created At</th>
+        		<th>Updated At</th> -->
+        		<th>&nbsp;</th>
+            </tr>
+            <tr>
+                <th>&nbsp;</th>
+        		<th>Total</th>
+        		<td align="right"><b><?php echo numIndo($totalDebit); ?></b></td>
+        		<td align="right"><b><?php echo numIndo($totalKredit); ?></b></td>
+        		<!-- <th>Created At</th>
+        		<th>Updated At</th> -->
+        		<th>&nbsp;</th>
+            </tr>
         </table>
         <div class="row">
             <div class="col-md-6">

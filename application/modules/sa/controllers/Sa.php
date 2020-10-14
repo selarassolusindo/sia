@@ -93,16 +93,34 @@ class Sa extends CI_Controller
             $this->create();
         } else {
             $data = array(
-		'idsa' => $this->input->post('idsa',TRUE),
-		'idakun' => $this->input->post('idakun',TRUE),
-		'Debit' => $this->input->post('Debit',TRUE),
-		'Kredit' => $this->input->post('Kredit',TRUE),
-		'c' => $this->input->post('c',TRUE),
-	    );
+        		// 'idsa' => $this->input->post('idsa',TRUE),
+        		'idakun' => $this->input->post('idakun',TRUE),
+        		'Debit' => $this->input->post('Debit',TRUE),
+        		'Kredit' => $this->input->post('Kredit',TRUE),
+        		// 'c' => $this->input->post('c',TRUE),
+        	    );
 
-            $this->Sa_model->insert($data);
+            if (intval($this->input->post('idakun',TRUE)) > 1000) {
+                /**
+                 * jika yang diproses akun buku pembantu
+                 */
+                /**
+                 * ekstrak komposisi idakun akun buku pembantu
+                 */
+                // $induk = subtr($this->input->post('idakun',TRUE), 0, 4) - 1000;
+                $idakun = substr($this->input->post('idakun',TRUE), 4);
+                $data['idakun'] = $idakun;
+                $this->load->model('saldoawalp/Saldoawalp_model');
+                $this->Saldoawalp_model->insert($data);
+            } else {
+                /**
+                 * jika yang diproses akun buku besar
+                 */
+                $this->load->model('saldoawal/Saldoawal_model');
+                $this->Saldoawal_model->insert($data);
+            }
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('sa'));
+            redirect(site_url('saldo-awal'));
         }
     }
 
@@ -164,11 +182,11 @@ class Sa extends CI_Controller
 
     public function _rules()
     {
-	$this->form_validation->set_rules('idsa', 'idsa', 'trim|required');
+	// $this->form_validation->set_rules('idsa', 'idsa', 'trim|required');
 	$this->form_validation->set_rules('idakun', 'idakun', 'trim|required');
 	$this->form_validation->set_rules('Debit', 'debit', 'trim|required|numeric');
 	$this->form_validation->set_rules('Kredit', 'kredit', 'trim|required|numeric');
-	$this->form_validation->set_rules('c', 'c', 'trim|required');
+	// $this->form_validation->set_rules('c', 'c', 'trim|required');
 
 	$this->form_validation->set_rules('', '', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
