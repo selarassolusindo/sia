@@ -43,10 +43,13 @@
         </div>
         <table class="table table-bordered" style="margin-bottom: 10px">
             <tr>
-        		<th>Kode Buku Besar</th>
-        		<th>Kode Buku Pembantu</th>
-        		<th>Nama</th>
-        		<th>Action</th>
+        		<th colspan="2" style="text-align:center">Akun</th>
+        		<th rowspan="2" style="text-align:center">Nama</th>
+        		<th rowspan="2" style="text-align:center">Action</th>
+            </tr>
+            <tr>
+        		<th style="text-align:center">Buku Besar</th>
+        		<th style="text-align:center">Buku Pembantu</th>
             </tr>
             <?php
             foreach ($klasak_data as $klasak)
