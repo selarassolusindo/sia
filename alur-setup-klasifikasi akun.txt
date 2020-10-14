@@ -2,29 +2,41 @@ menu:
 	setup
 		klasifikasi akun
 
-route:
-	$route['klasifikasi-akun'] = 'klasak';
-	
-check:
+	proses:
+		list data
+
+	route:
+		$route['klasifikasi-akun'] = 'klasak';
+
 	modules:
-		controllers:
-			Klasak
-				method:
-					index
-						=> start
-							models:
-								Klasak_model
-									$table:
-										v02_klasak
-											=> view gabungan dari tabel t02_akun dan t04_akunp
-									method:
-										getLimitData
-											=> mengambil data dari view v02_klasak
-										getAllLastLevel
-											=> mencari akun level terakhir, digunakan untuk tampilan menjorok ke kanan
-							views:
-								v02_klasak_list
-									helper:
-										formatNamaAkun
-											=> ok
-						=> end
+		klasak
+	controllers:
+		Klasak
+		method:
+			index
+			=> start
+				models:
+					Klasak_model
+					$table:
+						v02_klasak
+							view gabungan dari tabel t02_akun dan t04_akunp
+					method:
+						getLimitData
+							mengambil data dari view v02_klasak
+						getAllLastLevel
+							mencari akun level terakhir, digunakan untuk tampilan menjorok ke kanan
+				views:
+					v02_klasak_list
+					helper:
+						formatNamaAkun
+							ok
+			=> end
+			
+	proses:
+		create
+		
+	route:
+		jika panjang kode akun == 10, maka
+			akunp/create/idakun
+		jika panjang kode akun < 10, maka
+			akun/create/idakun

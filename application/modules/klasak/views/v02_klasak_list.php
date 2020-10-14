@@ -63,7 +63,7 @@
         			<td style="text-align:right">
         				<?php
                         // echo ($klasak->KodeBP == '' ? anchor(site_url((strlen($klasak->KodeBB) < 10 ? 'akun/' : 'akunp/') .'create/' . $klasak->idakun),'Add') . ' | ' : '');
-                        echo ($klasak->KodeBB <> '' ? anchor(site_url($klasak->c . '/create/' . $klasak->idakun), 'Add') . ' | ' : '');
+                        echo ($klasak->KodeBB <> '' ? anchor(site_url((strlen($klasak->KodeBB) < 10 ? $klasak->c : 'akunp') . '/create/' . $klasak->idakun), 'Add') . ' | ' : '');
         				echo anchor(site_url($klasak->c . '/update/'.$klasak->idakun), 'Update') . ' | ';
         				echo anchor(site_url($klasak->c .'/delete/'.$klasak->idakun), 'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
         				?>
