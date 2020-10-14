@@ -29,14 +29,36 @@ menu:
 					v02_klasak_list
 					helper:
 						formatNamaAkun
-							ok
 			=> end
 			
 	proses:
 		create
 		
 	route:
-		jika panjang kode akun == 10, maka
-			akunp/create/idakun
 		jika panjang kode akun < 10, maka
 			akun/create/idakun
+		jika panjang kode akun == 10, maka
+			akunp/create/idakun
+
+	modules:
+		akun
+	controllers:
+		Akun
+		method:
+			create
+			=> start
+				models:
+					Akun_model
+					$table: t02_akun
+					method:
+						get_by_id
+							mencari satu baris record data berdasarkan idakun
+							untuk ditampilkan sebagai informasi akun induk
+						getNewKode
+							otomasi kode akun baru
+							untuk ditampilkan di textbox Kode
+				views:
+					t02_akun_form
+			=> end
+		method:
+			create_action
