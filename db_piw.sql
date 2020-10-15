@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2020 at 10:35 AM
+-- Generation Time: Oct 15, 2020 at 05:44 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -67,7 +67,7 @@ INSERT INTO `t02_akun` (`idakun`, `Kode`, `Nama`, `Induk`, `Urut`, `created_at`,
 (7, '1101004', 'Kas Bangunan', 3, '1101004000', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (8, '1101005', 'Kas Plengkung', 3, '1101005000', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (9, '1101006', 'Kas Logistik Bali', 3, '1101006000', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(10, '1101007', 'Cash Valas ', 3, '1101007000', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(10, '1101007', 'Cash Valas', 3, '1101007000', '0000-00-00 00:00:00', '2020-10-14 18:50:36'),
 (11, '1102', 'BANK', 2, '1102000000', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (12, '1102001', 'Bank Giro Bali Logistik', 11, '1102001000', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
 (13, '1102002', 'Bank Mandiri PT', 11, '1102002000', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
@@ -478,6 +478,58 @@ CREATE TABLE `t03_saldoawal` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `t03_saldoawal`
+--
+
+INSERT INTO `t03_saldoawal` (`idsa`, `idakun`, `Debit`, `Kredit`, `created_at`, `updated_at`) VALUES
+(1, 4, 1000250, 0, '2020-10-14 23:55:48', '2020-10-15 10:41:03');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t04_akunp`
+--
+
+CREATE TABLE `t04_akunp` (
+  `idakun` int(11) NOT NULL,
+  `Kode` varchar(13) NOT NULL,
+  `Nama` varchar(100) NOT NULL,
+  `Induk` int(11) NOT NULL,
+  `Urut` varchar(13) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t04_akunp`
+--
+
+INSERT INTO `t04_akunp` (`idakun`, `Kode`, `Nama`, `Induk`, `Urut`, `created_at`, `updated_at`) VALUES
+(5001, '1103004001001', 'Ninik R. #4', 32, '1103004001001', '2020-10-14 23:50:44', '2020-10-14 23:50:44');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t05_saldoawalp`
+--
+
+CREATE TABLE `t05_saldoawalp` (
+  `idsa` int(11) NOT NULL,
+  `idakun` int(11) NOT NULL,
+  `Debit` double NOT NULL,
+  `Kredit` double NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `t05_saldoawalp`
+--
+
+INSERT INTO `t05_saldoawalp` (`idsa`, `idakun`, `Debit`, `Kredit`, `created_at`, `updated_at`) VALUES
+(5001, 5001, 250000, 0, '2020-10-14 23:51:00', '2020-10-15 10:40:52');
+
 -- --------------------------------------------------------
 
 --
@@ -496,7 +548,7 @@ CREATE TABLE `t99_tglsaldoawal` (
 --
 
 INSERT INTO `t99_tglsaldoawal` (`idtgl`, `Tanggal`, `created_at`, `updated_at`) VALUES
-(1, '2020-10-04', '2020-10-03 23:16:09', '2020-10-03 23:16:09');
+(1, '2020-10-08', '2020-10-03 23:16:09', '2020-10-08 12:40:03');
 
 --
 -- Indexes for dumped tables
@@ -523,6 +575,19 @@ ALTER TABLE `t03_saldoawal`
   ADD UNIQUE KEY `idakun` (`idakun`);
 
 --
+-- Indexes for table `t04_akunp`
+--
+ALTER TABLE `t04_akunp`
+  ADD PRIMARY KEY (`idakun`);
+
+--
+-- Indexes for table `t05_saldoawalp`
+--
+ALTER TABLE `t05_saldoawalp`
+  ADD PRIMARY KEY (`idsa`),
+  ADD UNIQUE KEY `idakun` (`idakun`);
+
+--
 -- Indexes for table `t99_tglsaldoawal`
 --
 ALTER TABLE `t99_tglsaldoawal`
@@ -542,13 +607,25 @@ ALTER TABLE `t01_company`
 -- AUTO_INCREMENT for table `t02_akun`
 --
 ALTER TABLE `t02_akun`
-  MODIFY `idakun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=406;
+  MODIFY `idakun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=409;
 
 --
 -- AUTO_INCREMENT for table `t03_saldoawal`
 --
 ALTER TABLE `t03_saldoawal`
-  MODIFY `idsa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idsa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `t04_akunp`
+--
+ALTER TABLE `t04_akunp`
+  MODIFY `idakun` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5002;
+
+--
+-- AUTO_INCREMENT for table `t05_saldoawalp`
+--
+ALTER TABLE `t05_saldoawalp`
+  MODIFY `idsa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5002;
 
 --
 -- AUTO_INCREMENT for table `t99_tglsaldoawal`
@@ -564,7 +641,13 @@ ALTER TABLE `t99_tglsaldoawal`
 -- Constraints for table `t03_saldoawal`
 --
 ALTER TABLE `t03_saldoawal`
-  ADD CONSTRAINT `t03_saldoawal_ibfk_1` FOREIGN KEY (`idakun`) REFERENCES `t02_akun` (`idakun`) ON UPDATE NO ACTION;
+  ADD CONSTRAINT `t03_saldoawal_ibfk_1` FOREIGN KEY (`idakun`) REFERENCES `t02_akun` (`idakun`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `t05_saldoawalp`
+--
+ALTER TABLE `t05_saldoawalp`
+  ADD CONSTRAINT `t05_saldoawalp_ibfk_1` FOREIGN KEY (`idakun`) REFERENCES `t04_akunp` (`idakun`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

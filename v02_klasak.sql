@@ -1,4 +1,7 @@
 CREATE 
+    ALGORITHM = UNDEFINED 
+    DEFINER = `root`@`localhost` 
+    SQL SECURITY DEFINER
 VIEW `v02_klasak` AS
     SELECT 
         `a`.`idakun` AS `idakun`,
@@ -10,22 +13,22 @@ VIEW `v02_klasak` AS
         `a`.`c` AS `c`
     FROM
         (SELECT 
-            `t02_akun`.`idakun` AS `idakun`,
-                `t02_akun`.`Kode` AS `KodeBB`,
+            `db_piw`.`t02_akun`.`idakun` AS `idakun`,
+                `db_piw`.`t02_akun`.`Kode` AS `KodeBB`,
                 '' AS `KodeBP`,
-                `t02_akun`.`Nama` AS `Nama`,
-                `t02_akun`.`Induk` AS `Induk`,
-                CONCAT(`t02_akun`.`Urut`, '000') AS `Urut`,
+                `db_piw`.`t02_akun`.`Nama` AS `Nama`,
+                `db_piw`.`t02_akun`.`Induk` AS `Induk`,
+                CONCAT(`db_piw`.`t02_akun`.`Urut`, '000') AS `Urut`,
                 'akun' AS `c`
         FROM
-            `t02_akun` UNION SELECT 
-            `t04_akunp`.`idakun` AS `idakun`,
+            `db_piw`.`t02_akun` UNION SELECT 
+            `db_piw`.`t04_akunp`.`idakun` AS `idakun`,
                 '' AS `KodeBB`,
-                `t04_akunp`.`Kode` AS `Kode`,
-                `t04_akunp`.`Nama` AS `Nama`,
-                `t04_akunp`.`Induk` AS `Induk`,
-                `t04_akunp`.`Urut` AS `Urut`,
+                `db_piw`.`t04_akunp`.`Kode` AS `Kode`,
+                `db_piw`.`t04_akunp`.`Nama` AS `Nama`,
+                `db_piw`.`t04_akunp`.`Induk` AS `Induk`,
+                `db_piw`.`t04_akunp`.`Urut` AS `Urut`,
                 'akunp' AS `c`
         FROM
-            `t04_akunp`) `a`
+            `db_piw`.`t04_akunp`) `a`
     ORDER BY `a`.`Urut`
