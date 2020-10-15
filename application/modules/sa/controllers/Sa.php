@@ -128,19 +128,24 @@ class Sa extends CI_Controller
         $row = $this->Sa_model->get_by_id($id);
 
         if ($row) {
+            $akun = $this->Sa_model->getAllLastLevel();
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('sa/update_action'),
-		'idsa' => set_value('idsa', $row->idsa),
-		'idakun' => set_value('idakun', $row->idakun),
-		'Debit' => set_value('Debit', $row->Debit),
-		'Kredit' => set_value('Kredit', $row->Kredit),
-		'c' => set_value('c', $row->c),
-	    );
-            $this->load->view('sa/v03_sa_form', $data);
+        		'idsa' => set_value('idsa', $row->idsa),
+        		'idakun' => set_value('idakun', $row->idakun),
+        		'Debit' => set_value('Debit', $row->Debit),
+        		'Kredit' => set_value('Kredit', $row->Kredit),
+        		'c' => set_value('c', $row->c),
+                'akun_data' => $akun,
+        	    );
+            // $this->load->view('sa/v03_sa_form', $data);
+            $data['_view'] = 'sa/v03_sa_form';
+            $data['_caption'] = 'Saldo Awal';
+            $this->load->view('dashboard/_layout', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('sa'));
+            redirect(site_url('saldo-awal'));
         }
     }
 
@@ -152,16 +157,36 @@ class Sa extends CI_Controller
             $this->update($this->input->post('', TRUE));
         } else {
             $data = array(
-		'idsa' => $this->input->post('idsa',TRUE),
-		'idakun' => $this->input->post('idakun',TRUE),
-		'Debit' => $this->input->post('Debit',TRUE),
-		'Kredit' => $this->input->post('Kredit',TRUE),
-		'c' => $this->input->post('c',TRUE),
-	    );
+        		'idsa' => $this->input->post('idsa',TRUE),
+        		'idakun' => $this->input->post('idakun',TRUE),
+        		'Debit' => $this->input->post('Debit',TRUE),
+        		'Kredit' => $this->input->post('Kredit',TRUE),
+        		// 'c' => $this->input->post('c',TRUE),
+        	    );
 
-            $this->Sa_model->update($this->input->post('', TRUE), $data);
+            // $this->Sa_model->update($this->input->post('', TRUE), $data);
+
+            if (intval($this->input->post('idakun',TRUE)) > 5000) {
+                /**
+                 * jika yang diproses akun buku pembantu
+                 */
+                /**
+                 * ekstrak komposisi idakun akun buku pembantu
+                 */
+                // $induk = subtr($this->input->post('idakun',TRUE), 0, 4) - 1000;
+                // $idakun = substr($this->input->post('idakun',TRUE), 4);
+                // $data['idakun'] = $idakun;
+                $this->load->model('saldoawalp/Saldoawalp_model');
+                $this->Saldoawalp_model->update($this->input->post('idsa', TRUE), $data);
+            } else {
+                /**
+                 * jika yang diproses akun buku besar
+                 */
+                $this->load->model('saldoawal/Saldoawal_model');
+                $this->Saldoawal_model->update($this->input->post('idsa', TRUE), $data);
+            }
             $this->session->set_flashdata('message', 'Update Record Success');
-            redirect(site_url('sa'));
+            redirect(site_url('saldo-awal'));
         }
     }
 

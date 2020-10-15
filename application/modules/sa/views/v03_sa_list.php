@@ -68,7 +68,8 @@
         				<?php
         				// echo anchor(site_url('sa/read/'.$sa->idsa),'Read');
         				// echo ' | ';
-        				echo anchor(site_url($sa->c.'/update/'.$sa->idsa),'Update');
+        				// echo anchor(site_url($sa->c.'/update/'.$sa->idsa),'Update');
+                        echo anchor(site_url('sa/update/'.$sa->idsa),'Update');
         				echo ' | ';
         				echo anchor(site_url('sa/delete/'.$sa->idsa),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
         				?>
