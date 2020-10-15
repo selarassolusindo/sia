@@ -88,11 +88,25 @@ class Sa_model extends CI_Model
     	$this->db->or_like('Kredit', $q);
     	$this->db->or_like('c', $q);
     	$this->db->limit($limit, $start);
-        $this->db->select($this->table . '.*, t02_akun.Kode, t02_akun.Nama');
+        // $this->db->select($this->table . '.*, t02_akun.Kode, t02_akun.Nama');
+        $this->db->select($this->table . '.*, v02_klasak2.Kode, v02_klasak2.Nama');
         $this->db->from($this->table);
-        $this->db->join('t02_akun', 't02_akun.idakun = '.$this->table.'.idakun');
-        // $r = $this->db->get()->result(); echo pre($this->db->last_query()); die();
+        // $this->db->join('t02_akun', 't02_akun.idakun = '.$this->table.'.idakun');
+        $this->db->join('v02_klasak2', 'v02_klasak2.idakun = '.$this->table.'.idakun');
         return $this->db->get()->result();
+    }
+
+    /**
+     * cari klasak level terakhir versi 2
+     * untuk gabungan akun buku besar dan akun buku pembantu
+     * buku besar => idakun = idakun
+     * buku pembantu => idakun = 1000 + induk + idsa
+     */
+    function getAllLastLevel()
+    {
+        $this->db->where('idakun not in (select induk from v02_klasak2)');
+        $this->db->order_by('Urut', 'asc');
+        return $this->db->get('v02_klasak2')->result();
     }
 
 }

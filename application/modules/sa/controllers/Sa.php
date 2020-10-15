@@ -67,8 +67,7 @@ class Sa extends CI_Controller
 
     public function create()
     {
-        $this->load->model('klasak/Klasak_model');
-        $akun = $this->Klasak_model->getAllLastLevel2();
+        $akun = $this->Sa_model->getAllLastLevel();
         $data = array(
             'button' => 'Create',
             'action' => site_url('sa/create_action'),
@@ -100,7 +99,7 @@ class Sa extends CI_Controller
         		// 'c' => $this->input->post('c',TRUE),
         	    );
 
-            if (intval($this->input->post('idakun',TRUE)) > 1000) {
+            if (intval($this->input->post('idakun',TRUE)) > 5000) {
                 /**
                  * jika yang diproses akun buku pembantu
                  */
@@ -108,8 +107,8 @@ class Sa extends CI_Controller
                  * ekstrak komposisi idakun akun buku pembantu
                  */
                 // $induk = subtr($this->input->post('idakun',TRUE), 0, 4) - 1000;
-                $idakun = substr($this->input->post('idakun',TRUE), 4);
-                $data['idakun'] = $idakun;
+                // $idakun = substr($this->input->post('idakun',TRUE), 4);
+                // $data['idakun'] = $idakun;
                 $this->load->model('saldoawalp/Saldoawalp_model');
                 $this->Saldoawalp_model->insert($data);
             } else {

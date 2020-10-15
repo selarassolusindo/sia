@@ -103,20 +103,6 @@ class Klasak_model extends CI_Model
         $this->db->order_by('Urut', 'asc');
         return $this->db->get($this->table)->result();
     }
-
-    /**
-     * cari klasak level terakhir versi 2
-     * untuk gabungan akun buku besar dan akun buku pembantu
-     * buku besar => idakun = idakun
-     * buku pembantu => idakun = 1000 + induk + idsa
-     */
-    function getAllLastLevel2()
-    {
-        $this->db->where('idakun not in (select induk from v02_klasak2)');
-        $this->db->order_by('Urut', 'asc');
-        return $this->db->get('v02_klasak2')->result();
-    }
-
 }
 
 /* End of file Klasak_model.php */
