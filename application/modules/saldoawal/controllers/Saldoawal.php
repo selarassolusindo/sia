@@ -36,7 +36,7 @@ class Saldoawal extends CI_Controller
         $this->load->library('pagination');
         $this->pagination->initialize($config);
 
-        echo pre($this->pagination->create_links()); die();
+        // echo pre($this->pagination->create_links()); die();
 
         $data = array(
             'saldoawal_data' => $saldoawal,
