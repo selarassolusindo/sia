@@ -82,6 +82,7 @@ class Saldoawal_model extends CI_Model
         // $this->db->order_by($this->id, $this->order);
         $this->db->order_by('idakun', 'asc');
         $this->db->like('idsa', $q);
+        $this->db->or_like('t02_akun.Nama', $q);
         $this->db->or_like($this->table . '.idakun', $q);
         $this->db->or_like('Debit', $q);
         $this->db->or_like('Kredit', $q);
