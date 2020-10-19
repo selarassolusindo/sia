@@ -13,7 +13,7 @@
         <h2 style="margin-top:0px">T03_saldoawal List</h2> -->
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
-                <?php echo anchor(site_url('saldoawal/create'),'Create', 'class="btn btn-primary"'); ?>
+                <?php echo anchor(site_url('saldo-awal/create'),'Create', 'class="btn btn-primary"'); ?>
             </div>
             <div class="col-md-4 text-center">
                 <div style="margin-top: 8px" id="message">
@@ -31,7 +31,7 @@
                                 if ($q <> '')
                                 {
                                     ?>
-                                    <a href="<?php echo site_url('saldoawal'); ?>" class="btn btn-default">Reset</a>
+                                    <a href="<?php echo site_url('saldo-awal'); ?>" class="btn btn-default">Reset</a>
                                     <?php
                                 }
                             ?>
@@ -43,34 +43,52 @@
         </div>
         <table class="table table-bordered" style="margin-bottom: 10px">
             <tr>
-                <th>No</th>
-        		<th>Akun</th>
-        		<th>Debit</th>
-        		<th>Kredit</th>
+        		<th colspan="2" style="text-align:center">Akun</th>
+                <th rowspan="2" style="text-align:center">Nama</th>
+        		<th rowspan="2" style="text-align:center">Debit</th>
+        		<th rowspan="2" style="text-align:center">Kredit</th>
         		<!-- <th>Created At</th>
         		<th>Updated At</th> -->
-        		<th>Action</th>
-            </tr><?php
+        		<th rowspan="2" style="text-align:center">Action</th>
+            </tr>
+            <tr>
+        		<th style="text-align:center">Buku Besar</th>
+                <th style="text-align:center">Buku Pembantu</th>
+            </tr>
+            <?php
             $totalDebit = 0;
             $totalKredit = 0;
             foreach ($saldoawal_data as $saldoawal)
             {
                 ?>
                 <tr>
-        			<td width="80px"><?php echo ++$start ?></td>
         			<!-- <td><?php //echo $saldoawal->idakun ?></td> -->
-                    <td><?php echo $saldoawal->Kode . ' - ' . $saldoawal->Nama ?></td>
+                    <?php
+                    if (strlen($saldoawal->Kode) < 13) {
+                    ?>
+                        <td><?php echo $saldoawal->Kode ?></td>
+                        <td><?php echo '' ?></td>
+                    <?php
+                    } else {
+                    ?>
+                        <td><?php echo '' ?></td>
+                        <td><?php echo $saldoawal->Kode ?></td>
+                    <?php
+                    }
+                    ?>
+
+                    <td><?php echo $saldoawal->Nama ?></td>
         			<td align="right"><?php echo numIndo($saldoawal->Debit) ?></td>
         			<td align="right"><?php echo numIndo($saldoawal->Kredit) ?></td>
         			<!-- <td><?php //echo $saldoawal->created_at ?></td>
         			<td><?php //echo $saldoawal->updated_at ?></td> -->
-        			<td style="text-align:center" width="200px">
+        			<td style="text-align:center">
         				<?php
-        				echo anchor(site_url('saldoawal/read/'.$saldoawal->idsa),'Read');
+        				// echo anchor(site_url('saldoawal/read/'.$saldoawal->idsa),'Read');
+        				// echo ' | ';
+        				echo anchor(site_url('saldo-awal/update/'.$saldoawal->idsa),'Update');
         				echo ' | ';
-        				echo anchor(site_url('saldoawal/update/'.$saldoawal->idsa),'Update');
-        				echo ' | ';
-        				echo anchor(site_url('saldoawal/delete/'.$saldoawal->idsa),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+        				echo anchor(site_url('saldo-awal/delete/'.$saldoawal->idsa),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
         				?>
         			</td>
         		</tr>
@@ -87,10 +105,10 @@
         		<!-- <th>Created At</th>
         		<th>Updated At</th> -->
         		<th>&nbsp;</th>
+                <th>&nbsp;</th>
             </tr>
             <tr>
-                <th>&nbsp;</th>
-        		<th>Total</th>
+        		<th colspan="3" style="text-align:right">Total</th>
         		<td align="right"><b><?php echo numIndo($totalDebit); ?></b></td>
         		<td align="right"><b><?php echo numIndo($totalKredit); ?></b></td>
         		<!-- <th>Created At</th>

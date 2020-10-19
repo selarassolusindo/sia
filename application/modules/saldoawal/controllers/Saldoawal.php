@@ -19,14 +19,14 @@ class Saldoawal extends CI_Controller
         $start = intval($this->input->get('start'));
 
         if ($q <> '') {
-            $config['base_url'] = base_url() . 'saldoawal/index.html?q=' . urlencode($q);
-            $config['first_url'] = base_url() . 'saldoawal/index.html?q=' . urlencode($q);
+            $config['base_url'] = base_url() . 'saldoawal?q=' . urlencode($q);
+            $config['first_url'] = base_url() . 'saldoawal?q=' . urlencode($q);
         } else {
-            $config['base_url'] = base_url() . 'saldoawal/index.html';
-            $config['first_url'] = base_url() . 'saldoawal/index.html';
+            $config['base_url'] = base_url() . 'saldoawal';
+            $config['first_url'] = base_url() . 'saldoawal';
         }
 
-        $config['per_page'] = 10;
+        $config['per_page'] = 10000;
         $config['page_query_string'] = TRUE;
         $config['total_rows'] = $this->Saldoawal_model->total_rows($q);
         // $saldoawal = $this->Saldoawal_model->get_limit_data($config['per_page'], $start, $q);
@@ -76,14 +76,14 @@ class Saldoawal extends CI_Controller
     public function create()
     {
         $this->load->model('akun/Akun_model');
-        $akun = $this->Akun_model->getAllLastLevel();
+        $akun = $this->Akun_model->getAllLastLevelNotExist();
         $data = array(
             'button' => 'Create',
             'action' => site_url('saldoawal/create_action'),
     	    'idsa' => set_value('idsa'),
     	    // 'idakun' => set_value('idakun'),
-    	    'Debit' => set_value('Debit'),
-    	    'Kredit' => set_value('Kredit'),
+    	    'Debit' => set_value('Debit', 0),
+    	    'Kredit' => set_value('Kredit', 0),
     	    // 'created_at' => set_value('created_at'),
     	    // 'updated_at' => set_value('updated_at'),
             'akun_data' => $akun,

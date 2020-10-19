@@ -121,7 +121,7 @@ class Akun extends CI_Controller
         		'Nama' => $this->input->post('Nama',TRUE),
         		'Induk' => $this->input->post('Induk',TRUE),
         		//'Urut' => $this->input->post('Urut',TRUE),
-                'Urut' => substr(trim($this->input->post('Kode',TRUE)) . '0000000000', 0, 10),
+                'Urut' => substr(trim($this->input->post('Kode',TRUE)) . '0000000000000', 0, 13),
         		// 'created_at' => $this->input->post('created_at',TRUE),
         		// 'updated_at' => $this->input->post('updated_at',TRUE),
         	    );
@@ -173,7 +173,7 @@ class Akun extends CI_Controller
         		'Nama' => $this->input->post('Nama',TRUE),
         		'Induk' => $this->input->post('Induk',TRUE),
         		// 'Urut' => $this->input->post('Urut',TRUE),
-                'Urut' => substr(trim($this->input->post('Kode',TRUE)) . '0000000000', 0, 10),
+                'Urut' => substr(trim($this->input->post('Kode',TRUE)) . '0000000000000', 0, 13),
                 // 'created_at' => $this->input->post('created_at',TRUE),
         		// 'updated_at' => $this->input->post('updated_at',TRUE),
         	    );

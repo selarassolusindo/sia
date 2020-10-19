@@ -88,7 +88,7 @@ class Akun_model extends CI_Model
     }
 
     /**
-     * modif
+     * modif, order by urut - asc
      */
     function getLimitData($limit, $start = 0, $q = NULL) {
         $this->db->order_by('urut', 'asc');
@@ -134,6 +134,12 @@ class Akun_model extends CI_Model
                 $strLeft = 10;
                 $strBetween1 = '001';
                 $strBetween2 = STRBETWEEN27;
+                $strSubStr = 3;
+                break;
+            case 10:
+                $strLeft = 13;
+                $strBetween1 = '001';
+                $strBetween2 = STRBETWEEN210;
                 $strSubStr = 3;
                 break;
         }
@@ -182,6 +188,17 @@ class Akun_model extends CI_Model
     	// $this->db->or_like('updated_at', $q);
     	$this->db->limit($limit, $start);
         return $this->db->get('v02_bukubesar')->result();
+    }
+
+    /**
+     * ambil last level di tabel akun yang belum ada di tabel saldo awal
+     */
+    function getAllLastLevelNotExist()
+    {
+        $this->db->where('idakun not in (select induk from t02_akun)');
+        $this->db->where('idakun not in (select idakun from t03_saldoawal)');
+        $this->db->order_by('urut', 'asc');
+        return $this->db->get($this->table)->result();
     }
 
 }

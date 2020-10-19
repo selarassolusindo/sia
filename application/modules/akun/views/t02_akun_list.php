@@ -43,43 +43,53 @@
         </div>
         <table class="table table-bordered" style="margin-bottom: 10px">
             <tr>
-                <!-- <th>No</th> -->
-		<th>Kode Buku Besar</th>
-        <th>Kode Buku Pembantu</th>
-		<th>Nama</th>
-		<!-- <th>Induk</th>
-		<th>Urut</th>
-		<th>Created At</th>
-		<th>Updated At</th> -->
-		<th>Action</th>
-            </tr><?php
-            foreach ($akun_data as $akun)
-            {
-                ?>
+        		<th colspan="2" style="text-align:center">Akun</th>
+        		<th rowspan="2" style="text-align:center">Nama</th>
+        		<th rowspan="2" style="text-align:center">Action</th>
+            </tr>
+            <tr>
+        		<th style="text-align:center">Buku Besar</th>
+                <th style="text-align:center">Buku Pembantu</th>
+            </tr>
+            <?php
+            foreach ($akun_data as $akun) {
+            ?>
                 <tr>
-			<!-- <td width="80px"><?php echo ++$start ?></td> -->
-			<td><?php echo $akun->Kode ?></td>
-            <td><?php echo '' ?></td>
-			<!-- <td><?php //echo $akun->Nama ?></td> -->
-            <td><?php echo formatNamaAkun($akunLastLevel, $akun) ?></td>
-			<!-- <td><?php //echo $akun->Induk ?></td>
-			<td><?php //echo $akun->Urut ?></td>
-			<td><?php //echo $akun->created_at ?></td>
-			<td><?php //echo $akun->updated_at ?></td> -->
-			<td style="text-align:right" width="200px">
-				<?php
-                echo (strlen($akun->Kode) < 10 ? anchor(site_url('akun/create/'.$akun->idakun),'Add') : anchor(site_url('akunp/create/'.$akun->idakun),'Add')) . ' | ';
-                // echo (!isLastLevel($akunLastLevel, $akun) ? anchor(site_url('akun/create/'.$akun->idakun),'Add') . ' | ' : '');
-                // echo (!isLastLevel($akunLastLevel, $akun) ? anchor(site_url('akun/read/'.$akun->idakun),'Add') . ' | ' : '');
-				// echo anchor(site_url('akun/read/'.$akun->idakun),'Read');
-				// echo ' | ';
-				echo anchor(site_url('akun/update/'.$akun->idakun),'Update');
-				echo ' | ';
-				echo anchor(site_url('akun/delete/'.$akun->idakun),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
-				?>
-			</td>
-		</tr>
-                <?php
+        			<!-- <td width="80px"><?php echo ++$start ?></td> -->
+                    <?php
+                    if (strlen($akun->Kode) < 13) {
+                    ?>
+                        <td><?php echo $akun->Kode ?></td>
+                        <td><?php echo '' ?></td>
+                    <?php
+                } else {
+                    ?>
+                        <td><?php echo '' ?></td>
+                        <td><?php echo $akun->Kode ?></td>
+                    <?php
+                }
+                ?>
+
+        			<!-- <td><?php //echo $akun->Nama ?></td> -->
+                    <td><?php echo formatNamaAkun($akunLastLevel, $akun) ?></td>
+        			<!-- <td><?php //echo $akun->Induk ?></td>
+        			<td><?php //echo $akun->Urut ?></td>
+        			<td><?php //echo $akun->created_at ?></td>
+        			<td><?php //echo $akun->updated_at ?></td> -->
+        			<td style="text-align:right">
+        				<?php
+                        echo (strlen($akun->Kode) < 13 ? anchor(site_url('akun/create/'.$akun->idakun),'Add') : '') . ' | ';
+                        // echo (!isLastLevel($akunLastLevel, $akun) ? anchor(site_url('akun/create/'.$akun->idakun),'Add') . ' | ' : '');
+                        // echo (!isLastLevel($akunLastLevel, $akun) ? anchor(site_url('akun/read/'.$akun->idakun),'Add') . ' | ' : '');
+        				// echo anchor(site_url('akun/read/'.$akun->idakun),'Read');
+        				// echo ' | ';
+        				echo anchor(site_url('akun/update/'.$akun->idakun),'Update');
+        				echo ' | ';
+        				echo anchor(site_url('akun/delete/'.$akun->idakun),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+        				?>
+        			</td>
+        		</tr>
+            <?php
             }
             ?>
         </table>

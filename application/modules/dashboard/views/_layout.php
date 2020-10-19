@@ -273,12 +273,12 @@
                                                 </a>
                                             </li>
                                             <!-- tgl. input saldo awal -->
-                                            <li class="nav-item">
+                                            <!-- <li class="nav-item">
                                                 <a href="<?php echo site_url('tanggal-saldo-awal'); ?>" class="nav-link <?php echo ($this->uri->segment(1) == 'tanggal-saldo-awal') ? 'active' : ''; ?>">
                                                     <i class="fas fa-calendar-check nav-icon"></i>
                                                     <p>Tgl. Input Saldo Awal</p>
                                                 </a>
-                                            </li>
+                                            </li> -->
                                             <!-- input price -->
                                             <li class="nav-item">
                                                 <a href="<?php echo site_url('package'); ?>" class="nav-link <?php echo $this->uri->segment(1) == 'package' ? 'active' : ''; ?>">
