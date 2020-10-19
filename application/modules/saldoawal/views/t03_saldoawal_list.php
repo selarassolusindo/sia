@@ -118,14 +118,30 @@
         		<th>Updated At</th> -->
         		<th>&nbsp;</th>
             </tr>
-            <tr>
-        		<th colspan="2" style="text-align:right; color:red">Selisih</th>
-        		<td align="right" style="text-align:right; color:red"><b><?php echo numIndo(0); ?></b></td>
-        		<td align="right" style="text-align:right; color:red"><b><?php echo numIndo($totalDebit); ?></b></td>
-        		<!-- <th>Created At</th>
-        		<th>Updated At</th> -->
-        		<th>&nbsp;</th>
-            </tr>
+            <?php
+            if ($total->Debit == $total->Kredit) {
+
+            } else {
+                if ($total->Debit > $total->Kredit) {
+                    $selisih1 = 0;
+                    $selisih2 = $total->Debit - $total->Kredit;
+                } else {
+                    $selisih1 = $total->Kredit - $total->Debit;
+                    $selisih2 = 0;
+                }
+                ?>
+                <tr>
+            		<th colspan="2" style="text-align:right; color:red">Selisih</th>
+            		<td align="right" style="text-align:right; color:red"><b><?php echo numIndo($selisih1); ?></b></td>
+            		<td align="right" style="text-align:right; color:red"><b><?php echo numIndo($selisih2); ?></b></td>
+            		<!-- <th>Created At</th>
+            		<th>Updated At</th> -->
+            		<th>&nbsp;</th>
+                </tr>
+                <?php
+            }
+            ?>
+
         </table>
         <div class="row">
             <div class="col-md-6">
