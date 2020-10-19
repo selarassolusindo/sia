@@ -89,7 +89,7 @@ class Akun extends CI_Controller
             $data = array(
                 'button' => 'Create',
                 'action' => site_url('akun/create_action'),
-                'idakun' => set_value('idakun'),
+                'idakun' => set_value('idakun', $idakun),
                 'Kode' => set_value('Kode', $this->Akun_model->getNewKode($idakun)),
                 'Nama' => set_value('Nama'),
                 'Induk' => set_value('Induk', $idakun),
@@ -116,6 +116,7 @@ class Akun extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->create($this->input->post('idakun', TRUE));
         } else {
+            $idakun = $this->input->post('idakun', TRUE);
             $data = array(
         		'Kode' => $this->input->post('Kode',TRUE),
         		'Nama' => $this->input->post('Nama',TRUE),
@@ -129,7 +130,7 @@ class Akun extends CI_Controller
             $this->Akun_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
             // redirect(site_url('klasifikasi-akun'));
-            redirect(site_url('akun/create/'.$this->input->post('idakun', TRUE)));
+            redirect(site_url('akun/create/'.$idakun));
         }
     }
 
@@ -202,7 +203,7 @@ class Akun extends CI_Controller
     public function _rules()
     {
         $this->db = $this->load->database($this->session->userdata('groupName'), true);
-    	$this->form_validation->set_rules('Kode', 'kode', 'trim|required|is_unique[t02_akun.Kode]');
+    	$this->form_validation->set_rules('Kode', 'kode', 'trim|required|is_unique[t02_akun.Kode]', array('is_unique' => 'No. Akun sudah ada !'));
     	$this->form_validation->set_rules('Nama', 'nama', 'trim|required');
     	$this->form_validation->set_rules('Induk', 'induk', 'trim|required');
     	// $this->form_validation->set_rules('Urut', 'urut', 'trim|required');
