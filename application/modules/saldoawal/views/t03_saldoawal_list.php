@@ -112,7 +112,7 @@
             </tr>
             <tr>
         		<th colspan="2" style="text-align:right; color:red">Selisih</th>
-        		<td align="right" style="text-align:right; color:red"><b><?php echo 0; ?></b></td>
+        		<td align="right" style="text-align:right; color:red"><b><?php echo numIndo(0); ?></b></td>
         		<td align="right" style="text-align:right; color:red"><b><?php echo numIndo($totalDebit); ?></b></td>
         		<!-- <th>Created At</th>
         		<th>Updated At</th> -->
