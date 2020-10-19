@@ -128,7 +128,8 @@ class Akun extends CI_Controller
 
             $this->Akun_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
-            redirect(site_url('klasifikasi-akun'));
+            // redirect(site_url('klasifikasi-akun'));
+            redirect(site_url('akun/create/'.$this->input->post('idakun', TRUE)));
         }
     }
 
@@ -200,7 +201,8 @@ class Akun extends CI_Controller
 
     public function _rules()
     {
-    	$this->form_validation->set_rules('Kode', 'kode', 'trim|required');
+        $this->db = $this->load->database($this->session->userdata('groupName'), true);
+    	$this->form_validation->set_rules('Kode', 'kode', 'trim|required|is_unique[t02_akun.Kode]');
     	$this->form_validation->set_rules('Nama', 'nama', 'trim|required');
     	$this->form_validation->set_rules('Induk', 'induk', 'trim|required');
     	// $this->form_validation->set_rules('Urut', 'urut', 'trim|required');
