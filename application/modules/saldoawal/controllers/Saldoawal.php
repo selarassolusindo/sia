@@ -31,6 +31,7 @@ class Saldoawal extends CI_Controller
         $config['total_rows'] = $this->Saldoawal_model->total_rows($q);
         // $saldoawal = $this->Saldoawal_model->get_limit_data($config['per_page'], $start, $q);
         $saldoawal = $this->Saldoawal_model->getLimitData($config['per_page'], $start, $q);
+        $saldoawalTotal = $this->Saldoawal_model->getTotal();
 
         $this->load->library('pagination');
         $this->pagination->initialize($config);
@@ -41,6 +42,7 @@ class Saldoawal extends CI_Controller
             'pagination' => $this->pagination->create_links(),
             'total_rows' => $config['total_rows'],
             'start' => $start,
+            'total' => $saldoawalTotal,
             );
         // $this->load->view('saldoawal/t03_saldoawal_list', $data);
         $data['_view'] = 'saldoawal/t03_saldoawal_list';

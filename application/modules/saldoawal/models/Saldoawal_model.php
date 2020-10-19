@@ -109,6 +109,13 @@ class Saldoawal_model extends CI_Model
         return $this->db->get()->row();
     }
 
+    public function getTotal()
+    {
+        $this->db->select_sum('Debit');
+        $this->db->select_sum('Kredit');
+        return $this->db->get($this->table)->row();
+    }
+
 }
 
 /* End of file Saldoawal_model.php */
