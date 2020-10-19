@@ -86,9 +86,9 @@
         				<?php
         				// echo anchor(site_url('saldoawal/read/'.$saldoawal->idsa),'Read');
         				// echo ' | ';
-        				echo anchor(site_url('saldo-awal/update/'.$saldoawal->idsa),'Update');
-        				echo ' | ';
-        				echo anchor(site_url('saldo-awal/delete/'.$saldoawal->idsa),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+        				echo anchor(site_url('saldo-awal/update/'.$saldoawal->idsa),'<i class="fas fa-edit"></i>', 'title="Edit"');
+        				// echo ' | ';
+        				echo anchor(site_url('saldo-awal/delete/'.$saldoawal->idsa),'<i class="fas fa-trash-alt"></i>',' title="Delete" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
         				?>
         			</td>
         		</tr>
