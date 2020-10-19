@@ -43,17 +43,13 @@
         </div>
         <table class="table table-bordered" style="margin-bottom: 10px">
             <tr>
-        		<th colspan="2" style="text-align:center">Akun</th>
-                <th rowspan="2" style="text-align:center">Nama</th>
-        		<th rowspan="2" style="text-align:center">Debit</th>
-        		<th rowspan="2" style="text-align:center">Kredit</th>
+        		<th style="text-align:center">No. Akun Buku Besar</th>
+                <th style="text-align:center">Nama Akun</th>
+        		<th style="text-align:center">Debit</th>
+        		<th style="text-align:center">Kredit</th>
         		<!-- <th>Created At</th>
         		<th>Updated At</th> -->
-        		<th rowspan="2" style="text-align:center">Action</th>
-            </tr>
-            <tr>
-        		<th style="text-align:center">Buku Besar</th>
-                <th style="text-align:center">Buku Bantu</th>
+        		<th style="text-align:center">Action</th>
             </tr>
             <?php
             $totalDebit = 0;
@@ -64,17 +60,17 @@
                 <tr>
         			<!-- <td><?php //echo $saldoawal->idakun ?></td> -->
                     <?php
-                    if (strlen($saldoawal->Kode) < 13) {
+                    // if (strlen($saldoawal->Kode) < 13) {
                     ?>
                         <td><?php echo $saldoawal->Kode ?></td>
-                        <td><?php echo '' ?></td>
+                        <!-- <td><?php echo '' ?></td> -->
                     <?php
-                    } else {
+                    // } else {
                     ?>
-                        <td><?php echo '' ?></td>
-                        <td><?php echo $saldoawal->Kode ?></td>
+                        <!-- <td><?php echo '' ?></td>
+                        <td><?php echo $saldoawal->Kode ?></td> -->
                     <?php
-                    }
+                    // }
                     ?>
 
                     <td><?php echo $saldoawal->Nama ?></td>
@@ -105,10 +101,9 @@
         		<!-- <th>Created At</th>
         		<th>Updated At</th> -->
         		<th>&nbsp;</th>
-                <th>&nbsp;</th>
             </tr>
             <tr>
-        		<th colspan="3" style="text-align:right">Total</th>
+        		<th colspan="2" style="text-align:right">Total</th>
         		<td align="right"><b><?php echo numIndo($totalDebit); ?></b></td>
         		<td align="right"><b><?php echo numIndo($totalKredit); ?></b></td>
         		<!-- <th>Created At</th>
