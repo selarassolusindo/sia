@@ -103,7 +103,7 @@
         		<th>&nbsp;</th>
             </tr>
             <tr>
-        		<th colspan="2" style="text-align:right">Total</th>
+        		<th colspan="2" style="text-align:right">Sub Total</th>
         		<td align="right"><b><?php echo numIndo($totalDebit); ?></b></td>
         		<td align="right"><b><?php echo numIndo($totalKredit); ?></b></td>
         		<!-- <th>Created At</th>
@@ -111,7 +111,7 @@
         		<th>&nbsp;</th>
             </tr>
             <tr>
-        		<th colspan="2" style="text-align:right">Total</th>
+        		<th colspan="2" style="text-align:right">Grand Total</th>
         		<td align="right"><b><?php echo numIndo($total->Debit); ?></b></td>
         		<td align="right"><b><?php echo numIndo($total->Kredit); ?></b></td>
         		<!-- <th>Created At</th>
