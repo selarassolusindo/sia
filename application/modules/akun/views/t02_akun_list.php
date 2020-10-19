@@ -42,7 +42,7 @@
             </div>
         </div>
         <table class="table table-bordered" style="margin-bottom: 10px">
-            <tr>
+            <!-- <tr>
         		<th colspan="2" style="text-align:center">Akun</th>
         		<th rowspan="2" style="text-align:center">Nama</th>
         		<th rowspan="2" style="text-align:center">Action</th>
@@ -50,24 +50,33 @@
             <tr>
         		<th style="text-align:center">Buku Besar</th>
                 <th style="text-align:center">Buku Bantu</th>
+            </tr> -->
+            <tr>
+        		<th style="text-align:center">Akun</th>
+        		<th style="text-align:center">Nama</th>
+        		<th style="text-align:center">Action</th>
             </tr>
+            <!-- <tr>
+        		<th style="text-align:center">Buku Besar</th>
+                <th style="text-align:center">Buku Bantu</th>
+            </tr> -->
             <?php
             foreach ($akun_data as $akun) {
             ?>
                 <tr>
         			<!-- <td width="80px"><?php echo ++$start ?></td> -->
                     <?php
-                    if (strlen($akun->Kode) < 13) {
+                    // if (strlen($akun->Kode) < 13) {
                     ?>
                         <td><?php echo $akun->Kode ?></td>
-                        <td><?php echo '' ?></td>
+                        <!-- <td><?php echo '' ?></td> -->
                     <?php
-                } else {
+                // } else {
                     ?>
-                        <td><?php echo '' ?></td>
-                        <td><?php echo $akun->Kode ?></td>
+                        <!-- <td><?php echo '' ?></td>
+                        <td><?php echo $akun->Kode ?></td> -->
                     <?php
-                }
+                // }
                 ?>
 
         			<!-- <td><?php //echo $akun->Nama ?></td> -->
