@@ -78,7 +78,7 @@
         			<td><?php //echo $akun->updated_at ?></td> -->
         			<td style="text-align:right">
         				<?php
-                        echo (strlen($akun->Kode) < 13 ? anchor(site_url('akun/create/'.$akun->idakun),'<i class="far fa-plus-square"></i>','title="Add"') : ' ') . ' ';
+                        echo (strlen($akun->Kode) < 13 ? anchor(site_url('akun/create/'.$akun->idakun),'<i class="far fa-file"></i>','title="Add"') : ' ') . ' ';
 
                         // echo (!isLastLevel($akunLastLevel, $akun) ? anchor(site_url('akun/create/'.$akun->idakun),'Add') . ' | ' : '');
                         // echo (!isLastLevel($akunLastLevel, $akun) ? anchor(site_url('akun/read/'.$akun->idakun),'Add') . ' | ' : '');
