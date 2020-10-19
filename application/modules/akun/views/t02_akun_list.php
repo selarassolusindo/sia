@@ -52,7 +52,7 @@
                 <th style="text-align:center">Buku Bantu</th>
             </tr> -->
             <tr>
-        		<th style="text-align:center">No. Akun Buku Besar/Bantu</th>
+        		<th style="text-align:center">No. Akun Buku Besar</th>
         		<th style="text-align:center">Nama Akun</th>
         		<th style="text-align:center">Action</th>
             </tr>
