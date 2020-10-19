@@ -13,7 +13,7 @@
         <h2 style="margin-top:0px">T03_saldoawal List</h2> -->
         <div class="row" style="margin-bottom: 10px">
             <div class="col-md-4">
-                <?php echo anchor(site_url('saldo-awal/create'),'<i class="far fa-file"></i>', 'title="Create" class="btn btn-primary"'); ?>
+                <?php echo anchor(site_url('saldo-awal/create'),'<i class="far fa-file"></i>', 'title="Add" class="btn btn-primary"'); ?>
             </div>
             <div class="col-md-4 text-center">
                 <div style="margin-top: 8px" id="message">
