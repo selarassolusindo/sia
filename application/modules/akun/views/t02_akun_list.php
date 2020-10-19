@@ -49,7 +49,7 @@
             </tr>
             <tr>
         		<th style="text-align:center">Buku Besar</th>
-                <th style="text-align:center">Buku Pembantu</th>
+                <th style="text-align:center">Buku Bantu</th>
             </tr>
             <?php
             foreach ($akun_data as $akun) {
