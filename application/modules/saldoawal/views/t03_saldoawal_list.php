@@ -110,6 +110,14 @@
         		<th>Updated At</th> -->
         		<th>&nbsp;</th>
             </tr>
+            <tr>
+        		<th colspan="2" style="text-align:right">Selisih</th>
+        		<td align="right"><b><?php echo ''; ?></b></td>
+        		<td align="right"><b><?php echo numIndo($totalDebit); ?></b></td>
+        		<!-- <th>Created At</th>
+        		<th>Updated At</th> -->
+        		<th>&nbsp;</th>
+            </tr>
         </table>
         <div class="row">
             <div class="col-md-6">
