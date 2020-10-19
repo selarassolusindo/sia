@@ -43,7 +43,7 @@
         </div>
         <table class="table table-bordered" style="margin-bottom: 10px">
             <tr>
-        		<th style="text-align:center">No. Akun Buku Besar</th>
+        		<th style="text-align:center">No. Akun</th>
                 <th style="text-align:center">Nama Akun</th>
         		<th style="text-align:center">Debit</th>
         		<th style="text-align:center">Kredit</th>
