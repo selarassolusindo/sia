@@ -78,14 +78,15 @@
         			<td><?php //echo $akun->updated_at ?></td> -->
         			<td style="text-align:right">
         				<?php
-                        echo (strlen($akun->Kode) < 13 ? anchor(site_url('akun/create/'.$akun->idakun),'Add') : '') . ' | ';
+                        echo (strlen($akun->Kode) < 13 ? anchor(site_url('akun/create/'.$akun->idakun),'<i class="far fa-plus-square"></i>','title="Add"') : ' ') . ' ';
+
                         // echo (!isLastLevel($akunLastLevel, $akun) ? anchor(site_url('akun/create/'.$akun->idakun),'Add') . ' | ' : '');
                         // echo (!isLastLevel($akunLastLevel, $akun) ? anchor(site_url('akun/read/'.$akun->idakun),'Add') . ' | ' : '');
         				// echo anchor(site_url('akun/read/'.$akun->idakun),'Read');
         				// echo ' | ';
-        				echo anchor(site_url('akun/update/'.$akun->idakun),'Update');
-        				echo ' | ';
-        				echo anchor(site_url('akun/delete/'.$akun->idakun),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
+        				echo anchor(site_url('akun/update/'.$akun->idakun),'<i class="fas fa-edit"></i>','title="Edit"');
+        				// echo ' | ';
+        				echo anchor(site_url('akun/delete/'.$akun->idakun),'<i class="fas fa-trash-alt"></i>','title="Delete" onclick="javasciprt: return confirm(\'Are You Sure ?\')"');
         				?>
         			</td>
         		</tr>
