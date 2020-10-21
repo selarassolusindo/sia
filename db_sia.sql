@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2020 at 10:35 AM
+-- Generation Time: Oct 22, 2020 at 05:21 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -12929,7 +12929,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `email`, `activation_selector`, `activation_code`, `forgotten_password_selector`, `forgotten_password_code`, `forgotten_password_time`, `remember_selector`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES
-(1, '127.0.0.1', 'admin', '$2y$12$WhVaGgGVJcwFLB2q.Ovl0eqUh0cpMrbUx9P.vssvkUxj781oeIUui', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1601849005, 1, 'Admin', 'istrator', 'ADMIN', '0'),
+(1, '127.0.0.1', 'admin', '$2y$12$WhVaGgGVJcwFLB2q.Ovl0eqUh0cpMrbUx9P.vssvkUxj781oeIUui', 'admin@admin.com', NULL, '', NULL, NULL, NULL, NULL, NULL, 1268889823, 1603146655, 1, 'Admin', 'istrator', 'ADMIN', '0'),
 (2, '::1', 'tuty', '$2y$12$nEyLPchUvFkNCg0yY9uvFu1ahHKg1Jk790ZnKJ77pNVKn/Rb8MN.K', 'e132254@f132254.g132254', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1600150975, 1601757724, 1, 'Tuty', NULL, NULL, NULL),
 (3, '::1', 'ninik', '$2y$10$eGwfsnEN1nj24TTSlbz2AOnZL7LXCc466rOeCXen4sYQr/jlXpF7y', 'e014144@f014144.g014144', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1600195304, 1600195323, 1, 'Ninik', NULL, NULL, NULL),
 (4, '::1', 'ami', '$2y$10$QomHSiOixnQDxIDDds9hAuGqIOP7/Jh3xJ5NUXWXYLUG7kd7dzUFy', 'e014253@f014253.g014253', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1600195373, 1600195423, 1, 'Aminarti', NULL, NULL, NULL);

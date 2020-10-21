@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 05, 2020 at 10:35 AM
+-- Generation Time: Oct 22, 2020 at 05:21 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -373,6 +373,37 @@ CREATE TABLE `t03_saldoawal` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `t04_akunp`
+--
+
+CREATE TABLE `t04_akunp` (
+  `idakun` int(11) NOT NULL,
+  `Kode` varchar(13) NOT NULL,
+  `Nama` varchar(100) NOT NULL,
+  `Induk` int(11) NOT NULL,
+  `Urut` varchar(13) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `t05_saldoawalp`
+--
+
+CREATE TABLE `t05_saldoawalp` (
+  `idsa` int(11) NOT NULL,
+  `idakun` int(11) NOT NULL,
+  `Debit` double NOT NULL,
+  `Kredit` double NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `t99_tglsaldoawal`
 --
 
@@ -382,6 +413,56 @@ CREATE TABLE `t99_tglsaldoawal` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v02_bukubesar`
+-- (See below for the actual view)
+--
+CREATE TABLE `v02_bukubesar` (
+`idakun` int(11)
+,`Kode` varchar(10)
+,`Nama` varchar(100)
+,`Induk` int(11)
+,`Urut` varchar(10)
+,`Debit` double
+,`Kredit` double
+);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `v02_klasak`
+-- (See below for the actual view)
+--
+CREATE TABLE `v02_klasak` (
+`idakun` int(11)
+,`KodeBB` varchar(10)
+,`KodeBP` varchar(13)
+,`Nama` varchar(100)
+,`Induk` int(11)
+,`Urut` varchar(13)
+,`c` varchar(5)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v02_bukubesar`
+--
+DROP TABLE IF EXISTS `v02_bukubesar`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v02_bukubesar`  AS  select `l`.`idakun` AS `idakun`,`l`.`Kode` AS `Kode`,`l`.`Nama` AS `Nama`,`l`.`Induk` AS `Induk`,`l`.`Urut` AS `Urut`,case when `m`.`debit` is null then 0 else `m`.`debit` end AS `Debit`,case when `m`.`kredit` is null then 0 else `m`.`kredit` end AS `Kredit` from (`t02_akun` `l` left join (select `k`.`idakun` AS `idakun`,sum(`k`.`debit`) AS `debit`,sum(`k`.`kredit`) AS `kredit`,`k`.`induk` AS `induk` from (select `i`.`induk` AS `idakun`,sum(`i`.`debit`) AS `debit`,sum(`i`.`kredit`) AS `kredit`,`j`.`Induk` AS `induk` from ((select `g`.`induk` AS `idakun`,sum(`g`.`debit`) AS `debit`,sum(`g`.`kredit`) AS `kredit`,`h`.`Induk` AS `induk` from ((select `e`.`induk` AS `idakun`,sum(`e`.`debit`) AS `debit`,sum(`e`.`kredit`) AS `kredit`,`f`.`Induk` AS `induk` from ((select `c`.`induk` AS `idakun`,sum(`c`.`debit`) AS `debit`,sum(`c`.`kredit`) AS `kredit`,`d`.`Induk` AS `induk` from ((select `a`.`idakun` AS `idakun`,`a`.`Debit` AS `debit`,`a`.`Kredit` AS `kredit`,`b`.`Induk` AS `induk` from (`t03_saldoawal` `a` left join `t02_akun` `b` on(`a`.`idakun` = `b`.`idakun`))) `c` left join `t02_akun` `d` on(`c`.`induk` = `d`.`idakun`)) group by `c`.`induk`) `e` left join `t02_akun` `f` on(`e`.`induk` = `f`.`idakun`)) group by `e`.`induk`) `g` left join `t02_akun` `h` on(`g`.`induk` = `h`.`idakun`)) group by `g`.`induk`) `i` left join `t02_akun` `j` on(`i`.`induk` = `j`.`idakun`)) where `i`.`induk` <> 0 group by `i`.`induk` union select `g`.`induk` AS `idakun`,sum(`g`.`debit`) AS `debit`,sum(`g`.`kredit`) AS `kredit`,`h`.`Induk` AS `induk` from ((select `e`.`induk` AS `idakun`,sum(`e`.`debit`) AS `debit`,sum(`e`.`kredit`) AS `kredit`,`f`.`Induk` AS `induk` from ((select `c`.`induk` AS `idakun`,sum(`c`.`debit`) AS `debit`,sum(`c`.`kredit`) AS `kredit`,`d`.`Induk` AS `induk` from ((select `a`.`idakun` AS `idakun`,`a`.`Debit` AS `debit`,`a`.`Kredit` AS `kredit`,`b`.`Induk` AS `induk` from (`t03_saldoawal` `a` left join `t02_akun` `b` on(`a`.`idakun` = `b`.`idakun`))) `c` left join `t02_akun` `d` on(`c`.`induk` = `d`.`idakun`)) group by `c`.`induk`) `e` left join `t02_akun` `f` on(`e`.`induk` = `f`.`idakun`)) group by `e`.`induk`) `g` left join `t02_akun` `h` on(`g`.`induk` = `h`.`idakun`)) where `g`.`induk` <> 0 group by `g`.`induk` union select `e`.`induk` AS `idakun`,sum(`e`.`debit`) AS `debit`,sum(`e`.`kredit`) AS `kredit`,`f`.`Induk` AS `induk` from ((select `c`.`induk` AS `idakun`,sum(`c`.`debit`) AS `debit`,sum(`c`.`kredit`) AS `kredit`,`d`.`Induk` AS `induk` from ((select `a`.`idakun` AS `idakun`,`a`.`Debit` AS `debit`,`a`.`Kredit` AS `kredit`,`b`.`Induk` AS `induk` from (`t03_saldoawal` `a` left join `t02_akun` `b` on(`a`.`idakun` = `b`.`idakun`))) `c` left join `t02_akun` `d` on(`c`.`induk` = `d`.`idakun`)) group by `c`.`induk`) `e` left join `t02_akun` `f` on(`e`.`induk` = `f`.`idakun`)) where `e`.`induk` <> 0 group by `e`.`induk` union select `c`.`induk` AS `idakun`,sum(`c`.`debit`) AS `debit`,sum(`c`.`kredit`) AS `kredit`,`d`.`Induk` AS `induk` from ((select `a`.`idakun` AS `idakun`,`a`.`Debit` AS `debit`,`a`.`Kredit` AS `kredit`,`b`.`Induk` AS `induk` from (`t03_saldoawal` `a` left join `t02_akun` `b` on(`a`.`idakun` = `b`.`idakun`))) `c` left join `t02_akun` `d` on(`c`.`induk` = `d`.`idakun`)) where `c`.`induk` <> 0 group by `c`.`induk` union select `a`.`idakun` AS `idakun`,`a`.`Debit` AS `debit`,`a`.`Kredit` AS `kredit`,`b`.`Induk` AS `induk` from (`t03_saldoawal` `a` left join `t02_akun` `b` on(`a`.`idakun` = `b`.`idakun`)) where `b`.`Induk` <> 0) `k` group by `k`.`idakun`) `m` on(`l`.`idakun` = `m`.`idakun`)) ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `v02_klasak`
+--
+DROP TABLE IF EXISTS `v02_klasak`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `v02_klasak`  AS  select `a`.`idakun` AS `idakun`,`a`.`KodeBB` AS `KodeBB`,`a`.`KodeBP` AS `KodeBP`,`a`.`Nama` AS `Nama`,`a`.`Induk` AS `Induk`,`a`.`Urut` AS `Urut`,`a`.`c` AS `c` from (select `t02_akun`.`idakun` AS `idakun`,`t02_akun`.`Kode` AS `KodeBB`,'' AS `KodeBP`,`t02_akun`.`Nama` AS `Nama`,`t02_akun`.`Induk` AS `Induk`,concat(`t02_akun`.`Urut`,'000') AS `Urut`,'akun' AS `c` from `t02_akun` union select `t04_akunp`.`idakun` AS `idakun`,'' AS `KodeBB`,`t04_akunp`.`Kode` AS `Kode`,`t04_akunp`.`Nama` AS `Nama`,`t04_akunp`.`Induk` AS `Induk`,`t04_akunp`.`Urut` AS `Urut`,'akunp' AS `c` from `t04_akunp`) `a` order by `a`.`Urut` ;
 
 --
 -- Indexes for dumped tables
@@ -404,6 +485,19 @@ ALTER TABLE `t02_akun`
 -- Indexes for table `t03_saldoawal`
 --
 ALTER TABLE `t03_saldoawal`
+  ADD PRIMARY KEY (`idsa`),
+  ADD UNIQUE KEY `idakun` (`idakun`);
+
+--
+-- Indexes for table `t04_akunp`
+--
+ALTER TABLE `t04_akunp`
+  ADD PRIMARY KEY (`idakun`);
+
+--
+-- Indexes for table `t05_saldoawalp`
+--
+ALTER TABLE `t05_saldoawalp`
   ADD PRIMARY KEY (`idsa`),
   ADD UNIQUE KEY `idakun` (`idakun`);
 
@@ -436,6 +530,18 @@ ALTER TABLE `t03_saldoawal`
   MODIFY `idsa` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `t04_akunp`
+--
+ALTER TABLE `t04_akunp`
+  MODIFY `idakun` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `t05_saldoawalp`
+--
+ALTER TABLE `t05_saldoawalp`
+  MODIFY `idsa` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `t99_tglsaldoawal`
 --
 ALTER TABLE `t99_tglsaldoawal`
@@ -450,6 +556,12 @@ ALTER TABLE `t99_tglsaldoawal`
 --
 ALTER TABLE `t03_saldoawal`
   ADD CONSTRAINT `t03_saldoawal_ibfk_1` FOREIGN KEY (`idakun`) REFERENCES `t02_akun` (`idakun`) ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `t05_saldoawalp`
+--
+ALTER TABLE `t05_saldoawalp`
+  ADD CONSTRAINT `t05_saldoawalp_ibfk_1` FOREIGN KEY (`idakun`) REFERENCES `t04_akunp` (`idakun`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

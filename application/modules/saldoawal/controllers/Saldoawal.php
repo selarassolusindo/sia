@@ -26,7 +26,7 @@ class Saldoawal extends CI_Controller
             $config['first_url'] = base_url() . 'saldoawal';
         }
 
-        $config['per_page'] = 10;
+        $config['per_page'] = 2;
         $config['page_query_string'] = TRUE;
         $config['total_rows'] = $this->Saldoawal_model->total_rows($q);
         // $saldoawal = $this->Saldoawal_model->get_limit_data($config['per_page'], $start, $q);
@@ -36,7 +36,16 @@ class Saldoawal extends CI_Controller
         $this->load->library('pagination');
         $this->pagination->initialize($config);
 
-        // echo pre($this->pagination->create_links()); die();
+        // echo pre($config['total_rows']); die();
+        if ($config['total_rows'] > 0 and $start == '') {
+            // echo pre($config['total_rows']); die();
+            if ($config['total_rows'] % $config['per_page'] == 0) {
+                $start_ = $config['total_rows']-$config['per_page'];
+            } else {
+                $start_ = $config['total_rows']-1;
+            }
+            redirect(site_url('saldoawal?start='.$start_));
+        }
 
         $data = array(
             'saldoawal_data' => $saldoawal,

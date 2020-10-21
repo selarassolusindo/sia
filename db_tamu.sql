@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2020 at 12:15 AM
+-- Generation Time: Oct 22, 2020 at 05:22 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.9
 
@@ -92,7 +92,11 @@ CREATE TABLE `t02_tamu` (
 --
 
 INSERT INTO `t02_tamu` (`idtamu`, `TripNo`, `TripTgl`, `Nama`, `MFC`, `Country`, `PackageNight`, `PackageType`, `CheckIn`, `CheckOut`, `Agent`, `Status`, `DaysStay`, `Price`, `created_at`, `updated_at`) VALUES
-(1, 'T-38', '2020-07-19', 'Anthony Paris', 'M', 'OZ', '6N', 'SUP', '2019-07-19', '2019-07-25', 'WS', '', 6, 14076000, '2020-09-22 13:20:46', '2020-09-22 13:21:54');
+(1, 'T-38', '1970-01-01', 'Anthony Paris', 'M', 'OZ', '6N', 'SUP', '1970-01-01', '1970-01-01', 'WS', '1', 6, 14076000, '2020-10-08 12:36:50', '2020-10-08 12:36:50'),
+(2, 'T-38', '1970-01-01', 'Anthony Paris', 'M', 'OZ', '6N', 'SUP', '1970-01-01', '1970-01-01', 'WS', '1', 6, 14076000, '2020-10-08 12:37:55', '2020-10-08 12:37:55'),
+(3, 'T-39', '1970-01-01', 'Anthony Paris X', 'M', 'OZ', '6N', 'SUP', '1970-01-01', '1970-01-01', 'WS', '1', 6, 14076000, '2020-10-08 12:37:55', '2020-10-08 12:37:55'),
+(4, 'T-38', '2019-07-17', 'Anthony Paris', 'M', 'OZ', '6N', 'SUP', '2019-07-19', '2019-07-25', 'WS', '1', 6, 14076000, '2020-10-08 13:23:29', '2020-10-08 13:23:29'),
+(5, 'T-38', '2019-12-02', 'Anthony Paris', 'M', 'OZ', '6N', 'SUP', '2019-07-19', '2019-07-25', 'WS', '1', 6, 14076000, '2020-10-08 13:49:45', '2020-10-08 13:49:45');
 
 --
 -- Indexes for dumped tables
@@ -124,7 +128,7 @@ ALTER TABLE `t01_package`
 -- AUTO_INCREMENT for table `t02_tamu`
 --
 ALTER TABLE `t02_tamu`
-  MODIFY `idtamu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idtamu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
