@@ -36,15 +36,21 @@ class Saldoawal extends CI_Controller
         $this->load->library('pagination');
         $this->pagination->initialize($config);
 
-        // echo pre($config['total_rows']); die();
         if ($config['total_rows'] > 0 and $start == '') {
-            // echo pre($config['total_rows']); die();
-            if ($config['total_rows'] % $config['per_page'] == 0) {
-                // $start_ = $config['total_rows']-$config['per_page'];
+            /**
+             * jika nilai total_rows kurang dari nilai per_page
+             */
+            if ($config['total_rows'] <= $config['per_page']) {
+                $start_ = 0;
             } else {
-                // $start_ = $config['total_rows']-1;
+                $start_ = ceil($config['total_rows'] / $config['per_page']);
             }
-            // redirect(site_url('saldoawal?start='.$start_));
+            // if ($config['total_rows'] % $config['per_page'] == 0) {
+                // $start_ = $config['total_rows']-$config['per_page'];
+            // } else {
+                // $start_ = $config['total_rows']-1;
+            // }
+            redirect(site_url('saldoawal?start='.$start_));
         }
 
         $data = array(
