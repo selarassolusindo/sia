@@ -40,11 +40,11 @@ class Saldoawal extends CI_Controller
         if ($config['total_rows'] > 0 and $start == '') {
             // echo pre($config['total_rows']); die();
             if ($config['total_rows'] % $config['per_page'] == 0) {
-                $start_ = $config['total_rows']-$config['per_page'];
+                // $start_ = $config['total_rows']-$config['per_page'];
             } else {
-                $start_ = $config['total_rows']-1;
+                // $start_ = $config['total_rows']-1;
             }
-            redirect(site_url('saldoawal?start='.$start_));
+            // redirect(site_url('saldoawal?start='.$start_));
         }
 
         $data = array(
