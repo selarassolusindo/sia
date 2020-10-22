@@ -50,7 +50,7 @@ class Saldoawal extends CI_Controller
             // } else {
                 // $start_ = $config['total_rows']-1;
             // }
-            redirect(site_url('saldoawal?start='.$start_));
+            // redirect(site_url('saldoawal?start='.$start_));
         }
 
         $data = array(
