@@ -43,7 +43,7 @@ class Saldoawal extends CI_Controller
             if ($config['total_rows'] <= $config['per_page']) {
                 $start_ = 0;
             } else {
-                $start_ = ceil($config['total_rows'] / $config['per_page']);
+                $start_ = ceil($config['total_rows'] / $config['per_page']) * $config['per_page'];
             }
             // if ($config['total_rows'] % $config['per_page'] == 0) {
                 // $start_ = $config['total_rows']-$config['per_page'];
