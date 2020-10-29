@@ -203,15 +203,16 @@ class Akun extends CI_Controller
     public function _rules()
     {
         $this->db = $this->load->database($this->session->userdata('groupName'), true);
-    	$this->form_validation->set_rules('Kode', 'kode', 'trim|required|is_unique[t02_akun.Kode]', array('is_unique' => 'No. Akun sudah ada !'));
-    	$this->form_validation->set_rules('Nama', 'nama', 'trim|required');
-    	$this->form_validation->set_rules('Induk', 'induk', 'trim|required');
-    	// $this->form_validation->set_rules('Urut', 'urut', 'trim|required');
-    	// $this->form_validation->set_rules('created_at', 'created at', 'trim|required');
-    	// $this->form_validation->set_rules('updated_at', 'updated at', 'trim|required');
+      	// $this->form_validation->set_rules('Kode', 'kode', 'trim|required|is_unique[t02_akun.Kode]', array('is_unique' => 'No. Akun sudah ada !'));
+        $this->form_validation->set_rules('Kode', 'kode', 'trim|required'); //|is_unique[t02_akun.Kode]', array('is_unique' => 'No. Akun sudah ada !'));
+      	$this->form_validation->set_rules('Nama', 'nama', 'trim|required');
+      	$this->form_validation->set_rules('Induk', 'induk', 'trim|required');
+      	// $this->form_validation->set_rules('Urut', 'urut', 'trim|required');
+      	// $this->form_validation->set_rules('created_at', 'created at', 'trim|required');
+      	// $this->form_validation->set_rules('updated_at', 'updated at', 'trim|required');
 
-    	$this->form_validation->set_rules('idakun', 'idakun', 'trim');
-    	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+      	$this->form_validation->set_rules('idakun', 'idakun', 'trim');
+      	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
     }
 
     public function excel()
