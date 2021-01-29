@@ -355,9 +355,11 @@ class Tamu extends CI_Controller
             $loadexcel = $excelreader->load('excel/' . $data_upload['file_name']);
             $sheet = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
             $data = array();
+            $startRow = 2;
             $numRow = 1;
             foreach ($sheet as $row) {
-                // if ($numRow > 1) {
+                // echo pre($row);
+                if ($numRow >= $startRow) {
                     array_push($data, array(
                         'TripNo'       => $row['B'],
                         'TripTgl'      => date_format(date_create($row['C']), 'Y-m-d'),
@@ -377,10 +379,10 @@ class Tamu extends CI_Controller
                         // 'c' => strtotime(PHPExcel_Shared_Date::ExcelToPHP($row['C'])),
                         )
                     );
-                // }
+                }
                 $numRow++;
             }
-
+            // echo pre($data);
             $this->Tamu_model->insert2($data);
             unlink(realpath('excel/' . $data_upload['file_name']));
 
