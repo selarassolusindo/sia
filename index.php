@@ -57,7 +57,7 @@
 
 switch ($_SERVER["HTTP_HOST"]) {
 	case "localhost":
-		$env = "production";
+		$env = "development"; //$env = "production";
         define('DBPREFIX', 'db');
 		break;
 
